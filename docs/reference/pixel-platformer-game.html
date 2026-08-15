@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiny Kernel — Pixel Platformer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#e8eaf6; --gold:#ffc93c; --line:#3a3f66; --panel:#20233a; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:#6fb9ff; color:var(--ink);
+    font-family:"Press Start 2P", monospace;
+    display:flex; flex-direction:column; overflow:hidden;
+    -webkit-user-select:none; user-select:none;
+  }
+  /* ---------- viewport ---------- */
+  #scroller{
+    flex:1; overflow:hidden; background:#6fb9ff;
+    display:flex; align-items:flex-end;
+  }
+  #game{image-rendering:pixelated; display:block; touch-action:none; cursor:default; flex-shrink:0;}
+  /* ---------- HUD: coins, pinned top-right ---------- */
+  #hud{
+    position:fixed; top:12px; right:12px; z-index:20;
+    display:flex; align-items:center; gap:8px;
+    background:#00000066; border:3px solid var(--gold);
+    box-shadow:0 4px 0 #00000055; padding:8px 12px; border-radius:3px;
+    pointer-events:none;
+  }
+  #hudCoin{image-rendering:pixelated; width:24px; height:24px; display:block;}
+  #hudCount{font-size:14px; color:var(--gold); text-shadow:2px 2px 0 #00000088; line-height:1;}
+  /* ---------- controls hint (fades out) ---------- */
+  #hint{
+    position:fixed; left:12px; bottom:12px; z-index:20; pointer-events:none;
+    background:#00000066; border:3px solid var(--line); padding:9px 12px;
+    font-size:8px; line-height:1.9; color:var(--ink); border-radius:3px;
+    transition:opacity .6s;
+  }
+  #hint b{color:var(--gold);}
+  #hint.gone{opacity:0;}
+  /* ---------- banner & touch ---------- */
+  #banner{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    pointer-events:none; z-index:40;
+  }
+  #banner div{
+    background:#000000cc; border:3px solid var(--gold); color:var(--gold);
+    padding:22px 28px; font-size:14px; text-align:center; line-height:2;
+  }
+  #banner small{font-size:8px; color:var(--ink); display:block;}
+  #touch{
+    position:fixed; left:0; right:0; bottom:0; display:none; z-index:30;
+    justify-content:space-between; padding:14px; pointer-events:none;
+  }
+  #touch .pad{display:flex; gap:10px; pointer-events:auto;}
+  #touch button{
+    width:64px; height:64px; font-family:inherit; font-size:18px;
+    background:#20233acc; color:var(--ink); border:3px solid var(--line);
+    border-radius:8px;
+  }
+  @media (max-width:640px){ #hint{display:none;} }
+</style>
+</head>
+<body>
+
+<div id="scroller"><canvas id="game"></canvas></div>
+
+<div id="hud">
+  <canvas id="hudCoin" width="16" height="16"></canvas>
+  <span id="hudCount">0</span>
+</div>
+
+<div id="hint">
+  <b>&larr;&rarr;</b> move &middot; <b>SPACE</b> jump &middot; <b>SHIFT</b> sprint<br>
+  <b>R</b> restart &middot; <b>M</b> mute &middot; stomp enemies, bump blocks, reach the flag
+</div>
+
+<div id="banner"><div id="bannerText"></div></div>
+
+<div id="touch">
+  <div class="pad">
+    <button id="tLeft">&#9664;</button>
+    <button id="tRight">&#9654;</button>
+  </div>
+  <div class="pad">
+    <button id="tRun">&#187;</button>
+    <button id="tJump">&#9650;</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* =========================================================
+   TILES:
+   0 empty | 1 ground | 2 brick | 3 ?block | 4 coin
+   5 pipe  | 6 spike  | 7 flag  | 8 used block
+   (spawn point stored separately in level.spawn)
+   ========================================================= */
+const T = {EMPTY:0, GROUND:1, BRICK:2, QUEST:3, COIN:4, PIPE:5, SPIKE:6, FLAG:7, USED:8, ENEMY:9,
+           CLOUD:10, BUSH:11, TREE:12, GRASS:13, HILL:14, FENCE:15, TURTLE:16};
+const BG = new Set([10,11,12,13,14,15]);   // decoration: never solid, never interactive
+const SOLID = new Set([1,2,3,5,8]);
+const TS = 16;          // logical tile px
+let S  = 2;             // screen scale — recomputed to fit the viewport height
+let TSS = TS*S;         // screen px per tile
+
+/* =========================================================
+   THE LEVEL — baked in as data. This is the file the editor
+   wrote; nothing here is generated at runtime.
+   ========================================================= */
+const LEVEL_DATA = {
+  "version": 1,
+  "width": 64,
+  "height": 19,
+  "spawn": {"x": 2, "y": 14},
+  "props": {
+    "16,15": {"speed": 0.6},
+    "45,15": {"speed": 0.35}
+  },
+  "tiles": [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,2,3,2,2,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,2,2,3,2,2,0,0,0,0,0,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,4,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,7,0,0,0,0,0],
+    [0,0,0,0,0,0,15,15,11,0,0,0,0,14,0,0,9,0,0,13,0,0,0,0,13,16,5,5,0,13,0,0,0,11,0,12,0,6,6,0,0,0,0,14,0,16,9,0,13,0,2,2,2,2,15,15,12,0,7,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  ]
+};
+
+const level = {
+  width:  LEVEL_DATA.width,
+  height: LEVEL_DATA.height,
+  spawn:  {x:LEVEL_DATA.spawn.x, y:LEVEL_DATA.spawn.y},
+  tiles:  LEVEL_DATA.tiles.map(r=>r.slice()),
+  props:  LEVEL_DATA.props || {}
+};
+
+/* ---------- tile sprite cache (procedural pixel art) ---------- */
+function makeTile(draw){
+  const c=document.createElement('canvas'); c.width=TS; c.height=TS;
+  const g=c.getContext('2d'); draw(g); return c;
+}
+function makeSprite(w,h,draw){          // multi-tile props, drawn at their own resolution
+  const c=document.createElement('canvas'); c.width=w; c.height=h;
+  const g=c.getContext('2d'); draw(g); return c;
+}
+const px=(g,x,y,w,h,col)=>{ g.fillStyle=col; g.fillRect(x,y,w,h); };
+const CACHE = {};
+function buildCache(){
+  CACHE.ground_top = makeTile(g=>{
+    px(g,0,0,16,16,'#b06a3b'); px(g,0,0,16,5,'#3fae4d'); px(g,0,4,16,1,'#2c8038');
+    px(g,2,1,2,1,'#7fdd8a'); px(g,9,2,3,1,'#7fdd8a');
+    px(g,3,8,2,2,'#8a4e29'); px(g,10,11,3,2,'#8a4e29'); px(g,6,13,2,2,'#8a4e29');
+  });
+  CACHE.ground_fill = makeTile(g=>{
+    px(g,0,0,16,16,'#a2603a'); px(g,2,2,3,2,'#8a4e29'); px(g,9,5,3,2,'#8a4e29');
+    px(g,4,10,2,2,'#8a4e29'); px(g,11,12,3,2,'#8a4e29'); px(g,0,0,16,1,'#8a4e29');
+  });
+  CACHE.brick = makeTile(g=>{
+    px(g,0,0,16,16,'#c1502e');
+    px(g,0,0,16,1,'#e77a4f'); px(g,0,8,16,1,'#7d2a12');
+    px(g,0,7,16,1,'#e77a4f'); px(g,0,15,16,1,'#7d2a12');
+    px(g,7,1,1,6,'#7d2a12'); px(g,3,9,1,6,'#7d2a12'); px(g,12,9,1,6,'#7d2a12');
+  });
+  CACHE.quest = makeTile(g=>{
+    px(g,0,0,16,16,'#f6a721'); px(g,0,0,16,1,'#ffe08a'); px(g,0,0,1,16,'#ffe08a');
+    px(g,15,0,1,16,'#a05e07'); px(g,0,15,16,1,'#a05e07');
+    px(g,1,1,2,2,'#7d4a05'); px(g,13,1,2,2,'#7d4a05');
+    px(g,1,13,2,2,'#7d4a05'); px(g,13,13,2,2,'#7d4a05');
+    // question mark
+    px(g,6,3,4,2,'#7d4a05'); px(g,9,5,2,2,'#7d4a05'); px(g,7,7,2,2,'#7d4a05'); px(g,7,11,2,2,'#7d4a05');
+  });
+  CACHE.used = makeTile(g=>{
+    px(g,0,0,16,16,'#8f6b3f'); px(g,0,0,16,1,'#b08a54'); px(g,0,0,1,16,'#b08a54');
+    px(g,15,0,1,16,'#5d4222'); px(g,0,15,16,1,'#5d4222');
+    px(g,2,2,2,2,'#5d4222'); px(g,12,2,2,2,'#5d4222'); px(g,2,12,2,2,'#5d4222'); px(g,12,12,2,2,'#5d4222');
+  });
+  CACHE.coin = makeTile(g=>{
+    px(g,5,2,6,12,'#f6c521'); px(g,4,3,8,10,'#f6c521');
+    px(g,5,3,2,10,'#ffe98a'); px(g,7,4,2,8,'#c78b07');
+  });
+  CACHE.pipe_top = makeTile(g=>{
+    px(g,0,0,16,6,'#2e9e4f'); px(g,0,0,16,1,'#8be3a0'); px(g,1,1,2,5,'#8be3a0');
+    px(g,13,0,3,6,'#176b2f'); px(g,1,6,14,10,'#2e9e4f');
+    px(g,2,6,2,10,'#8be3a0'); px(g,12,6,2,10,'#176b2f');
+  });
+  CACHE.pipe_body = makeTile(g=>{
+    px(g,1,0,14,16,'#2e9e4f'); px(g,2,0,2,16,'#8be3a0'); px(g,12,0,2,16,'#176b2f');
+  });
+  CACHE.spike = makeTile(g=>{
+    px(g,0,14,16,2,'#5a5f78');
+    for(const sx of [0,6,11]){
+      px(g,sx+2,6,1,8,'#c7ccdf'); px(g,sx+1,9,3,5,'#c7ccdf'); px(g,sx,12,5,2,'#9aa0b8');
+    }
+  });
+  CACHE.flag_pole = makeTile(g=>{ px(g,7,0,2,16,'#3f9e4c'); px(g,7,0,1,16,'#8be3a0'); });
+  CACHE.flag_top = makeTile(g=>{
+    px(g,7,2,2,14,'#3f9e4c'); px(g,7,2,1,14,'#8be3a0');
+    px(g,5,0,6,4,'#f6c521'); px(g,6,1,4,2,'#ffe98a');
+    px(g,9,4,7,5,'#ff5a4e'); px(g,9,4,7,1,'#ffd0cb'); // banner
+  });
+  CACHE.enemy = makeTile(g=>{
+    px(g,3,3,10,9,'#a0522d');  px(g,4,2,8,1,'#a0522d');   // dome body
+    px(g,4,3,2,2,'#d68a5c');                               // highlight
+    px(g,4,7,3,3,'#fff'); px(g,9,7,3,3,'#fff');            // eyes
+    px(g,5,8,1,2,'#222'); px(g,10,8,1,2,'#222');           // pupils
+    px(g,4,6,3,1,'#5c2c12'); px(g,9,6,3,1,'#5c2c12');      // angry brows
+    px(g,2,12,5,3,'#3b1c0a'); px(g,9,12,5,3,'#3b1c0a');    // feet
+  });
+  CACHE.enemy_squash = makeTile(g=>{
+    px(g,2,11,12,3,'#a0522d');
+    px(g,3,12,2,1,'#fff'); px(g,11,12,2,1,'#fff');
+    px(g,1,14,6,2,'#3b1c0a'); px(g,9,14,6,2,'#3b1c0a');
+  });
+  CACHE.cloud = makeSprite(48,32,g=>{
+    px(g,6,14,36,12,'#ffffff'); px(g,2,18,44,8,'#ffffff');
+    px(g,10,8,16,8,'#ffffff'); px(g,26,11,13,7,'#ffffff'); px(g,14,4,10,6,'#ffffff');
+    px(g,4,22,40,5,'#e4f1ff'); px(g,8,24,32,3,'#d5e9fb');
+    px(g,12,7,6,3,'#ffffff'); px(g,30,13,5,3,'#ffffff');
+  });
+  CACHE.hill = makeSprite(64,48,g=>{
+    px(g,0,34,64,14,'#57a862');
+    px(g,4,26,56,10,'#6fc47a'); px(g,12,18,40,10,'#6fc47a');
+    px(g,20,10,24,10,'#7fdd8a'); px(g,26,5,12,6,'#7fdd8a');
+    px(g,22,12,8,4,'#94e89e'); px(g,44,28,10,5,'#57a862');
+    px(g,0,44,64,4,'#4a9455');
+  });
+  CACHE.tree = makeSprite(48,64,g=>{
+    px(g,20,38,8,26,'#7d4a05'); px(g,20,38,3,26,'#a0691a'); px(g,26,44,2,20,'#5c3403');
+    px(g,14,54,6,4,'#7d4a05'); px(g,28,50,7,4,'#7d4a05');
+    px(g,8,16,32,26,'#3f9e4c');
+    px(g,4,22,40,14,'#3f9e4c');
+    px(g,12,8,24,12,'#4cb85c'); px(g,18,3,12,8,'#4cb85c');
+    px(g,14,10,8,5,'#7fdd8a'); px(g,10,24,7,4,'#7fdd8a');
+    px(g,30,20,6,5,'#2f7a3a'); px(g,34,30,6,6,'#2f7a3a');
+  });
+  CACHE.bush = makeTile(g=>{
+    px(g,1,10,14,6,'#3f9e4c'); px(g,3,7,5,4,'#4cb85c'); px(g,8,6,6,5,'#4cb85c');
+    px(g,4,8,2,1,'#7fdd8a'); px(g,10,7,3,1,'#7fdd8a'); px(g,1,14,14,2,'#2f7a3a');
+  });
+  CACHE.grass = makeTile(g=>{
+    px(g,2,12,1,4,'#4cb85c'); px(g,3,11,1,5,'#4cb85c'); px(g,4,13,1,3,'#3f9e4c');
+    px(g,8,12,1,4,'#4cb85c'); px(g,9,10,1,6,'#7fdd8a'); px(g,10,12,1,4,'#3f9e4c');
+    px(g,13,13,1,3,'#4cb85c');
+  });
+  CACHE.fence = makeTile(g=>{
+    px(g,2,6,2,10,'#c39a63'); px(g,12,6,2,10,'#c39a63');
+    px(g,0,8,16,2,'#d8b183'); px(g,0,12,16,2,'#d8b183');
+    px(g,2,6,1,10,'#e0c49b'); px(g,12,6,1,10,'#e0c49b');
+  });
+  CACHE.turtle = makeTile(g=>{
+    px(g,3,5,10,8,'#2e9e4f');  px(g,4,4,8,1,'#2e9e4f');      // shell dome
+    px(g,4,5,3,2,'#8be3a0');                                  // shell highlight
+    px(g,5,8,2,2,'#176b2f'); px(g,9,8,2,2,'#176b2f');         // shell markings
+    px(g,3,12,10,1,'#f6c521');                                // shell rim
+    px(g,10,1,5,5,'#f6e0a8'); px(g,13,3,1,1,'#222');          // head + eye
+    px(g,2,13,4,3,'#f6c521'); px(g,9,13,4,3,'#f6c521');       // feet
+  });
+  CACHE.shell = makeTile(g=>{
+    px(g,2,6,12,8,'#2e9e4f'); px(g,3,5,10,1,'#2e9e4f');
+    px(g,3,6,3,3,'#8be3a0');
+    px(g,5,9,2,2,'#176b2f'); px(g,9,9,2,2,'#176b2f'); px(g,7,7,2,2,'#176b2f');
+    px(g,1,12,14,3,'#f6c521'); px(g,1,14,14,1,'#c78b07');
+  });
+  // --- ninja: shared body, per-frame limbs ---
+  const NJ = {dark:'#242741', mid:'#363a63', skin:'#f7dcb4', eye:'#15161f',
+              band:'#e03b30', bandLo:'#a3241c', sash:'#dfe3f5'};
+  function ninjaBody(g, bob){
+    const r=(x,y,w,h,c)=>{g.fillStyle=c; g.fillRect(x,y+bob,w,h);};
+    r(2,1,8,7,NJ.dark);                       // hood
+    r(3,1,5,1,NJ.mid);
+    r(3,4,6,2,NJ.skin);                       // eye slit
+    r(4,4,1,2,NJ.eye); r(7,4,1,2,NJ.eye);
+    r(1,2,10,2,NJ.band);                      // headband
+    r(1,3,10,1,NJ.bandLo);
+    r(2,8,8,4,NJ.dark);                       // torso
+    r(3,8,2,4,NJ.mid);
+    r(2,10,8,1,NJ.sash);                      // sash
+  }
+  function ninjaFrame(bob, tailY, limbs){
+    return makeSprite(12,16,g=>{
+      const r=(x,y,w,h,c)=>{g.fillStyle=c; g.fillRect(x,y,w,h);};
+      r(0,tailY,2,1,NJ.band); r(0,tailY+1,1,2,NJ.bandLo);   // headband tails
+      ninjaBody(g,bob);
+      limbs(r,bob);
+    });
+  }
+  CACHE.nj_idle = ninjaFrame(0,4,(r,b)=>{
+    r(1,8+b,1,3,NJ.dark); r(10,8+b,1,3,NJ.dark);
+    r(2,12+b,3,4,NJ.dark); r(7,12+b,3,4,NJ.dark);
+    r(2,15+b,3,1,NJ.mid); r(7,15+b,3,1,NJ.mid);
+  });
+  CACHE.nj_walk0 = ninjaFrame(0,4,(r,b)=>{
+    r(0,8,2,3,NJ.dark); r(10,8,2,3,NJ.dark);
+    r(2,12,3,4,NJ.dark); r(1,15,4,1,NJ.mid);
+    r(7,12,3,4,NJ.dark); r(7,15,3,1,NJ.mid);
+  });
+  CACHE.nj_walk1 = ninjaFrame(0,4,(r,b)=>{
+    r(1,9,1,3,NJ.dark); r(10,9,1,3,NJ.dark);
+    r(3,12,3,4,NJ.dark); r(6,12,3,4,NJ.dark);
+    r(3,15,3,1,NJ.mid); r(6,15,3,1,NJ.mid);
+  });
+  CACHE.nj_walk2 = ninjaFrame(0,4,(r,b)=>{
+    r(0,8,2,3,NJ.dark); r(10,8,2,3,NJ.dark);
+    r(2,12,3,4,NJ.dark); r(2,15,3,1,NJ.mid);
+    r(7,12,3,4,NJ.dark); r(7,15,4,1,NJ.mid);
+  });
+  CACHE.nj_walk3 = ninjaFrame(0,4,(r,b)=>{
+    r(1,8,1,3,NJ.dark); r(10,8,1,3,NJ.dark);
+    r(3,12,3,4,NJ.dark); r(6,12,3,4,NJ.dark);
+    r(3,15,3,1,NJ.mid); r(6,15,3,1,NJ.mid);
+  });
+  CACHE.nj_jump = ninjaFrame(0,2,(r,b)=>{
+    r(0,5,2,4,NJ.dark); r(10,5,2,4,NJ.dark);   // arms up
+    r(2,12,3,3,NJ.dark); r(7,12,3,3,NJ.dark);  // legs tucked
+    r(2,14,3,1,NJ.mid); r(7,14,3,1,NJ.mid);
+  });
+  CACHE.nj_fall = ninjaFrame(0,6,(r,b)=>{
+    r(0,8,2,2,NJ.dark); r(10,8,2,2,NJ.dark);   // arms out
+    r(1,12,3,4,NJ.dark); r(8,12,3,4,NJ.dark);  // legs spread
+    r(1,15,3,1,NJ.mid); r(8,15,3,1,NJ.mid);
+  });
+  CACHE.spawn = makeTile(g=>{ // palette icon for spawn tool
+    const r=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h);};
+    r(4,2,8,6,'#242741'); r(5,4,5,2,'#f7dcb4'); r(6,4,1,2,'#15161f'); r(8,4,1,2,'#15161f');
+    r(3,3,10,2,'#e03b30'); r(2,4,2,1,'#a3241c');
+    r(4,8,8,4,'#242741'); r(4,10,8,1,'#dfe3f5');
+    r(5,12,2,4,'#242741'); r(9,12,2,4,'#242741');
+  });
+  CACHE.eraser = makeTile(g=>{
+    px(g,3,5,10,7,'#e8eaf6'); px(g,3,5,10,3,'#ff8bd0'); px(g,3,11,10,1,'#9aa0c3');
+  });
+}
+buildCache();
+
+/* =========================================================
+   SPRITE SHEET
+   The procedural sprites above are the fallback. If a sheet is present it
+   overrides them, so replacing the art means replacing one PNG.
+   Grid is 16px. Multi-tile props live in the lower region at their own size.
+   ========================================================= */
+const SHEET_LAYOUT = {
+  ground_top:[0,0,16,16], ground_fill:[16,0,16,16], brick:[32,0,16,16], quest:[48,0,16,16],
+  used:[64,0,16,16], coin:[80,0,16,16], pipe_top:[96,0,16,16], pipe_body:[112,0,16,16],
+  spike:[128,0,16,16], flag_pole:[144,0,16,16], flag_top:[160,0,16,16], enemy:[176,0,16,16],
+  enemy_squash:[192,0,16,16], turtle:[208,0,16,16], shell:[224,0,16,16], bush:[240,0,16,16],
+  grass:[0,16,16,16], fence:[16,16,16,16], spawn:[32,16,16,16], eraser:[48,16,16,16],
+  cloud:[0,64,48,32], tree:[48,64,48,64], hill:[96,64,64,48]
+};
+const SHEET_SRC = "data:image/png;base64,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";
+
+function sliceSheet(img){
+  let n=0;
+  for(const name in SHEET_LAYOUT){
+    const [sx,sy,sw,sh]=SHEET_LAYOUT[name];
+    const c=document.createElement('canvas'); c.width=sw; c.height=sh;
+    const g=c.getContext('2d'); g.imageSmoothingEnabled=false;
+    g.drawImage(img, sx,sy,sw,sh, 0,0,sw,sh);
+    CACHE[name]=c; n++;
+  }
+  return n;
+}
+function loadSheet(){
+  if(SHEET_SRC.indexOf('__SPRITE')>-1) return;      // no sheet embedded; keep procedural art
+  const img=new Image();
+  img.onload=()=>{
+    try{
+      const n=sliceSheet(img);
+      console.log('spritesheet loaded: '+n+' sprites');
+      draw();
+    }catch(e){ console.warn('sheet slice failed, keeping procedural art', e); }
+  };
+  img.onerror=()=>console.warn('spritesheet failed to load, keeping procedural art');
+  img.src=SHEET_SRC;
+}
+
+/* =========================================================
+   TILE PROPERTIES — per-cell settings authored in the editor,
+   keyed "x,y". Read-only here.
+   ========================================================= */
+const PROPS = {
+  9:  {name:'ENEMY',  fields:[{key:'speed', def:0.55}]},
+  16: {name:'TURTLE', fields:[{key:'speed', def:0.50}]},
+};
+const pKey=(x,y)=>x+','+y;
+function propDefs(v){ return PROPS[v] || null; }
+function getProp(x,y,key){
+  const v=level.tiles[y][x], d=propDefs(v); if(!d) return undefined;
+  const stored=level.props[pKey(x,y)];
+  if(stored && stored[key]!==undefined) return stored[key];
+  return d.fields.find(f=>f.key===key).def;
+}
+
+/* multi-tile props: drawn larger than their cell, anchored on the painted tile */
+const BIG = {
+  10: {w:3, h:2, ox:-1,   oy:-1},    // cloud — painted cell is bottom-centre
+  14: {w:4, h:3, ox:-1.5, oy:-2},    // hill  — painted cell is base-centre
+  12: {w:3, h:4, ox:-1,   oy:-3},    // tree  — painted cell is the trunk base
+};
+
+/* how much each decoration recedes into the background (1 = fully opaque) */
+const FADE = {10:0.55, 14:0.45, 12:0.8};
+/* draw order for decoration: 0 = furthest back, 1 = nearer. gameplay tiles are always last */
+const DEPTH = {10:0, 14:0, 12:1, 11:1, 13:1, 15:1};
+
+/* which sprite for a tile, given neighbors */
+function spriteFor(x,y){
+  const v = level.tiles[y][x];
+  switch(v){
+    case T.GROUND: return (y>0 && level.tiles[y-1][x]===T.GROUND) ? CACHE.ground_fill : CACHE.ground_top;
+    case T.BRICK:  return CACHE.brick;
+    case T.QUEST:  return CACHE.quest;
+    case T.USED:   return CACHE.used;
+    case T.COIN:   return CACHE.coin;
+    case T.PIPE:   return (y>0 && level.tiles[y-1][x]===T.PIPE) ? CACHE.pipe_body : CACHE.pipe_top;
+    case T.SPIKE:  return CACHE.spike;
+    case T.FLAG:   return (y>0 && level.tiles[y-1][x]===T.FLAG) ? CACHE.flag_pole : CACHE.flag_top;
+    case T.ENEMY:  return CACHE.enemy;
+    case T.TURTLE: return CACHE.turtle;
+    case T.CLOUD:  return CACHE.cloud;
+    case T.BUSH:   return CACHE.bush;
+    case T.TREE:   return CACHE.tree;
+    case T.GRASS:  return CACHE.grass;
+    case T.HILL:   return CACHE.hill;
+    case T.FENCE:  return CACHE.fence;
+  }
+  return null;
+}
+
+/* ---------- canvas ---------- */
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const buf = document.createElement('canvas');
+const bx = buf.getContext('2d');
+const scroller = document.getElementById('scroller');
+const ZOOM = 1.0;       // canvas fills the viewport height
+const MIN_TILES_WIDE = 20;   // never zoom in so far that the level becomes a keyhole
+function sizeCanvas(){
+  const availH = scroller.clientHeight || 448;
+  const availW = scroller.clientWidth  || 800;
+  // fit the world's height to the viewport, but back off if that would leave
+  // too few tiles visible across (tall, narrow phone screens)
+  S = Math.min(availH/(level.height*TS), availW/(MIN_TILES_WIDE*TS)) * ZOOM;
+  TSS = TS*S;
+  canvas.width  = Math.round(level.width*TSS);
+  canvas.height = Math.round(level.height*TSS);
+  buf.width  = level.width*TS;          // logical resolution: 16px per tile
+  buf.height = level.height*TS;
+  bx.imageSmoothingEnabled = false;
+  ctx.imageSmoothingEnabled = false;
+}
+sizeCanvas();
+window.addEventListener('resize',()=>{
+  sizeCanvas();
+  camX = Math.max(0, Math.min(P.x*S - scroller.clientWidth/2 + P.w, canvas.width - scroller.clientWidth));
+  scroller.scrollLeft = camX;
+  draw();
+});
+
+/* ---------- HUD ---------- */
+const hudCoin=document.getElementById('hudCoin');
+const hudCount=document.getElementById('hudCount');
+function paintHudCoin(){
+  const g=hudCoin.getContext('2d');
+  g.clearRect(0,0,16,16); g.imageSmoothingEnabled=false;
+  if(CACHE.coin) g.drawImage(CACHE.coin,0,0,16,16);
+}
+function setCoins(n){ hudCount.textContent=n; }
+function addCoin(){ coins++; setCoins(coins); }
+
+/* =========================================================
+   SOUND — all synthesized with Web Audio, zero asset files
+   ========================================================= */
+let AC=null, soundOn=true;
+function audioCtx(){
+  if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)();
+  if(AC.state==='suspended') AC.resume();
+  return AC;
+}
+function tone(f0,f1,dur,type,vol,delay=0){
+  const a=audioCtx(), t=a.currentTime+delay;
+  const o=a.createOscillator(), g=a.createGain();
+  o.type=type; o.frequency.setValueAtTime(f0,t);
+  if(f1!==f0) o.frequency.exponentialRampToValueAtTime(Math.max(f1,1),t+dur);
+  g.gain.setValueAtTime(vol,t);
+  g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+  o.connect(g); g.connect(a.destination);
+  o.start(t); o.stop(t+dur+0.03);
+}
+function sfx(name){
+  if(!soundOn) return;
+  try{
+    switch(name){
+      case 'jump':  tone(200,640,0.16,'square',0.10); break;
+      case 'coin':  tone(988,988,0.07,'square',0.10);
+                    tone(1319,1319,0.22,'square',0.10,0.07); break;
+      case 'bump':  tone(130,60,0.09,'square',0.16); break;
+      case 'break': tone(320,55,0.14,'sawtooth',0.14);
+                    tone(700,120,0.08,'square',0.08); break;
+      case 'stomp': tone(420,80,0.11,'square',0.15); break;
+      case 'hurt':  tone(520,85,0.38,'sawtooth',0.12); break;
+      case 'win':   [523,659,784,1047].forEach((f,i)=>tone(f,f,0.15,'square',0.10,i*0.12)); break;
+    }
+  }catch(e){ /* audio unavailable — fine */ }
+}
+
+/* =========================================================
+   GAME
+   ========================================================= */
+const P = { // player state
+  x:0, y:0, vx:0, vy:0, w:11, h:14, grounded:false, coyote:0, face:1, dead:0, won:false, run:0, land:0
+};
+let playTiles=null, coins=0, keys={};
+const GRAV=0.32, MOVE=1.7, SPRINT=2.8, ACC=0.28, FRIC=0.36, JUMP=-6.1, SPRINT_JUMP=-6.7, MAXFALL=7;
+
+const banner=document.getElementById('banner'), bannerText=document.getElementById('bannerText');
+const touchUI=document.getElementById('touch');
+
+let enemies=[];
+let camX=0;
+let running=false;
+function startGame(){
+  if(soundOn) audioCtx();               // unlock audio if a gesture already happened
+  playTiles=level.tiles.map(r=>r.slice());
+  // lift enemy tiles out of the grid into live entities
+  enemies=[];
+  for(let y=0;y<level.height;y++)for(let x=0;x<level.width;x++){
+    const v=playTiles[y][x];
+    if(v===T.ENEMY){
+      const sp=getProp(x,y,'speed');
+      playTiles[y][x]=0;
+      enemies.push({kind:'goomba', state:'walk', x:x*TS+2, y:y*TS+2, vx:-sp, vy:0,
+                    w:12, h:13, alive:true, squash:0, step:0, grace:0});
+    }else if(v===T.TURTLE){
+      const sp=getProp(x,y,'speed');
+      playTiles[y][x]=0;
+      enemies.push({kind:'turtle', state:'walk', x:x*TS+2, y:y*TS, vx:-sp, vy:0,
+                    w:12, h:15, alive:true, squash:0, step:0, grace:0});
+    }
+  }
+  popCoins=[]; particles=[];
+  coins=0; setCoins(0);
+  respawn();
+  P.won=false;
+  banner.style.display='none';
+  if(matchMedia('(pointer:coarse)').matches) touchUI.style.display='flex';
+  camX = Math.max(0, P.x*S - scroller.clientWidth/2 + P.w);
+  scroller.scrollLeft = camX;
+  if(!running){ running=true; requestAnimationFrame(loop); }
+}
+
+function respawn(){
+  P.x=level.spawn.x*TS+2; P.y=level.spawn.y*TS+(TS-P.h);
+  P.vx=0; P.vy=0; P.dead=0; P.grounded=false; P.coyote=0; P.run=0; P.land=0;
+}
+function solidAt(tx,ty){
+  if(tx<0||tx>=level.width) return true;          // walls at level edges
+  if(ty<0||ty>=level.height) return false;
+  return SOLID.has(playTiles[ty][tx]);
+}
+function tileAt(tx,ty){
+  if(tx<0||ty<0||tx>=level.width||ty>=level.height) return 0;
+  return playTiles[ty][tx];
+}
+
+function physics(){
+  if(P.won){ return; }
+  if(P.dead>0){ P.dead--; if(P.dead===0) respawn(); return; }
+
+  const left = keys.ArrowLeft||keys.a, right = keys.ArrowRight||keys.d;
+  const jump = keys[' ']||keys.ArrowUp||keys.w;
+  const sprinting = keys.Shift && (left||right);
+
+  // accelerate toward the target speed instead of snapping to it
+  const top = sprinting ? SPRINT : MOVE;
+  const target = (right?top:0) - (left?top:0);
+  if(target!==0){
+    if(Math.abs(target-P.vx) <= ACC) P.vx = target;
+    else P.vx += Math.sign(target-P.vx)*ACC;
+  }else{
+    if(Math.abs(P.vx) <= FRIC) P.vx = 0;
+    else P.vx -= Math.sign(P.vx)*FRIC;
+  }
+  if(P.vx) P.face = Math.sign(P.vx);
+  P.run = Math.abs(P.vx)>0.2 ? P.run + Math.abs(P.vx) : 0;   // drives the stride
+
+  if(jump && (P.grounded||P.coyote>0) && !P.jumpHeld){
+    P.vy = Math.abs(P.vx) > MOVE + 0.2 ? SPRINT_JUMP : JUMP;   // running jumps carry further
+    P.grounded=false; P.coyote=0; P.jumpHeld=true; sfx('jump');
+  }
+  if(!jump){ P.jumpHeld=false; if(P.vy<-2.4) P.vy=-2.4; } // variable jump height
+  P.vy=Math.min(P.vy+GRAV, MAXFALL);
+
+  // --- horizontal ---
+  P.x+=P.vx;
+  {
+    const y0=Math.floor(P.y/TS), y1=Math.floor((P.y+P.h-1)/TS);
+    if(P.vx>0){
+      const tx=Math.floor((P.x+P.w)/TS);
+      for(let ty=y0;ty<=y1;ty++) if(solidAt(tx,ty)){ P.x=tx*TS-P.w-0.01; break; }
+    }else if(P.vx<0){
+      const tx=Math.floor(P.x/TS);
+      for(let ty=y0;ty<=y1;ty++) if(solidAt(tx,ty)){ P.x=(tx+1)*TS+0.01; break; }
+    }
+  }
+  // --- vertical ---
+  P.y+=P.vy;
+  const wasGrounded=P.grounded; P.grounded=false;
+  {
+    const x0=Math.floor((P.x+1)/TS), x1=Math.floor((P.x+P.w-1)/TS);
+    if(P.vy>0){
+      const ty=Math.floor((P.y+P.h)/TS);
+      for(let tx=x0;tx<=x1;tx++) if(solidAt(tx,ty)){
+        if(P.vy>2.6) P.land=9;                 // hard landing -> squash
+        P.y=ty*TS-P.h-0.01; P.vy=0; P.grounded=true; break;
+      }
+    }else if(P.vy<0){
+      const ty=Math.floor(P.y/TS);
+      for(let tx=x0;tx<=x1;tx++) if(solidAt(tx,ty)){
+        P.y=(ty+1)*TS+0.01; P.vy=0;
+        bumpBlock(tx,ty);                       // head bonk
+        break;
+      }
+    }
+  }
+  if(P.land>0) P.land--;
+  P.coyote = P.grounded?6 : (wasGrounded?6:Math.max(0,P.coyote-1));
+
+  // --- tile interactions on overlap ---
+  const cx=P.x+P.w/2, cy=P.y+P.h/2;
+  const x0=Math.floor(P.x/TS), x1=Math.floor((P.x+P.w)/TS);
+  const y0=Math.floor(P.y/TS), y1=Math.floor((P.y+P.h)/TS);
+  for(let ty=y0;ty<=y1;ty++)for(let tx=x0;tx<=x1;tx++){
+    const v=tileAt(tx,ty);
+    if(v===T.COIN){
+      // generous center check
+      if(Math.abs(cx-(tx*TS+8))<10 && Math.abs(cy-(ty*TS+8))<10){
+        playTiles[ty][tx]=0; addCoin(); sfx('coin');
+        emitCoinSparkle(tx,ty);
+      }
+    }else if(v===T.SPIKE){
+      if(P.y+P.h > ty*TS+6 && P.y < (ty+1)*TS && P.x+P.w > tx*TS+2 && P.x < (tx+1)*TS-2) die();
+    }else if(v===T.FLAG && !P.won){
+      win();
+    }
+  }
+  if(P.y>level.height*TS+40) die(true);
+}
+/* ---------- particles ---------- */
+let particles=[];
+function emitBrickShards(tx,ty){
+  // four chunky shards flying out of the block, tinted like the brick
+  const cx=tx*TS+8, cy=ty*TS+8;
+  const cols=['#e77a4f','#c1502e','#7d2a12','#c1502e'];
+  const dirs=[[-1.5,-3.2],[1.5,-3.2],[-1.1,-1.9],[1.1,-1.9]];
+  for(let i=0;i<4;i++){
+    particles.push({x:cx-2, y:cy-2, vx:dirs[i][0], vy:dirs[i][1],
+      g:0.26, size:4, col:cols[i], life:34, max:34, spin:true});
+  }
+  // a little dust puff
+  for(let i=0;i<5;i++){
+    particles.push({x:cx-1, y:cy-1, vx:(Math.random()-0.5)*2.4, vy:-Math.random()*1.6,
+      g:0.06, size:2, col:'#d8b39c', life:16, max:16});
+  }
+}
+function emitCoinSparkle(tx,ty){
+  const cx=tx*TS+8, cy=ty*TS+8;
+  for(let i=0;i<7;i++){
+    const a=(Math.PI*2*i)/7 + Math.random()*0.4;
+    particles.push({x:cx-1, y:cy-1, vx:Math.cos(a)*1.5, vy:Math.sin(a)*1.5-0.6,
+      g:0.03, size:2, col: i%2 ? '#fff8c9' : '#f6c521', life:20, max:20});
+  }
+}
+function emitPuff(x,y,col){
+  for(let i=0;i<6;i++){
+    particles.push({x, y, vx:(Math.random()-0.5)*2.2, vy:-Math.random()*2-0.4,
+      g:0.12, size:3, col, life:22, max:22});
+  }
+}
+function updateParticles(){
+  for(const p of particles){
+    p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=0.98; p.life--;
+  }
+  particles=particles.filter(p=>p.life>0);
+}
+
+let popCoins=[];   // coins flying out of ? blocks
+function bumpBlock(tx,ty){
+  const v=tileAt(tx,ty);
+  if(v===T.QUEST){
+    playTiles[ty][tx]=T.USED; addCoin(); sfx('coin');
+    // the coin itself: pops out the top of the block, spins, falls back in
+    popCoins.push({x:tx*TS, y:ty*TS-2, vy:-3.4, life:34, spin:0});
+  }
+  else if(v===T.BRICK){
+    playTiles[ty][tx]=0; sfx('break');
+    emitBrickShards(tx,ty);
+    killEnemiesOnTile(tx,ty);
+  }
+  else sfx('bump');
+}
+function killEnemiesOnTile(tx,ty){
+  // anything standing on top of this tile gets knocked off its feet
+  const left=tx*TS, right=(tx+1)*TS, top=ty*TS;
+  for(const e of enemies){
+    if(!e.alive) continue;
+    const ecx=e.x+e.w/2, efeet=e.y+e.h;
+    if(ecx>left-3 && ecx<right+3 && efeet>top-6 && efeet<top+8){
+      knockOut(e, ecx<left+8 ? -1 : 1);
+      sfx('stomp');
+    }
+  }
+}
+function updatePopCoins(){
+  for(const c of popCoins){
+    c.y+=c.vy; c.vy+=0.26; c.spin+=0.9; c.life--;
+    if(c.life===1) emitCoinSparkle(Math.round(c.x/TS), Math.round(c.y/TS));
+  }
+  popCoins=popCoins.filter(c=>c.life>0);
+}
+function toShell(e){
+  e.state='shell'; e.vx=0; e.grace=14;
+  e.h=12; e.w=14; e.x-=1; e.y+=3;      // shell is squatter than the walking turtle
+}
+function kickShell(e,dir){
+  e.state='slide'; e.vx=dir*3.4; e.grace=8;
+  sfx('stomp'); emitPuff(e.x+e.w/2-1, e.y+e.h-4, '#8be3a0');
+}
+function knockOut(e,dir){
+  e.alive=false; e.squash=48; e.flip=true;
+  e.vy=-4.2; e.vx=dir*1.1;
+  emitPuff(e.x+e.w/2-1, e.y+e.h-4, e.kind==='turtle'?'#2e9e4f':'#a0522d');
+}
+function updateEnemies(){
+  for(const e of enemies){
+    if(!e.alive){
+      if(e.flip){ e.x+=e.vx; e.y+=e.vy; e.vy+=GRAV*0.8; }   // tumble off screen
+      e.squash--; continue;
+    }
+    e.step++;
+    if(e.grace>0) e.grace--;
+    e.vy=Math.min(e.vy+GRAV, MAXFALL);
+    // horizontal move + wall turn (a sliding shell bounces off walls the same way)
+    e.x+=e.vx;
+    {
+      const y0=Math.floor(e.y/TS), y1=Math.floor((e.y+e.h-1)/TS);
+      if(e.vx>0){
+        const tx=Math.floor((e.x+e.w)/TS);
+        for(let ty=y0;ty<=y1;ty++) if(solidAt(tx,ty)){ e.x=tx*TS-e.w-0.01; e.vx*=-1; if(e.state==='slide') sfx('bump'); break; }
+      }else if(e.vx<0){
+        const tx=Math.floor(e.x/TS);
+        for(let ty=y0;ty<=y1;ty++) if(solidAt(tx,ty)){ e.x=(tx+1)*TS+0.01; e.vx*=-1; if(e.state==='slide') sfx('bump'); break; }
+      }
+    }
+    // vertical move
+    e.y+=e.vy; let grounded=false;
+    {
+      const x0=Math.floor((e.x+1)/TS), x1=Math.floor((e.x+e.w-1)/TS);
+      if(e.vy>0){
+        const ty=Math.floor((e.y+e.h)/TS);
+        for(let tx=x0;tx<=x1;tx++) if(solidAt(tx,ty)){ e.y=ty*TS-e.h-0.01; e.vy=0; grounded=true; break; }
+      }else if(e.vy<0){
+        const ty=Math.floor(e.y/TS);
+        for(let tx=x0;tx<=x1;tx++) if(solidAt(tx,ty)){ e.y=(ty+1)*TS+0.01; e.vy=0; break; }
+      }
+    }
+    // ledge turn: walkers respect edges, a kicked shell does not
+    if(grounded && e.state==='walk'){
+      const aheadX = e.vx>0 ? Math.floor((e.x+e.w+1)/TS) : Math.floor((e.x-1)/TS);
+      const belowY = Math.floor((e.y+e.h+2)/TS);
+      if(!solidAt(aheadX,belowY)) e.vx*=-1;
+    }
+    if(e.y>level.height*TS+40){ e.alive=false; e.squash=0; continue; }
+
+    // a sliding shell mows down anything else it touches
+    if(e.state==='slide'){
+      for(const o of enemies){
+        if(o===e || !o.alive) continue;
+        if(e.x<o.x+o.w && e.x+e.w>o.x && e.y<o.y+o.h && e.y+e.h>o.y){
+          knockOut(o, Math.sign(e.vx)||1); sfx('stomp');
+        }
+      }
+    }
+
+    // player contact
+    if(P.dead===0 && !P.won && e.grace===0 &&
+       P.x<e.x+e.w && P.x+P.w>e.x && P.y<e.y+e.h && P.y+P.h>e.y){
+      const stomped = P.vy>0.5 && (P.y+P.h)-e.y < 10;
+      const dir = (P.x+P.w/2) < (e.x+e.w/2) ? 1 : -1;   // kick away from the player
+      if(e.kind==='turtle'){
+        if(e.state==='walk'){
+          if(stomped){ toShell(e); P.vy=-4.4; sfx('stomp');
+                       emitPuff(e.x+e.w/2-1, e.y+e.h-4, '#8be3a0'); }
+          else die();
+        }else if(e.state==='shell'){
+          kickShell(e, dir);                    // stomp or bump both kick it
+          if(stomped) P.vy=-4.4;
+        }else{                                  // sliding
+          if(stomped){ e.state='shell'; e.vx=0; e.grace=12; P.vy=-4.4; sfx('stomp'); }
+          else die();
+        }
+      }else{
+        if(stomped){
+          e.alive=false; e.squash=22; P.vy=-4.4; sfx('stomp');
+          emitPuff(e.x+e.w/2-1, e.y+e.h-5, '#c9b39a');
+        }else die();
+      }
+    }
+  }
+  enemies=enemies.filter(e=>e.alive||e.squash>0);
+}
+function die(fell){
+  if(P.dead>0||P.won) return;
+  P.dead=40; P.vy=fell?0:-4; sfx('hurt');
+  bannerText.innerHTML='OUCH!<small>respawning...</small>';
+  banner.style.display='flex';
+  setTimeout(()=>{ if(!P.won) banner.style.display='none'; },700);
+}
+function win(){
+  P.won=true; P.vx=0; sfx('win');
+  bannerText.innerHTML='LEVEL CLEAR!<small>coins: '+coins+' &middot; press R to play again</small>';
+  banner.style.display='flex';
+}
+
+window.addEventListener('keydown',e=>{
+  if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+  keys[e.key.length===1?e.key.toLowerCase():e.key]=true;
+});
+window.addEventListener('keyup',e=>{ keys[e.key.length===1?e.key.toLowerCase():e.key]=false; });
+function bindTouch(id,key){
+  const el=document.getElementById(id);
+  el.addEventListener('pointerdown',e=>{e.preventDefault(); keys[key]=true;});
+  el.addEventListener('pointerup',()=>keys[key]=false);
+  el.addEventListener('pointercancel',()=>keys[key]=false);
+  el.addEventListener('pointerleave',()=>keys[key]=false);
+}
+bindTouch('tLeft','ArrowLeft'); bindTouch('tRight','ArrowRight');
+bindTouch('tJump',' '); bindTouch('tRun','Shift');
+
+/* restart, mute */
+window.addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(k==='r'){ startGame(); }
+  if(k==='m'){ soundOn=!soundOn; if(soundOn) sfx('coin'); }
+});
+
+/* the controls hint gets out of the way once you start moving */
+let hintTimer=setTimeout(fadeHint, 9000);
+function fadeHint(){
+  const h=document.getElementById('hint');
+  if(h) h.classList.add('gone');
+  clearTimeout(hintTimer);
+}
+window.addEventListener('keydown',fadeHint,{once:true});
+window.addEventListener('pointerdown',fadeHint,{once:true});
+
+function drawBackdrop(){
+  const w=buf.width,h=buf.height;
+  const grd=bx.createLinearGradient(0,0,0,h);
+  grd.addColorStop(0,'#6fb9ff'); grd.addColorStop(1,'#b8e6ff');
+  bx.fillStyle=grd; bx.fillRect(0,0,w,h);
+}
+function drawTiles(tiles){
+  const save=level.tiles; level.tiles=tiles; // spriteFor reads level.tiles
+  // pass 0 = far decoration (hills, clouds), 1 = near decoration, 2 = gameplay tiles
+  for(let pass=0;pass<3;pass++){
+    for(let y=0;y<level.height;y++)for(let x=0;x<level.width;x++){
+      const v=tiles[y][x]; if(!v) continue;
+      const layer = BG.has(v) ? DEPTH[v] : 2;
+      if(layer!==pass) continue;
+      const sp=spriteFor(x,y); if(!sp) continue;
+      const b=BIG[v], f=FADE[v];
+      if(f) bx.globalAlpha=f;
+      if(b) bx.drawImage(sp,(x+b.ox)*TS,(y+b.oy)*TS,b.w*TS,b.h*TS);
+      else  bx.drawImage(sp,x*TS,y*TS,TS,TS);
+      if(f) bx.globalAlpha=1;
+    }
+  }
+  level.tiles=save;
+}
+/* Moving things are drawn straight to the display canvas at true sub-pixel
+   positions (worldX * S, never rounded). Rounding is what causes jitter:
+   a constant velocity lands between pixels, and snapping to a grid turns
+   even motion into uneven steps. Sprites stay crisp because smoothing is
+   off, so only the sampling grid shifts, not the art. */
+function drawPlayer(){
+  if(P.dead>0 && (P.dead%6<3)) return; // blink
+  // pick the frame
+  let sp;
+  if(!P.grounded)               sp = P.vy < 0 ? CACHE.nj_jump : CACHE.nj_fall;
+  else if(Math.abs(P.vx)>0.2)   sp = [CACHE.nj_walk0,CACHE.nj_walk1,CACHE.nj_walk2,CACHE.nj_walk3][Math.floor(P.run/3.2)%4];
+  else                          sp = CACHE.nj_idle;
+
+  // squash and stretch: stretch through fast vertical motion, squash on impact
+  let sx=1, sy=1;
+  if(P.land>0){
+    const t=P.land/9;                       // eases back out over the timer
+    sy = 1 - 0.30*t; sx = 1 + 0.26*t;
+  }else if(!P.grounded){
+    const v = Math.min(1, Math.abs(P.vy)/6);
+    sy = 1 + 0.18*v; sx = 1 - 0.13*v;
+  }else if(Math.abs(P.vx) > MOVE + 0.2){
+    sx = 1.06; sy = 0.97;                   // slight forward lean at sprint
+  }
+
+  const w=12*S, h=16*S;
+  const dw=w*sx, dh=h*sy;
+  const cx=P.x*S + w/2;                     // anchor: bottom centre, so feet stay planted
+  const feet=P.y*S + h;
+  const dx=cx-dw/2, dy=feet-dh;
+
+  if(P.face<0){
+    ctx.save();
+    ctx.translate(dx+dw/2, 0); ctx.scale(-1,1);
+    ctx.drawImage(sp, -dw/2, dy, dw, dh);
+    ctx.restore();
+  }else{
+    ctx.drawImage(sp, dx, dy, dw, dh);
+  }
+}
+function drawPopCoins(){
+  for(const c of popCoins){
+    const sq=Math.abs(Math.cos(c.spin));
+    const w=Math.max(2, TSS*sq), x=c.x*S+(TSS-w)/2, y=c.y*S;
+    ctx.globalAlpha = c.life<10 ? c.life/10 : 1;
+    ctx.drawImage(CACHE.coin, x, y, w, TSS);
+    if(c.life<14){
+      ctx.fillStyle='#fff8c9';
+      const s=(14-c.life)*1.2;
+      ctx.fillRect(c.x*S+TSS/2-1, y+TSS/2-s, 2, s*2);
+      ctx.fillRect(c.x*S+TSS/2-s, y+TSS/2-1, s*2, 2);
+    }
+    ctx.globalAlpha=1;
+  }
+}
+function drawEnemies(){
+  for(const e of enemies){
+    const x=(e.x-2)*S, y=(e.y-2)*S;
+    const base = e.kind==='turtle'
+      ? (e.state==='walk' ? CACHE.turtle : CACHE.shell)
+      : CACHE.enemy;
+    if(!e.alive){
+      if(e.flip){
+        ctx.save(); ctx.translate(x+TSS/2, y+TSS/2); ctx.scale(1,-1);
+        ctx.drawImage(base,-TSS/2,-TSS/2,TSS,TSS); ctx.restore();
+      }else{
+        ctx.drawImage(CACHE.enemy_squash,x,y,TSS,TSS);
+      }
+      continue;
+    }
+    if(e.state==='slide'){
+      const sq=Math.abs(Math.cos(e.step*0.45));
+      const w=Math.max(TSS*0.45, TSS*sq);
+      ctx.drawImage(base, x+(TSS-w)/2, y, w, TSS);
+      continue;
+    }
+    if(e.state==='shell'){ ctx.drawImage(base,x,y,TSS,TSS); continue; }
+    const bob=(Math.floor(e.step/8)%2)?S:0;
+    ctx.drawImage(base,x,y+bob,TSS,TSS-bob);
+  }
+}
+function drawParticlesBuf(){
+  for(const p of particles){
+    const t=p.life/p.max;
+    ctx.globalAlpha = t<0.4 ? t/0.4 : 1;
+    let sz=p.size*S;
+    if(p.spin) sz=Math.max(S, p.size*S*(0.6+0.4*Math.abs(Math.cos(p.life*0.35))));
+    ctx.fillStyle=p.col;
+    ctx.fillRect(p.x*S, p.y*S, sz, sz);
+    ctx.globalAlpha=1;
+  }
+}
+
+function draw(){
+  // static world: rendered once at logical resolution, blitted with one uniform scale
+  drawBackdrop();
+  drawTiles(playTiles || level.tiles);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(buf,0,0,buf.width,buf.height,0,0,canvas.width,canvas.height);
+  // moving things: drawn on top at sub-pixel precision
+  drawEnemies(); drawPlayer(); drawPopCoins(); drawParticlesBuf();
+}
+
+/* ---------- main loop ---------- */
+function loop(){
+  physics();
+  updateEnemies();
+  updatePopCoins();
+  updateParticles();
+  draw();
+  // camera follow — tracked as a float; scrollLeft snaps to whole pixels, so
+  // reading it back each frame would feed that quantization into the easing
+  const maxX = Math.max(0, canvas.width - scroller.clientWidth);
+  const target = Math.max(0, Math.min(P.x*S - scroller.clientWidth/2 + P.w, maxX));
+  camX += (target-camX)*0.15;
+  scroller.scrollLeft = camX;
+  requestAnimationFrame(loop);
+}
+
+/* ---------- boot ---------- */
+loadSheet();
+paintHudCoin();
+startGame();
+</script>
+</body>
+</html>
