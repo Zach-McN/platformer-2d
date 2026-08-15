@@ -1,0 +1,28 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "854450ce0607cd51",
+  "name": "Walker (fast)",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "b22c4e8eae29c826",
+        "path": "assets/textures/enemies/walker.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "walker": {
+      "unitsPerSecond": 36,
+      "squashed": {
+        "texture": {
+          "id": "c5e2a82bacc901f0",
+          "path": "assets/textures/enemies/walker-squashed.png"
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

@@ -1,0 +1,66 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "3fb9c8703d56295a",
+  "name": "Spawn",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "5085d52675db7389",
+        "path": "assets/textures/markers/spawn.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "spawn": {},
+    "player": {
+      "frames": {
+        "idle": {
+          "texture": {
+            "id": "68d3942abf3d1f4a",
+            "path": "assets/textures/ninja/idle.png"
+          }
+        },
+        "walk0": {
+          "texture": {
+            "id": "f7fc0a12fe8242ad",
+            "path": "assets/textures/ninja/walk-0.png"
+          }
+        },
+        "walk1": {
+          "texture": {
+            "id": "b4c5a2e7b561831a",
+            "path": "assets/textures/ninja/walk-1.png"
+          }
+        },
+        "walk2": {
+          "texture": {
+            "id": "82bd3d062f646e27",
+            "path": "assets/textures/ninja/walk-2.png"
+          }
+        },
+        "walk3": {
+          "texture": {
+            "id": "fdbfc263d21d8161",
+            "path": "assets/textures/ninja/walk-3.png"
+          }
+        },
+        "jump": {
+          "texture": {
+            "id": "2dda95ba9254aca4",
+            "path": "assets/textures/ninja/jump.png"
+          }
+        },
+        "fall": {
+          "texture": {
+            "id": "b05ef7d8c17d3cca",
+            "path": "assets/textures/ninja/fall.png"
+          }
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

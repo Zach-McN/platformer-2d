@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "e3d914e5101ed2a3",
+  "name": "Fence",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "6a3b2cc3d1a321f8",
+        "path": "assets/textures/scenery/fence.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

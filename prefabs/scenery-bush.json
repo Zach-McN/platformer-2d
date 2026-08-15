@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "279cf598fd7da013",
+  "name": "Bush",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "e851e42f1dfaacb8",
+        "path": "assets/textures/scenery/bush.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

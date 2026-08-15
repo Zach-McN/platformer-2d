@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "6d4b745f814c94d1",
+  "name": "Ground (fill)",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "a45bfd6373c28d1c",
+        "path": "assets/textures/tiles/ground-fill.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

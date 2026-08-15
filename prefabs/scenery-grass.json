@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "6d31791221fcc31e",
+  "name": "Grass",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "4d5263d744f08555",
+        "path": "assets/textures/scenery/grass.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "151dcbe2383e4f03",
+  "name": "Tree",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "2917263a1d355e2a",
+        "path": "assets/textures/scenery/tree.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "9128df95293e0404",
+  "name": "Flag",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "23cf1126ff1780d3",
+        "path": "assets/textures/tiles/flag-top.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "goal": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

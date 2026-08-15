@@ -1,12 +1,13 @@
-<!-- generatedBy: claude-fable-5, generatedAt: 2026-08-14 — DRAFT, see banner below -->
+<!-- generatedBy: claude-fable-5, generatedAt: 2026-08-14 -->
 
 # Genre Spec — Pixel Platformer
 
-> **DRAFT — awaiting Zach's approval.** Drafted by Claude from the reference game
-> (`docs/reference/pixel-platformer-game.html`), which is Zach's design statement. This
-> becomes the human's document the moment Zach has read it: edit anything, then delete
-> this banner and the marker comment at the top — an unmarked file is human-owned and no
-> session will modify it again. Until the banner is gone, nothing is built against this spec.
+> Drafted by Claude from the reference game (`docs/reference/pixel-platformer-game.html`),
+> which is Zach's design statement. **Zach approved building against it on 2026-08-14**
+> ("keep all the current features; more comes later"). It still carries the generated
+> marker, so sessions may propose and make edits — Zach can claim it as his own any time
+> by editing it and deleting the marker comment at the top; an unmarked file is
+> human-owned and never modified again.
 
 ## What this document is for
 

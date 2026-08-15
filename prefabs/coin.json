@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "f0ba753da9c14f3f",
+  "name": "Coin",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "8e85de33b1bb7772",
+        "path": "assets/textures/tiles/coin.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "coin": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

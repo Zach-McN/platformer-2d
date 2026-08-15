@@ -1,0 +1,29 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "604395a6bdf83c14",
+  "name": "? Block",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "3a8ce8d780698de3",
+        "path": "assets/textures/tiles/quest-block.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {},
+    "bonus": {
+      "coins": 1,
+      "used": {
+        "texture": {
+          "id": "2364edfc62771778",
+          "path": "assets/textures/tiles/used-block.png"
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

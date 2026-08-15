@@ -1,0 +1,28 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "33edc578b1b6e10c",
+  "name": "Walker",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "b22c4e8eae29c826",
+        "path": "assets/textures/enemies/walker.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "walker": {
+      "unitsPerSecond": 33,
+      "squashed": {
+        "texture": {
+          "id": "c5e2a82bacc901f0",
+          "path": "assets/textures/enemies/walker-squashed.png"
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

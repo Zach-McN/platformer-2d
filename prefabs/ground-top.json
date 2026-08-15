@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "317528427812e29c",
+  "name": "Ground",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "57f07e788beafc08",
+        "path": "assets/textures/tiles/ground-top.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

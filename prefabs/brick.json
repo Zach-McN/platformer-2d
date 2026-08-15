@@ -1,0 +1,21 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "316f48c4a9fea31d",
+  "name": "Brick",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "231a9bb3c78dcf2c",
+        "path": "assets/textures/tiles/brick.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {},
+    "breakable": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

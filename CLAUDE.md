@@ -60,10 +60,11 @@ Whether a generated piece ships or gets replaced is the human's call, made per p
 
 ## What runs today
 
-Nothing yet. The folder holds the two spec documents, the reference game, one empty scene,
-and scaffolding. The build order ahead: content generation (textures, prefabs, the level),
-then systems in `src/`, then the screen-anchored UI work — which touches the kernel and is
-its own session.
+The level opens and draws in the editor — all 242 entities of it, generated 1:1 from the
+reference — but nothing moves: `src/` is empty. The component vocabulary the content
+carries is in `.claude/skills/game-content/`. The build order ahead: systems in `src/`,
+then the screen-anchored UI work — which touches the kernel and is its own session — then
+the parity pass.
 
 `package.json`, `tsconfig.json` and `vitest.config.ts` deliberately do not exist yet: a
 game folder gets its own test runner the first time its own code has logic in it

@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "3079521feb6541a6",
+  "name": "Pipe (top)",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "0c857d4c15d4fb34",
+        "path": "assets/textures/tiles/pipe-top.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

@@ -1,0 +1,28 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "32a4758e90387ce7",
+  "name": "Turtle (slow)",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "ec6c0ba8be454c73",
+        "path": "assets/textures/enemies/turtle.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "turtle": {
+      "unitsPerSecond": 21,
+      "shell": {
+        "texture": {
+          "id": "e35b6bbc31c86fab",
+          "path": "assets/textures/enemies/shell.png"
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

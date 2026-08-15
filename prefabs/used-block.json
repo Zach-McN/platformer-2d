@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "bd0d6bbe09867b33",
+  "name": "Used block",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "2364edfc62771778",
+        "path": "assets/textures/tiles/used-block.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

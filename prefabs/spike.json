@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "275e4bd6c9759e3d",
+  "name": "Spike",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "734149c8c3618e89",
+        "path": "assets/textures/tiles/spike.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "deadly": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

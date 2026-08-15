@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "4f6df06bc547b443",
+  "name": "Flag pole",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "ae4b7a210ea65b3a",
+        "path": "assets/textures/tiles/flag-pole.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "goal": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "66bcdd9bd1a3a0f4",
+  "name": "Pipe (body)",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "31ce0b390c5e8183",
+        "path": "assets/textures/tiles/pipe-body.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}
