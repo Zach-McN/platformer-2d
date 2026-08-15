@@ -113,6 +113,11 @@ export const BOB_PERIOD_FRAMES = 8 // enemies bob on alternating 8-frame steps
 export const WOBBLE_RATE = 0.45 // sliding shell wobbles by |cos(step·0.45)|…
 export const WOBBLE_FLOOR = 0.45 // …with a 45% floor
 
+// --- screen ----------------------------------------------------------------
+
+export const HINT_FRAMES = 9 * 60 // controls hint fades after 9 s or on the first input
+export const OUCH_BANNER_FRAMES = 0.7 * 60 // death banner auto-hides after 0.7 s
+
 // --- camera ----------------------------------------------------------------
 
 export const CAMERA_EASE = 0.15 // eased 15% of the remaining distance per frame

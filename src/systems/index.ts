@@ -4,6 +4,7 @@ import { chaseSystem } from './chase'
 import { clashSystem } from './clash'
 import { effectsSystem } from './effects'
 import { enemiesSystem } from './enemies'
+import { hudSystem } from './hud'
 import { ninjaSystem } from './ninja'
 import { poseSystem } from './pose'
 
@@ -12,8 +13,9 @@ import { poseSystem } from './pose'
  *
  * The ninja and the enemies move first; `clash` judges their contact where
  * this step actually put them; `effects` flies the debris the bumps threw;
- * `pose` dresses everything for the eye; `chase` aims the camera last, at
- * where the ninja ended up. The engine runs exactly this list (`editor-kernel`
+ * `pose` dresses everything for the eye; `hud` draws the screen from the
+ * step's final facts; `chase` aims the camera last, at where the ninja ended
+ * up. The engine runs exactly this list (`editor-kernel`
  * D28) — nothing here is optional and nothing else is added.
  */
 export const systems: readonly System[] = [
@@ -22,5 +24,6 @@ export const systems: readonly System[] = [
   clashSystem,
   effectsSystem,
   poseSystem,
+  hudSystem,
   chaseSystem,
 ]

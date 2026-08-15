@@ -1,0 +1,26 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "a58b1bd109aa2151",
+  "name": "Controls hint",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "dfb16d24a94c9fed",
+        "path": "assets/textures/ui/hint.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "screen": {
+      "anchor": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "hint": {}
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-15"
+}

@@ -68,9 +68,13 @@ chasing it the whole way over the sky backdrop. `src/systems/` holds the six sys
 run order; every feel number is `src/systems/tuning.ts` quoting `docs/REMAKE-PARITY.md`;
 `.claude/skills/game-code/` records how the code speaks the contract.
 
-**Not built yet, on purpose:** the sounds, the sparkle/dust particles, and every
-screen-anchored element (coin counter, banners, controls hint, touch controls) — the UI
-work touches the kernel and is its own session, and the parity pass closes the rest.
+The screen is in too: the coin counter pinned top-right counting live, OUCH! and LEVEL
+CLEAR! banners, the controls hint that fades on the first key, and R to restart — the
+kernel gained its first screen-pinned component for them (`.claude/skills/game-content`
+T6, `game-code` C8).
+
+**Not built yet, on purpose:** the sounds and M-mute, the sparkle/dust particles, and
+touch controls — the parity pass closes those.
 
 The game has its own test runner (`npm test` in this folder, `genre-spinup` S5), pinned to
 the kernel's Vitest, with fixtures as entity lists rather than files. Code here names the

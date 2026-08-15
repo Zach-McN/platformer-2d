@@ -1,4 +1,4 @@
-import { inputEntity, stepSystems, writeInput, type Entity } from 'kernel-2d/runtime'
+import { inputEntity, stepSystems, storyEntity, writeInput, type Entity } from 'kernel-2d/runtime'
 
 import { systems } from '../src/systems/index'
 import { TILE } from '../src/systems/tuning'
@@ -125,6 +125,28 @@ export function turtle(column: number, row: number, unitsPerSecond = 30): Entity
   })
 }
 
+/** The coin counter card, pinned top-right, carrying the digits and banners as the prefab does. */
+export function counter(): Entity {
+  const digits: Record<string, unknown> = {}
+  for (let d = 0; d <= 9; d += 1) digits[String(d)] = art(`ui/digit-${d}.png`)
+  return entity('Coin counter', -19, -10, {
+    sprite: art('ui/coin-card.png'),
+    grid: { tileSize: TILE },
+    screen: { anchor: { x: 1, y: 1 } },
+    hud: { digits, banners: { ouch: art('ui/banner-ouch.png'), clear: art('ui/banner-clear.png') } },
+  })
+}
+
+/** The controls hint, pinned bottom-left. */
+export function hint(): Entity {
+  return entity('Controls hint', 46, 24, {
+    sprite: art('ui/hint.png'),
+    grid: { tileSize: TILE },
+    screen: { anchor: { x: 0, y: 0 } },
+    hint: {},
+  })
+}
+
 /**
  * A running level in miniature: the fixture list plus the input carrier,
  * stepped at the fixed rate with the held keys written the way the runner
@@ -133,17 +155,22 @@ export function turtle(column: number, row: number, unitsPerSecond = 30): Entity
  */
 export interface Playing {
   entities: Entity[]
-  step: (steps?: number, held?: readonly string[]) => void
+  step: (steps?: number, held?: readonly string[], pressed?: readonly string[]) => void
 }
+
+/** The scene path the story carrier says this fixture is, for a test that presses R. */
+export const FIXTURE_SCENE = 'scenes/fixture.json'
 
 export function playing(entities: Entity[]): Playing {
   const carrier = inputEntity()
   entities.push(carrier)
+  entities.push(storyEntity(FIXTURE_SCENE))
   return {
     entities,
-    step: (steps = 1, held = []) => {
+    step: (steps = 1, held = [], pressed = []) => {
       for (let at = 0; at < steps; at += 1) {
-        writeInput(carrier, { pressed: [], clicked: [], held })
+        // A press belongs to one step, exactly as the runner hands it out.
+        writeInput(carrier, { pressed: at === 0 ? pressed : [], clicked: [], held })
         stepSystems(systems, entities, 1 / 60)
       }
     },

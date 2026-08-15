@@ -30,6 +30,8 @@ px-per-frame × 60.
 | `walker: { unitsPerSecond, squashed: { texture } }` | walker prefabs | patrol speed (33; fast variant 36) + death art |
 | `turtle: { unitsPerSecond, shell: { texture } }` | turtle prefabs | patrol speed (30; slow variant 21) + shell art |
 | `grid: { tileSize: 16 }` | everything placeable | snap unit for placement |
+| `screen: { anchor }` + `hud: { digits, banners }` | the coin counter (`prefabs/hud-coins.json`) | pinned top-right (kernel `screen`, `editor-kernel` D32); carries the ten digit textures and both banner textures the hud spawns |
+| `screen: { anchor }` + `hint: {}` | the controls hint (`prefabs/hud-hint.json`) | pinned bottom-left; the hud removes it on the first input |
 
 ### T2: Per-placement speed is a prefab variant, not an override
 
@@ -51,6 +53,16 @@ Walker carries its squashed frame, turtle its shell, ?-block the used-block face
 ninja's seven frames — because `textureRefsOf` walks every `texture`-named field at any
 depth, so art declared this way ships with the level and is loadable before systems spawn
 anything mid-run.
+
+### T6: The screen UI is generated art in a 3×5 pixel font, on prefabs, placed last
+
+`assets/textures/ui/` (2026-08-15): ten digits (4×6, gold), the coin-counter card
+(30×12), the two banners (OUCH!/RESPAWNING… 80×28; LEVEL CLEAR!/COINS:/PRESS R… 112×40)
+and the controls hint (83×40), all drawn by a throwaway generator with a 3×5 uppercase
+font and the reference's gold-on-dark palette. The counter and hint are the last two
+entities in `level-01.json`, so they draw over everything. Text is baked into the cards
+because the kernel has no text renderer and needs none: the only text that changes (the
+coin count) is composed from the digit textures at run time.
 
 ### T5: Draw order is scene list order, in the reference's passes
 

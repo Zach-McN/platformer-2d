@@ -4618,6 +4618,44 @@
           }
         }
       }
+    },
+    {
+      "id": "d47f41c0fc7c69db",
+      "name": "Coin counter",
+      "transform": {
+        "x": -19,
+        "y": -10,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "de02d5e782d35279",
+            "path": "prefabs/hud-coins.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3ddb8b1b13175cfc",
+      "name": "Controls hint",
+      "transform": {
+        "x": 46,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a58b1bd109aa2151",
+            "path": "prefabs/hud-hint.json"
+          }
+        }
+      }
     }
   ],
   "generatedBy": "claude-fable-5",

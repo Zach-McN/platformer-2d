@@ -1,0 +1,103 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "de02d5e782d35279",
+  "name": "Coin counter",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "912e2ff986b29cb9",
+        "path": "assets/textures/ui/coin-card.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "screen": {
+      "anchor": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    "hud": {
+      "digits": {
+        "0": {
+          "texture": {
+            "id": "1deb1296ecceb381",
+            "path": "assets/textures/ui/digit-0.png"
+          }
+        },
+        "1": {
+          "texture": {
+            "id": "226ac988fc1f2e79",
+            "path": "assets/textures/ui/digit-1.png"
+          }
+        },
+        "2": {
+          "texture": {
+            "id": "5449aabf2f12a434",
+            "path": "assets/textures/ui/digit-2.png"
+          }
+        },
+        "3": {
+          "texture": {
+            "id": "75e62844abbb647d",
+            "path": "assets/textures/ui/digit-3.png"
+          }
+        },
+        "4": {
+          "texture": {
+            "id": "3561cf4a4b63b096",
+            "path": "assets/textures/ui/digit-4.png"
+          }
+        },
+        "5": {
+          "texture": {
+            "id": "d6f22e079be140ac",
+            "path": "assets/textures/ui/digit-5.png"
+          }
+        },
+        "6": {
+          "texture": {
+            "id": "32a1fccec6f41e57",
+            "path": "assets/textures/ui/digit-6.png"
+          }
+        },
+        "7": {
+          "texture": {
+            "id": "b2a8a087a8ee5736",
+            "path": "assets/textures/ui/digit-7.png"
+          }
+        },
+        "8": {
+          "texture": {
+            "id": "62d42b7c7c35e9dc",
+            "path": "assets/textures/ui/digit-8.png"
+          }
+        },
+        "9": {
+          "texture": {
+            "id": "fdeccbae1ebc7fd9",
+            "path": "assets/textures/ui/digit-9.png"
+          }
+        }
+      },
+      "banners": {
+        "ouch": {
+          "texture": {
+            "id": "1b1b50670bbbaceb",
+            "path": "assets/textures/ui/banner-ouch.png"
+          }
+        },
+        "clear": {
+          "texture": {
+            "id": "c18260814792fb97",
+            "path": "assets/textures/ui/banner-clear.png"
+          }
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-15"
+}

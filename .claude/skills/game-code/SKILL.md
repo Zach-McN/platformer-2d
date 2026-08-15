@@ -66,6 +66,24 @@ texture is loaded before a system spawns anything. The reference's sparkle and d
 particles, and all seven sounds, are **deliberately not built** — they need art/audio the
 level does not carry, and they belong to the parity pass with the screen UI session.
 
+### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene
+
+The coin counter card and the controls hint are *placed content*, pinned to their corners
+by the kernel's `screen` component and carrying every run-time texture the HUD needs (the
+counter's `hud` component holds the ten digits and both banners — T4 again). `hud.ts`
+then, every step, removes everything it drew last step (`hud#…` ids) and draws it again
+from the facts: the count as digit entities right-aligned in the card, the OUCH! banner
+for 0.7 s of a death, the LEVEL CLEAR! banner with the total once won, and it deletes the
+hint entity on the first held or pressed key or after 9 s. Ids are stable per slot
+(`hud#digit0`, `hud#banner`) so the renderer updates sprites in place. **R restarts by
+`openDoor` to `sceneIn`'s own path** — the host reloads the scene from the file, which is
+exactly "everything back to authored state" with no reset code anywhere; it needs the
+story carrier (both hosts inject it, and the fixture `playing()` adds one).
+
+The digit and banner *offsets* in `hud.ts` are derived from the generated art's pixel
+layout (card 30×12, banner 112×40, "COINS:" ending 53 in) and say so in comments;
+regenerating that art with different dimensions means re-deriving those constants.
+
 ### C7: Facing and death-blink are sprite tricks, not features
 
 Facing flips `scaleX`'s sign about the centre pivot (all sprites are symmetric enough);
@@ -83,6 +101,13 @@ a distant anchor column in any fixture that needs a real edge or pit
 (`tests/level.ts` fixtures do this with `floor(20, 21)`), so the outer wall sits past the
 gap. _[earned 2026-08-15, first game tests]_
 
+### CG3: `go` to the *same* scene works, but only at 127.0.0.1
+
+The first R test in the editor "did nothing" for five seconds: every fetch from a page at
+`localhost` paid Chromium's ~300 ms IPv6-fallback delay, and a scene reload is sixty-odd
+fetches. `editor-verification` W24 has the general rule; here it matters because R is the
+one gesture that reloads a whole level mid-play. _[earned 2026-08-15]_
+
 ### CG2: State helpers answer null until one step has run
 
 Every state map fills on first sight of an entity, so `ninjaOf`/`enemyOf` before the
@@ -98,5 +123,8 @@ everything up before asserting. _[earned 2026-08-15]_
   prefabs shape components, and the `playing()` harness that writes held keys the way the
   runner does.
 - `docs/REMAKE-PARITY.md` §11 — the checklist a parity pass runs; the systems built here
-  cover movement, tiles, coins, bumps, enemies, death, win and camera, and deliberately
-  not sounds, particles or screen UI.
+  cover movement, tiles, coins, bumps, enemies, death, win, camera and the three screen
+  nouns (counter, banner, hint) plus R, and deliberately not sounds, particles, touch
+  controls or M-mute.
+- `src/systems/hud.ts` and `assets/textures/ui/` — the screen (C8): the generated 3×5-font
+  cards and digits, and the offsets that place digits inside them.
