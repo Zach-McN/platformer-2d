@@ -79,12 +79,14 @@ thud, the shatter, the stomp, the hurt and the win fanfare, every one of them no
 (`game-code` C9). The kernel gained its fourth ask entity for them (`editor-kernel` D33).
 
 And the particles: a coin bursts into seven sparks, a stomped enemy puffs at the feet, a
-knocked-out one puffs darker, and a broken brick throws dust with its shards — every one
-of them fading out rather than blinking away, which is what the kernel's new sprite
-opacity is for (`editor-kernel` D34, `game-code` C10).
+knocked-out one puffs darker, a broken brick throws dust with its shards, and a spent
+pop-coin swells a cross before it goes — every one of them fading out rather than
+blinking away, which is what the kernel's new sprite opacity is for (`editor-kernel` D34,
+`game-code` C10). The cross is the one deliberate approximation in the remake, and §7
+says exactly how it differs.
 
-**Not built yet, on purpose:** touch controls, the export's fit rule (§5), and the
-pop-coin's cross flash (§7 says why) — the parity pass closes those.
+**Not built yet, on purpose:** touch controls and the export's fit rule (§5) — the
+parity pass closes those.
 
 The game has its own test runner (`npm test` in this folder, `genre-spinup` S5), pinned to
 the kernel's Vitest, with fixtures as entity lists rather than files. Code here names the

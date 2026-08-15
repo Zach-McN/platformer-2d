@@ -157,9 +157,19 @@ at (−1, −3) — trunk base.
     with the shards: 5 particles, vx ±1.2, vy up to 1.6 up, gravity 0.06, size 2,
     life 16, #d8b39c.
   - **The pop-coin fades too**, over its last 10 frames rather than by share.
-  - **Not built, and named here so it is not lost:** the reference also draws a growing
-    cross-shaped flash over the pop-coin in its last 14 frames. It is one shape drawn
-    in code rather than a particle, and nothing in this remake draws shapes.
+  - **The pop-coin's cross flash**, built 2026-08-15 **as a stated approximation.** The
+    reference draws two crossed bars in #fff8c9 over the coin for its last 14 frames,
+    growing by 1.2 px a frame from nothing to about a tile across, fading with the coin.
+    Two things about it are unreachable here and one is deliberate:
+    - The reference's bars are **2 screen pixels** thick — not scaled with the art — so
+      they stay hairline however far the view is zoomed. The remake draws a 15×15
+      cross-shaped texture scaled from 0 to 1 over the same 14 frames, so its arms
+      thicken as they grow and thicken again with the zoom. Same size, same timing, same
+      fade; a chunkier line. Making it exact would mean the kernel learning to draw
+      shapes in screen space, which one twinkle does not justify.
+    - It rides the coin by being thrown *as* a coin — same position, velocity and
+      gravity — rather than by being attached to it, since nothing in this game links
+      two entities and this did not need to be the first thing that did.
 
 ## 8. Sound (all synthesized, no audio files)
 
@@ -217,6 +227,6 @@ Run the reference beside the remake and check:
 - [ ] Spikes, pits and enemy side-contact kill; coins survive death; R resets everything
 - [ ] Flag wins with frozen player, fanfare and banner
 - [ ] Camera ease, squash & stretch, particles, and all 7 sounds match by ear/eye
-      (sounds, M-mute and all three particle kinds built 2026-08-15; the pop-coin's
-      cross flash is deliberately not built — see §7)
+      (sounds, M-mute, all three particle kinds and the pop-coin's cross flash built
+      2026-08-15; the flash is an approximation and §7 says exactly how)
 - [ ] HUD, banner, hint fade, touch controls, M mute all present

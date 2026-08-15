@@ -77,7 +77,10 @@ export function coin(column: number, row: number): Entity {
   return entity('Coin', at.x, at.y, {
     sprite: art('coin.png'),
     grid: { tileSize: TILE },
-    coin: { sparkle: { cream: art('fx/sparkle-cream.png'), gold: art('fx/sparkle-gold.png') } },
+    coin: {
+      sparkle: { cream: art('fx/sparkle-cream.png'), gold: art('fx/sparkle-gold.png') },
+      flash: art('fx/coin-flash.png'),
+    },
   })
 }
 

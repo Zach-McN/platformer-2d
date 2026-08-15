@@ -79,6 +79,18 @@ export const PARTICLE_FADE_SHARE = 0.4
 /** The pop-coin fades over its last 10 frames rather than by share (reference). */
 export const POP_COIN_FADE_FRAMES = 10
 
+/**
+ * The cross that swells over a spent pop-coin: it appears with 14 frames left
+ * and grows the whole time, reaching about a tile across.
+ *
+ * **An approximation, and §7 says so.** The reference draws two bars in *screen*
+ * pixels, so they stay hairline-thin however far the view is zoomed in; a
+ * texture scaled by an entity gets thicker as it grows. The size and the timing
+ * are the reference's; the thickness is not, and cannot be without the kernel
+ * learning to draw shapes.
+ */
+export const COIN_FLASH_FRAMES = 14
+
 /** Coin sparkle: 7 particles radially at 1.5, with a 0.6 upward bias. */
 export const SPARKLE_COUNT = 7
 export const SPARKLE_SPEED = 1.5 * 60

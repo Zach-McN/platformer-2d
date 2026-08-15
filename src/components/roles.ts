@@ -84,6 +84,13 @@ export function sparkleOf(entity: Entity): Sparkle | null {
   return cream === null || gold === null ? null : { cream, gold }
 }
 
+/** The cross that swells over a spent pop-coin (§7), or null when the coin carries none. */
+export function flashOf(entity: Entity): TextureRef | null {
+  const component: unknown = entity.components['coin']
+  if (typeof component !== 'object' || component === null) return null
+  return textureRefOf((component as { flash?: unknown }).flash)
+}
+
 /** The dust a breakable throws with its shards, or null when it carries none. */
 export function dustOf(entity: Entity): TextureRef | null {
   const component: unknown = entity.components['breakable']

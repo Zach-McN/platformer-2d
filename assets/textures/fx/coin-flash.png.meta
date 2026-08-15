@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.asset-meta",
+  "version": 1,
+  "id": "6e0e5fdc2a1cc2ed",
+  "type": "texture",
+  "importSettings": {
+    "type": "texture",
+    "filter": "nearest",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "slice": {
+      "mode": "single"
+    }
+  },
+  "generatedBy": "claude-opus-5",
+  "generatedAt": "2026-08-15"
+}

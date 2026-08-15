@@ -102,6 +102,13 @@ Three things worth keeping:
 - **The scatter is random, exactly as the reference's is**, so no two bursts look alike. That decides how they are tested: a test asserts *how many* particles, *what* they wear, how long they last and that they fade — never where one went. Where one lands is the one thing meant to be different every time.
 - **Particle colours ride the prefab that throws them** (game-content T7), so a sparkle is thrown by reading the coin's own art, and a coin with no sparkle art throws nothing rather than throwing something wrong. The spent pop-coin's sparkle is found the same way the pop-coin's own picture was: off any coin still standing in the level.
 
+**The cross over a spent pop-coin rides it without being attached to it.** It is thrown as
+its own `fx` with the coin's position, velocity and gravity, so the two are integrated
+identically and stay together — no link between entities, which this game has never needed
+and did not need to start needing for one twinkle. It is also the remake's one admitted
+approximation: the reference draws bars in screen pixels that never thicken with the zoom,
+and a scaled texture does. §7 states the difference rather than hiding it.
+
 Two traps this file already fell into. `wear` merges into the sprite component rather than replacing it, or re-dressing a fading entity would snap it back to solid. And a test that counts `fx#` entities after a brick breaks now counts nine, not four — the dust is thrown with the shards, so count by texture.
 
 ### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene

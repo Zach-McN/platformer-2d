@@ -42,7 +42,10 @@ function until(level: Playing, what: string, holds: () => boolean, most = 300, h
 const idOf = (holder: { id: string }): string => holder.id
 
 /** Every effect entity in the level wearing this texture. */
-function wearing(level: Playing, path: string): readonly { id: string; components: Record<string, unknown> }[] {
+function wearing(
+  level: Playing,
+  path: string,
+): readonly { id: string; transform: { x: number; y: number; scaleX: number }; components: Record<string, unknown> }[] {
   return level.entities.filter((one) => {
     if (!one.id.startsWith('fx#')) return false
     const sprite = one.components['sprite'] as { texture?: { path?: string } } | undefined
@@ -115,6 +118,36 @@ describe('the coin sparkle', () => {
     const cream = wearing(level, 'fx/sparkle-cream.png').length
     const gold = wearing(level, 'fx/sparkle-gold.png').length
     expect(cream + gold).toBe(SPARKLE_COUNT)
+  })
+
+  it('swells a cross over the spent pop-coin, growing until they die together', () => {
+    const level = playing([...floor(0, 9), questBlock(2, 3), coin(8, 1), spawn(2, 1)])
+    level.step(10)
+    until(level, 'the pop-coin', () => wearing(level, 'coin.png').length > 0, 40, JUMP)
+
+    // Nothing while the coin is on its way up: the cross belongs to its last
+    // fourteen frames.
+    expect(wearing(level, 'fx/coin-flash.png')).toHaveLength(0)
+
+    until(level, 'the cross', () => wearing(level, 'fx/coin-flash.png').length > 0, 40)
+    const first = wearing(level, 'fx/coin-flash.png')[0]
+    const small = first?.transform.scaleX ?? 0
+
+    level.step(5)
+    const grown = wearing(level, 'fx/coin-flash.png')[0]?.transform.scaleX ?? 0
+    expect(grown).toBeGreaterThan(small)
+    expect(grown).toBeLessThanOrEqual(1)
+
+    // It is thrown exactly like the coin, so five frames on it is still
+    // sitting on it rather than having drifted off on its own.
+    const popCoin = wearing(level, 'coin.png')[0]
+    const cross = wearing(level, 'fx/coin-flash.png')[0]
+    expect(popCoin).toBeDefined()
+    expect(Math.abs((cross?.transform.y ?? 0) - (popCoin?.transform.y ?? 0))).toBeLessThan(0.001)
+
+    // Both gone when the coin's life runs out, and the sparkle takes over.
+    until(level, 'the sparkle', () => wearing(level, 'fx/sparkle-gold.png').length > 0, 40)
+    expect(wearing(level, 'fx/coin-flash.png')).toHaveLength(0)
   })
 
   it('throws nothing at all for a coin carrying no sparkle art', () => {

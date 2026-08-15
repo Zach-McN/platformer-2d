@@ -1,7 +1,8 @@
 import type { Entity, System } from 'kernel-2d/runtime'
 
-import { fade, sparkleOf, wear, type Sparkle, type TextureRef } from '../components/roles'
+import { fade, flashOf, sparkleOf, wear, type Sparkle, type TextureRef } from '../components/roles'
 import {
+  COIN_FLASH_FRAMES,
   DUST_COUNT,
   DUST_GRAVITY,
   DUST_LIFE_FRAMES,
@@ -35,9 +36,10 @@ import {
 } from './tuning'
 
 /**
- * Everything the game throws and then forgets: the pop-coin out of a ?-block,
- * a broken brick's shards, and the three kinds of particle — the coin's
- * sparkle, the puff under a stomped enemy, the dust off a shattered brick.
+ * Everything the game throws and then forgets: the pop-coin out of a ?-block
+ * and the cross that swells over it as it dies, a broken brick's shards, and
+ * the three kinds of particle — the coin's sparkle, the puff under a stomped
+ * enemy, the dust off a shattered brick.
  *
  * All of them are the same thing wearing different art: a short-lived entity
  * spawned into the running copy with an `fx` component holding its ballistics,
@@ -72,7 +74,9 @@ interface FxState {
   /** How many of its last frames it spends fading out. */
   fadeFrames: number
   ageFrames: number
-  look: 'coin' | 'shard' | 'particle'
+  look: 'coin' | 'shard' | 'particle' | 'flash'
+  /** Set on a pop-coin once its cross has been thrown, so it is thrown once. */
+  flashed?: boolean
 }
 
 let minted = 0
@@ -197,6 +201,38 @@ export function spawnPuff(entities: Entity[], x: number, feetY: number, art: Tex
   }
 }
 
+/**
+ * The cross that swells over a pop-coin as it dies.
+ *
+ * **It is thrown as its own entity, and it keeps up with the coin by being
+ * thrown exactly like one** — same position, same velocity, same gravity, so
+ * the two are integrated identically and stay together without either knowing
+ * about the other. A link between two entities would be a thing this game has
+ * never needed, and this is the frame in which it did not start needing one.
+ */
+function spawnFlash(entities: Entity[], popCoin: Entity, fx: FxState, art: TextureRef | null): void {
+  if (art === null) return
+  spawn(
+    entities,
+    popCoin.transform.x,
+    popCoin.transform.y,
+    art,
+    {
+      vx: fx.vx,
+      vy: fx.vy,
+      gravity: fx.gravity,
+      drag: fx.drag,
+      lifeFrames: COIN_FLASH_FRAMES,
+      // Dies with the coin and fades with it, which is the reference drawing
+      // both through one `globalAlpha`.
+      fadeFrames: POP_COIN_FADE_FRAMES,
+      look: 'flash',
+    },
+    // Starts at nothing and is grown by the step below.
+    0,
+  )
+}
+
 /** The dust a brick throws along with its shards — smaller, slower, gone sooner. */
 export function spawnDust(entities: Entity[], brick: Entity, art: TextureRef | null): void {
   if (art === null) return
@@ -227,8 +263,19 @@ function fxOf(entity: Entity): FxState | null {
   if (typeof vx !== 'number' || typeof vy !== 'number' || typeof ageFrames !== 'number') return null
   if (typeof gravity !== 'number' || typeof drag !== 'number') return null
   if (typeof lifeFrames !== 'number' || lifeFrames <= 0 || typeof fadeFrames !== 'number') return null
-  if (look !== 'coin' && look !== 'shard' && look !== 'particle') return null
-  return { vx, vy, gravity, drag, lifeFrames, fadeFrames, ageFrames, look }
+  if (look !== 'coin' && look !== 'shard' && look !== 'particle' && look !== 'flash') return null
+  const flashed = (component as { flashed?: unknown }).flashed
+  return {
+    vx,
+    vy,
+    gravity,
+    drag,
+    lifeFrames,
+    fadeFrames,
+    ageFrames,
+    look,
+    ...(flashed === true ? { flashed: true } : {}),
+  }
 }
 
 export const effectsSystem: System = {
@@ -261,6 +308,18 @@ export const effectsSystem: System = {
         // The reference draws the pop-coin's width as |cos spin| — a coin
         // seen edge-on twice a turn.
         entity.transform.scaleX = Math.abs(Math.cos((fx.ageFrames / 60) * POP_COIN_SPIN))
+
+        // With its last 14 frames to go, the cross starts swelling over it.
+        if (fx.flashed !== true && fx.lifeFrames - fx.ageFrames <= COIN_FLASH_FRAMES) {
+          fx.flashed = true
+          spawnFlash(entities, entity, fx, flashArtIn(entities))
+        }
+      } else if (fx.look === 'flash') {
+        // Grows from nothing to its full span across its whole life, which is
+        // the reference's arms lengthening by a fixed step every frame.
+        const grown = Math.min(1, fx.ageFrames / fx.lifeFrames)
+        entity.transform.scaleX = grown
+        entity.transform.scaleY = grown
       } else if (fx.look === 'shard') {
         entity.transform.rotation = (entity.transform.rotation + SHARD_SPIN_DEGREES * dtSeconds) % 360
       }
@@ -288,4 +347,10 @@ function sparkleWhereItLanded(entities: Entity[], popCoin: Entity): void {
   const coin = entities.find((one) => sparkleOf(one) !== null)
   if (coin === undefined) return
   spawnSparkle(entities, popCoin.transform.x, popCoin.transform.y, sparkleOf(coin))
+}
+
+/** The cross art, off any coin still standing — the same trade the sparkle makes. */
+function flashArtIn(entities: readonly Entity[]): TextureRef | null {
+  const coin = entities.find((one) => flashOf(one) !== null)
+  return coin === undefined ? null : flashOf(coin)
 }
