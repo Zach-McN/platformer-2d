@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "7f348ea3a5a31589",
+  "name": "Sky",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "4e39a28c69b9166d",
+        "path": "assets/textures/scenery/sky.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5",
+  "generatedAt": "2026-08-14"
+}

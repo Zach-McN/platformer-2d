@@ -61,11 +61,17 @@ picks the variant by eye.
 
 ## Gotchas
 
-### TG1: The sky is nobody's yet
+### TG1: ~~The sky is nobody's yet~~ — resolved: the sky is content, the level's first entity
 
-The reference paints a vertical sky gradient (#6fb9ff → #b8e6ff) behind everything. The
-scene has no background — the viewport shows the editor's dark ground. Unresolved on
-purpose; it belongs to the systems/presentation phase, and the parity doc lists it.
+The reference paints a vertical sky gradient (#6fb9ff → #b8e6ff) behind everything, and
+the systems phase answered it with no kernel change: `assets/textures/scenery/sky.png`
+(16×304, the gradient over exactly the level's 19-tile height), `prefabs/sky.json`, and a
+`Sky` entity **first in the scene list** — first is rearmost (T5), and the reference's
+screen-fixed gradient and a level-spanning one are identical pixels because the viewport
+always spans the level's full height. **The sky is sized to the level exactly, and that
+is load-bearing**: framing and the export's fit read the drawn extent, so an oversized
+backdrop would change what "frame the level" means. `genre-spinup` S9 records the general
+form. _[resolved 2026-08-15, systems phase]_
 
 ## Contracts
 

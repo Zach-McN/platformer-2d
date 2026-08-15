@@ -3,6 +3,25 @@
   "version": 1,
   "entities": [
     {
+      "id": "38adee522ac378d3",
+      "name": "Sky",
+      "transform": {
+        "x": 512,
+        "y": 152,
+        "rotation": 0,
+        "scaleX": 64,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "7f348ea3a5a31589",
+            "path": "prefabs/sky.json"
+          }
+        }
+      }
+    },
+    {
       "id": "0075c11b778327ca",
       "name": "Cloud",
       "transform": {

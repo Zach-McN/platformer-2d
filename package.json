@@ -1,0 +1,14 @@
+{
+  "name": "platformer-2d",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A 1:1 remake of the reference pixel platformer. The game as text, plus the game's own code; the editor that opens it is kernel-2d.",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
+  }
+}

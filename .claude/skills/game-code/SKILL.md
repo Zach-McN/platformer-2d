@@ -1,0 +1,102 @@
+---
+name: game-code
+description: How platformer-2d's src/ speaks the parity contract — the tuning translation table, how the ninja and enemies hold run state, the system order, and the fixture gotchas. Consult before changing any system in src/, adding a feel number, or writing a test against the game's code.
+---
+
+<!-- generatedBy: claude-fable-5, generatedAt: 2026-08-15 -->
+
+# game-code
+
+How this game's `src/` speaks the parity contract. Knowledge true of this game only
+(`genre-spinup` S2); the feel numbers themselves live in `docs/REMAKE-PARITY.md` and are
+not restated here.
+
+## Decisions
+
+### C1: `tuning.ts` is the parity doc's translation table, and nothing else holds a feel number
+
+The doc speaks the reference's units — pixels per frame at 60fps, y down; the kernel's
+scenes are y-up and systems take seconds. Every constant is converted exactly once, in
+`src/systems/tuning.ts`, each line citing the doc's figure (speeds ×60, accelerations
+×3600, up positive). **Timers stay in reference frames**, advanced by `dt * 60` per step —
+at the fixed step that is exactly one frame, so a 6-frame coyote window is the doc's 6.
+A system that wants a number imports it from there; a number appearing anywhere else in
+`src/` is a defect even if it is correct. Changing a feel means changing the doc first —
+the doc is the contract, this file is its translation, never a second opinion.
+
+### C2: The player *is* the spawn marker, taken over on the first step
+
+The marker carries `player` with all seven frames (game-content T4), so `ninja.ts`
+converts it: swaps its sprite to the idle frame, drops its hitbox feet onto the marker
+tile's bottom edge, and drives it from then on. No second entity is spawned, respawn is a
+state reset, and the marker icon disappears from play by *becoming* the ninja. `playerIn`
+finds it by the `player` component, never by name or id.
+
+### C3: Run state lives beside the level in WeakMaps, keyed on the entity; a hitbox is centre-x plus feet-y
+
+The tower defense's `march` precedent, held throughout: velocities, timers, modes, coins —
+none of it is written into components (it would appear in the Inspector as vocabulary
+nobody authored, and it dies with the copy anyway). Each system keys its state weakly on
+the entity object, which is fresh per run, so Stop-and-Play resets everything with no
+reset code. Hitboxes are carried as centre x + bottom y (`tiles.ts`), because every rule
+in the parity doc is phrased around feet: feet on floors, feet near enemy tops, feet
+below the pit line.
+
+### C4: Systems in list order are the rules — ninja, enemies, clash, effects, pose, chase
+
+Movement first (ninja, then enemies), `clash` judging contact where this step actually put
+both sides, `effects` flying the debris the bumps threw, `pose` dressing everything
+(frames, facing, squash & stretch, bob, wobble — presentation only: a level run without it
+plays the same game standing stiffly), and `chase` aiming the camera last at where the
+ninja ended up. Pose owns every scale and re-derives sprite y from the feet, so squash
+grows the sprite upward from planted feet; ninja/enemies write the unscaled stand so the
+game is complete without pose.
+
+### C5: The level's side walls are derived from its own outermost solid columns
+
+The reference's "side edges solid" is not authored as tiles; `tiles.ts` treats the
+leftmost and rightmost solid columns as walls. In the real level those are columns 0 and
+63, which is exactly the reference's clamp. The trade is TG1 below.
+
+### C6: Bump debris is run-only `fx` entities wearing art the level already carries
+
+The pop-coin wears the look of any coin in the level; shards wear the broken brick's own
+texture at scale 4/16. Nothing new ships: game-content T4 already guarantees every state
+texture is loaded before a system spawns anything. The reference's sparkle and dust-mote
+particles, and all seven sounds, are **deliberately not built** — they need art/audio the
+level does not carry, and they belong to the parity pass with the screen UI session.
+
+### C7: Facing and death-blink are sprite tricks, not features
+
+Facing flips `scaleX`'s sign about the centre pivot (all sprites are symmetric enough);
+the death blink deletes and restores the `sprite` component on the doc's 3-of-6-frame
+rhythm, because an entity with nothing to draw is how the renderer spells "hidden".
+
+## Gotchas
+
+### CG1: A test platform's edges are walls, because C5 derives walls from the fixture's own solids
+
+A fixture of four ground tiles cannot drop the ninja off its edge: the platform's ends
+*are* the level's outermost solid columns, so the "edge" is a wall and coyote-time and
+pit tests silently test nothing — the failure reads as the jump being broken. **Fix:** put
+a distant anchor column in any fixture that needs a real edge or pit
+(`tests/level.ts` fixtures do this with `floor(20, 21)`), so the outer wall sits past the
+gap. _[earned 2026-08-15, first game tests]_
+
+### CG2: State helpers answer null until one step has run
+
+Every state map fills on first sight of an entity, so `ninjaOf`/`enemyOf` before the
+first step is null and a test helper that reads it throws confusingly. Step once to stand
+everything up before asserting. _[earned 2026-08-15]_
+
+## Contracts
+
+- `src/systems/tuning.ts` — every converted feel number, cited line by line (C1).
+- `src/systems/tiles.ts` — the solid map, the axis-separated moves, the exact-edge rule
+  (touching is not colliding), and the wall derivation (C5).
+- `tests/level.ts` — the fixture vocabulary: entity lists shaped exactly as the generated
+  prefabs shape components, and the `playing()` harness that writes held keys the way the
+  runner does.
+- `docs/REMAKE-PARITY.md` §11 — the checklist a parity pass runs; the systems built here
+  cover movement, tiles, coins, bumps, enemies, death, win and camera, and deliberately
+  not sounds, particles or screen UI.
