@@ -63,8 +63,34 @@ leftmost and rightmost solid columns as walls. In the real level those are colum
 The pop-coin wears the look of any coin in the level; shards wear the broken brick's own
 texture at scale 4/16. Nothing new ships: game-content T4 already guarantees every state
 texture is loaded before a system spawns anything. The reference's sparkle and dust-mote
-particles, and all seven sounds, are **deliberately not built** — they need art/audio the
-level does not carry, and they belong to the parity pass with the screen UI session.
+particles are **deliberately not built** — they need art the level does not carry, and
+they belong to the parity pass. _(The seven sounds were parked here too until the sound
+phase; see C9.)_
+
+### C9: The seven sounds are recipes in one file, raised by the rule that causes them, and mute is a fact
+
+`src/systems/sound.ts` is §8 as a table of notes — the same relationship to the doc that
+`tuning.ts` has to §1–§7, minus the arithmetic, since Hz and seconds mean the same thing
+on both sides. **C1's rule applies unchanged: a frequency or a duration anywhere else in
+`src/` is a defect.** Each cue goes out through the kernel's sound seam
+(`editor-kernel` D33): the game names notes, the host makes the noise, and nothing in
+`src/` has heard of an audio context — which is why every sound is asserted in plain Node.
+
+Three things worth keeping:
+
+- **The noise is made where the rule fires, not by a system that watches for it.** A
+  `sound(entities, 'stomp')` sits beside the state change in `clash.ts`, `enemies.ts` and
+  `ninja.ts`. Where the reference plays the same sound from two call sites around one
+  helper (`knockOut`, `die`), the cue moved *into* the helper instead — so a third cause
+  cannot forget it. That is the only deliberate difference from the reference's placement.
+- **Mute is a story fact, not run state.** A WeakMap beside the level — C3's default for
+  everything else — would be un-muted by R, since R reloads the scene (C8) and run state
+  dies with the copy. The fact survives, which is what the reference's module variable
+  does across *its* restart. It also outlives the tab, which the reference does not; a
+  sound setting that stays set is the ordinary behaviour and the alternative is losing it
+  on every restart.
+- **`soundSystem` runs first and owns M and nothing else**, so an unmute's confirming
+  coin is queued before whatever else that step makes a noise about.
 
 ### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene
 
@@ -108,6 +134,15 @@ The first R test in the editor "did nothing" for five seconds: every fetch from 
 fetches. `editor-verification` W24 has the general rule; here it matters because R is the
 one gesture that reloads a whole level mid-play. _[earned 2026-08-15]_
 
+### CG4: A fixture with no coin counter has no R either, because the hud stands down before it reads the key
+
+`hud.ts` returns on its first line when no entity carries the `hud` component, and R is
+handled *after* that line — so a test level built without `counter()` presses R into
+silence, and the failure reads as the door seam or the story carrier being broken. It
+never bites the shipped level, which always has a counter. **Fix:** put `counter()` in any
+fixture that presses R. Worth remembering more generally: the hud system owns one key that
+has nothing to do with drawing the hud. _[earned 2026-08-15, sound phase]_
+
 ### CG2: State helpers answer null until one step has run
 
 Every state map fills on first sight of an entity, so `ninjaOf`/`enemyOf` before the
@@ -120,11 +155,13 @@ everything up before asserting. _[earned 2026-08-15]_
 - `src/systems/tiles.ts` — the solid map, the axis-separated moves, the exact-edge rule
   (touching is not colliding), and the wall derivation (C5).
 - `tests/level.ts` — the fixture vocabulary: entity lists shaped exactly as the generated
-  prefabs shape components, and the `playing()` harness that writes held keys the way the
-  runner does.
+  prefabs shape components, the `playing()` harness that writes held keys the way the
+  runner does, and `heard()`, which drains the cue queue the way a host does and names
+  each cue by matching the recipes.
+- `src/systems/sound.ts` — C9: §8 note for note, the mute fact, and M.
 - `docs/REMAKE-PARITY.md` §11 — the checklist a parity pass runs; the systems built here
-  cover movement, tiles, coins, bumps, enemies, death, win, camera and the three screen
-  nouns (counter, banner, hint) plus R, and deliberately not sounds, particles, touch
-  controls or M-mute.
+  cover movement, tiles, coins, bumps, enemies, death, win, camera, the three screen
+  nouns (counter, banner, hint) plus R, and all seven sounds with M-mute — deliberately
+  not particles, touch controls, or the export's fit rule.
 - `src/systems/hud.ts` and `assets/textures/ui/` — the screen (C8): the generated 3×5-font
   cards and digits, and the offsets that place digits inside them.

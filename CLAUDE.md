@@ -73,8 +73,13 @@ CLEAR! banners, the controls hint that fades on the first key, and R to restart 
 kernel gained its first screen-pinned component for them (`.claude/skills/game-content`
 T6, `game-code` C8).
 
-**Not built yet, on purpose:** the sounds and M-mute, the sparkle/dust particles, and
-touch controls — the parity pass closes those.
+All seven sounds are in too, synthesized rather than loaded — the jump, the coin, the
+thud, the shatter, the stomp, the hurt and the win fanfare, every one of them notes from
+`docs/REMAKE-PARITY.md` §8 played through the kernel's sound seam, with M muting the lot
+(`game-code` C9). The kernel gained its fourth ask entity for them (`editor-kernel` D33).
+
+**Not built yet, on purpose:** the sparkle/dust particles, touch controls, and the
+export's fit rule (§5) — the parity pass closes those.
 
 The game has its own test runner (`npm test` in this folder, `genre-spinup` S5), pinned to
 the kernel's Vitest, with fixtures as entity lists rather than files. Code here names the

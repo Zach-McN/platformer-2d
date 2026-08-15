@@ -1,6 +1,7 @@
-import { inputEntity, stepSystems, storyEntity, writeInput, type Entity } from 'kernel-2d/runtime'
+import { SOUND_ENTITY_ID, inputEntity, soundIn, stepSystems, storyEntity, writeInput, type Entity } from 'kernel-2d/runtime'
 
 import { systems } from '../src/systems/index'
+import { RECIPES, type SoundName } from '../src/systems/sound'
 import { TILE } from '../src/systems/tuning'
 
 /**
@@ -160,6 +161,53 @@ export interface Playing {
 
 /** The scene path the story carrier says this fixture is, for a test that presses R. */
 export const FIXTURE_SCENE = 'scenes/fixture.json'
+
+/**
+ * Every sound asked for since this was last called, by name — and it empties
+ * the queue on the way past.
+ *
+ * The fixture playing the runner's part, exactly as `playing` writes input the
+ * way the runner writes it: a real host takes the queue on every frame it
+ * draws, so a test that never emptied it would be reading the whole run's
+ * noises at once. Cues come back as §8 names by matching the recipes, which
+ * also means a recipe edited away from the doc stops matching and the test
+ * that named it says so.
+ */
+export function heard(level: Playing): SoundName[] {
+  const names = soundIn(level.entities).map(nameOfCue)
+  const carrier = level.entities.find((one) => one.id === SOUND_ENTITY_ID)
+  if (carrier !== undefined) carrier.components['sound'] = { cues: [] }
+  return names
+}
+
+interface PlayedNote {
+  from: number
+  to: number
+  seconds: number
+  wave: string
+  volume: number
+  delay?: number
+}
+
+function nameOfCue(cue: readonly PlayedNote[]): SoundName {
+  for (const [name, recipe] of Object.entries(RECIPES)) {
+    if (recipe.length !== cue.length) continue
+    const same = recipe.every((note, at) => {
+      const played = cue[at]
+      if (played === undefined) return false
+      return (
+        note.from === played.from &&
+        note.to === played.to &&
+        note.seconds === played.seconds &&
+        note.wave === played.wave &&
+        note.volume === played.volume &&
+        (note.delay ?? 0) === (played.delay ?? 0)
+      )
+    })
+    if (same) return name as SoundName
+  }
+  throw new Error(`a cue was played that is in no recipe: ${JSON.stringify(cue)}`)
+}
 
 export function playing(entities: Entity[]): Playing {
   const carrier = inputEntity()

@@ -13,6 +13,7 @@ import {
 } from '../components/roles'
 import { spawnPopCoin, spawnShards } from './effects'
 import { knockOutRiders } from './enemies'
+import { sound } from './sound'
 import { moveX, moveY, overlaps, solidGrid, type Hitbox } from './tiles'
 import {
   ACCELERATION,
@@ -104,12 +105,19 @@ export function hitboxOf(state: NinjaState): Hitbox {
   return { x: state.x, y: state.y, width: NINJA_WIDTH, height: NINJA_HEIGHT }
 }
 
-/** Kills the ninja: the death timer starts and the knock throws it upward. */
-export function killNinja(state: NinjaState, knockedUp: boolean): void {
+/**
+ * Kills the ninja: the death timer starts and the knock throws it upward.
+ *
+ * Takes the level as well as the state so it can make the noise, which is the
+ * reference's arrangement too — every death goes through one function, so the
+ * hurt sound is played once, in one place, however many ways there are to die.
+ */
+export function killNinja(entities: Entity[], state: NinjaState, knockedUp: boolean): void {
   if (state.dyingFrames !== null || state.won) return
   state.dyingFrames = DEATH_FRAMES
   state.vx = 0
   state.vy = knockedUp ? DEATH_KNOCK_SPEED : 0
+  sound(entities, 'hurt')
 }
 
 const LEFT_CODES = ['ArrowLeft', 'KeyA']
@@ -207,6 +215,7 @@ export const ninjaSystem: System = {
       state.vy = Math.abs(state.vx) > SPRINT_JUMP_AT ? SPRINT_JUMP_SPEED : JUMP_SPEED
       state.grounded = false
       state.coyoteFrames = 0
+      sound(entities, 'jump')
     }
     // The jump cut: letting go caps whatever rise is left.
     if (!jumpHeld && state.vy > JUMP_CUT_SPEED) state.vy = JUMP_CUT_SPEED
@@ -259,6 +268,7 @@ function interact(entities: Entity[], state: NinjaState): void {
     if (Math.abs(centreY - coin.transform.y) > COIN_RADIUS) continue
     entities.splice(at, 1)
     state.coins += 1
+    sound(entities, 'coin')
   }
 
   for (const entity of entities) {
@@ -271,7 +281,7 @@ function interact(entities: Entity[], state: NinjaState): void {
         height: TILE - SPIKE_INSET_TOP,
       }
       if (overlaps(box, zone)) {
-        killNinja(state, true)
+        killNinja(entities, state, true)
         return
       }
     }
@@ -285,13 +295,14 @@ function interact(entities: Entity[], state: NinjaState): void {
       if (overlaps(box, flag)) {
         state.won = true
         state.vx = 0
+        sound(entities, 'win')
       }
     }
   }
 
   // The pit: falling past 40 px below the level floor kills, with no knock —
   // the body is already falling.
-  if (state.y + NINJA_HEIGHT < -PIT_DEPTH) killNinja(state, false)
+  if (state.y + NINJA_HEIGHT < -PIT_DEPTH) killNinja(entities, state, false)
 }
 
 /** A head bump: the ?-block pays, the brick shatters and unseats its riders. */
@@ -299,6 +310,7 @@ function bump(entities: Entity[], block: Entity, state: NinjaState): void {
   const bonus = bonusOf(block)
   if (bonus !== null) {
     state.coins += bonus.coins
+    sound(entities, 'coin')
     if (bonus.used !== null) wear(block, bonus.used)
     // Paid out: from now on it is any other solid.
     delete block.components['bonus']
@@ -311,11 +323,13 @@ function bump(entities: Entity[], block: Entity, state: NinjaState): void {
     const look = worn(block)
     const at = entities.indexOf(block)
     if (at !== -1) entities.splice(at, 1)
+    sound(entities, 'break')
     spawnShards(entities, block, look)
     knockOutRiders(entities, block)
     return
   }
-  // Any other solid: just the thud (sound is the parity pass's, not built yet).
+  // Any other solid: just the thud.
+  sound(entities, 'bump')
 }
 
 /**

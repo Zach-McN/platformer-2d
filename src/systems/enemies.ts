@@ -1,6 +1,7 @@
 import type { Entity, System } from 'kernel-2d/runtime'
 
 import { turtleOf, walkerOf, wear, type TextureRef } from '../components/roles'
+import { sound } from './sound'
 import { moveX, moveY, overlaps, solidAt, solidGrid, type Hitbox } from './tiles'
 import {
   FALL_SPEED_CAP,
@@ -144,8 +145,13 @@ export const enemiesSystem: System = {
 
       const across = moveX(grid, enemyHitbox(state), state.vx * dtSeconds)
       state.x = across.x
-      // A wall reverses the walk and bounces the sliding shell alike.
-      if (across.wall !== 0) state.vx = -state.vx
+      // A wall reverses the walk and bounces the sliding shell alike — and
+      // only the shell is heard doing it, which is the doc's asymmetry: a
+      // patrolling walker turning around is not an event.
+      if (across.wall !== 0) {
+        state.vx = -state.vx
+        if (state.mode === 'sliding') sound(entities, 'bump')
+      }
 
       const fell = moveY(grid, enemyHitbox(state), state.vy * dtSeconds)
       state.y = fell.y
@@ -162,7 +168,7 @@ export const enemiesSystem: System = {
       if (state.mode === 'walk' && Math.abs(state.vx) > 0) state.walkFrames += frames
       if (state.mode === 'sliding') {
         state.slideFrames += frames
-        knockOthers(standing, state)
+        knockOthers(entities, standing, state)
       }
 
       // Fallen out of the level: gone, exactly as the reference loses them.
@@ -177,22 +183,32 @@ export const enemiesSystem: System = {
 }
 
 /** A sliding shell knocks out every other enemy it touches. */
-function knockOthers(standing: readonly { entity: Entity; state: EnemyState }[], shell: EnemyState): void {
+function knockOthers(
+  entities: Entity[],
+  standing: readonly { entity: Entity; state: EnemyState }[],
+  shell: EnemyState,
+): void {
   for (const other of standing) {
     if (other.state === shell) continue
     if (other.state.mode === 'tumble') continue
     if (!overlaps(enemyHitbox(shell), enemyHitbox(other.state))) continue
-    knockOut(other.entity, other.state, shell.x)
+    knockOut(entities, other.entity, other.state, shell.x)
   }
 }
 
-/** The knock-out: flipped, launched away from the cause, done with collision. */
-export function knockOut(entity: Entity, state: EnemyState, causeX: number): void {
+/**
+ * The knock-out: flipped, launched away from the cause, done with collision —
+ * and heard as a stomp, because both ways of causing one (a sliding shell, a
+ * brick breaking underfoot) make that noise in the reference. Playing it here
+ * rather than at the two call sites means a third cause could not forget.
+ */
+export function knockOut(entities: Entity[], entity: Entity, state: EnemyState, causeX: number): void {
   state.mode = 'tumble'
   state.timerFrames = KNOCKOUT_FRAMES
   state.vy = KNOCKOUT_RISE
   state.vx = state.x < causeX ? -KNOCKOUT_DRIFT : KNOCKOUT_DRIFT
   writeTransform(entity, state)
+  sound(entities, 'stomp')
 }
 
 /**
@@ -209,7 +225,7 @@ export function knockOutRiders(entities: Entity[], brick: Entity): void {
     if (state === undefined || state.mode === 'tumble') continue
     if (state.y < top - RIDER_BELOW || state.y > top + RIDER_ABOVE) continue
     if (state.x < left - RIDER_REACH || state.x > right + RIDER_REACH) continue
-    knockOut(entity, state, brick.transform.x)
+    knockOut(entities, entity, state, brick.transform.x)
   }
 }
 

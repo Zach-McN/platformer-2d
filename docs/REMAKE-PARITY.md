@@ -206,4 +206,5 @@ Run the reference beside the remake and check:
 - [ ] Spikes, pits and enemy side-contact kill; coins survive death; R resets everything
 - [ ] Flag wins with frozen player, fanfare and banner
 - [ ] Camera ease, squash & stretch, particles, and all 7 sounds match by ear/eye
+      (sounds and M-mute built 2026-08-15; particles are still the parity pass's)
 - [ ] HUD, banner, hint fade, touch controls, M mute all present

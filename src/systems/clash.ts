@@ -2,6 +2,7 @@ import type { System } from 'kernel-2d/runtime'
 
 import { enemyOf, enemyHitbox, kick, rest, squash, tuck } from './enemies'
 import { hitboxOf, killNinja, ninjaOf, playerIn } from './ninja'
+import { sound } from './sound'
 import { overlaps } from './tiles'
 import {
   SHELL_KICK_GRACE,
@@ -50,12 +51,13 @@ export const clashSystem: System = {
         // Touching or stomping a resting shell kicks it away; only the stomp
         // bounces the player with it.
         kick(enemy, player.x, SHELL_KICK_SPEED, SHELL_KICK_GRACE)
+        sound(entities, 'stomp')
         if (stomped) player.vy = STOMP_BOUNCE
         continue
       }
 
       if (!stomped) {
-        killNinja(player, true)
+        killNinja(entities, player, true)
         return
       }
 
@@ -63,6 +65,7 @@ export const clashSystem: System = {
       else if (enemy.kind === 'walker') squash(entity, enemy)
       else tuck(entity, enemy, SHELL_REST_GRACE)
       player.vy = STOMP_BOUNCE
+      sound(entities, 'stomp')
     }
   },
 }
