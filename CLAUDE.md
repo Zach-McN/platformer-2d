@@ -78,8 +78,13 @@ thud, the shatter, the stomp, the hurt and the win fanfare, every one of them no
 `docs/REMAKE-PARITY.md` §8 played through the kernel's sound seam, with M muting the lot
 (`game-code` C9). The kernel gained its fourth ask entity for them (`editor-kernel` D33).
 
-**Not built yet, on purpose:** the sparkle/dust particles, touch controls, and the
-export's fit rule (§5) — the parity pass closes those.
+And the particles: a coin bursts into seven sparks, a stomped enemy puffs at the feet, a
+knocked-out one puffs darker, and a broken brick throws dust with its shards — every one
+of them fading out rather than blinking away, which is what the kernel's new sprite
+opacity is for (`editor-kernel` D34, `game-code` C10).
+
+**Not built yet, on purpose:** touch controls, the export's fit rule (§5), and the
+pop-coin's cross flash (§7 says why) — the parity pass closes those.
 
 The game has its own test runner (`npm test` in this folder, `genre-spinup` S5), pinned to
 the kernel's Vitest, with fixtures as entity lists rather than files. Code here names the

@@ -149,6 +149,17 @@ at (−1, −3) — trunk base.
 - **Particles:** drag ×0.98/frame; fade in the last 40% of life. Coin sparkle: 7 particles
   radially at ~1.5 px/frame with −0.6 upward bias, gravity 0.03, life 20, alternating
   #fff8c9 / #f6c521. Puff: 6 particles, gravity 0.12, size 3, life 22.
+  - **Where each comes from.** Sparkle: a coin taken, and a spent pop-coin on its last
+    frame. Puff, thrown from the enemy's feet: a walker squashed (#c9b39a), a turtle
+    tucking and a shell kicked (#8be3a0) — but *not* a sliding shell stomped back to
+    rest. A **knock-out** puffs too, in its own darker colours (walker #a0522d, turtle
+    #2e9e4f), which is what §4's "colour puff matches the enemy" means. Brick dust,
+    with the shards: 5 particles, vx ±1.2, vy up to 1.6 up, gravity 0.06, size 2,
+    life 16, #d8b39c.
+  - **The pop-coin fades too**, over its last 10 frames rather than by share.
+  - **Not built, and named here so it is not lost:** the reference also draws a growing
+    cross-shaped flash over the pop-coin in its last 14 frames. It is one shape drawn
+    in code rather than a particle, and nothing in this remake draws shapes.
 
 ## 8. Sound (all synthesized, no audio files)
 
@@ -206,5 +217,6 @@ Run the reference beside the remake and check:
 - [ ] Spikes, pits and enemy side-contact kill; coins survive death; R resets everything
 - [ ] Flag wins with frozen player, fanfare and banner
 - [ ] Camera ease, squash & stretch, particles, and all 7 sounds match by ear/eye
-      (sounds and M-mute built 2026-08-15; particles are still the parity pass's)
+      (sounds, M-mute and all three particle kinds built 2026-08-15; the pop-coin's
+      cross flash is deliberately not built — see §7)
 - [ ] HUD, banner, hint fade, touch controls, M mute all present

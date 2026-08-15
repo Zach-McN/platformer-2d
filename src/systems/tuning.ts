@@ -66,6 +66,49 @@ export const SHARD_SCALE = 4 / TILE // size 4, worn as the brick's own picture
 /** The doc says shards spin and does not say how fast; this is a guess kept in one place. */
 export const SHARD_SPIN_DEGREES = 900
 
+// --- particles (§7) --------------------------------------------------------
+
+/**
+ * Every particle loses 2% of its sideways speed per reference frame, and fades
+ * over the last 40% of its life. The drag is per *frame*, so a step applies it
+ * `dt * 60` times — at the fixed step, exactly once.
+ */
+export const PARTICLE_DRAG_PER_FRAME = 0.98
+export const PARTICLE_FADE_SHARE = 0.4
+
+/** The pop-coin fades over its last 10 frames rather than by share (reference). */
+export const POP_COIN_FADE_FRAMES = 10
+
+/** Coin sparkle: 7 particles radially at 1.5, with a 0.6 upward bias. */
+export const SPARKLE_COUNT = 7
+export const SPARKLE_SPEED = 1.5 * 60
+export const SPARKLE_RISE = 0.6 * 60
+export const SPARKLE_SPREAD = 0.4 // up to 0.4 rad of scatter off the even spokes
+export const SPARKLE_GRAVITY = 0.03 * 3600
+export const SPARKLE_LIFE_FRAMES = 20
+
+/** Puff: 6 particles, thrown up and out from the feet of whatever made it. */
+export const PUFF_COUNT = 6
+export const PUFF_SPREAD = 2.2 * 60 // vx over (−1.1, 1.1)
+export const PUFF_RISE = 2 * 60 // vy up to 2 upward…
+export const PUFF_RISE_LEAST = 0.4 * 60 // …on top of a floor of 0.4
+export const PUFF_GRAVITY = 0.12 * 3600
+export const PUFF_LIFE_FRAMES = 22
+/**
+ * How far above the feet a puff appears. The reference emits at the enemy's
+ * bottom edge less 4 px (a kick) or 5 (a squash), and draws a 3 px square
+ * downward from there — so its centre sits about 3 px above the feet either
+ * way, and the difference between the two is a pixel on a three-pixel dot.
+ */
+export const PUFF_ABOVE_FEET = 3
+
+/** The dust a breaking brick throws with its shards. */
+export const DUST_COUNT = 5
+export const DUST_SPREAD = 2.4 * 60 // vx over (−1.2, 1.2)
+export const DUST_RISE = 1.6 * 60 // vy up to 1.6 upward
+export const DUST_GRAVITY = 0.06 * 3600
+export const DUST_LIFE_FRAMES = 16
+
 /** A knocked-out rider's feet sit within top−6..top+8 of the broken brick (reference-signed). */
 export const RIDER_ABOVE = 6
 export const RIDER_BELOW = 8

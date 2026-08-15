@@ -1,5 +1,6 @@
 import type { System } from 'kernel-2d/runtime'
 
+import { spawnPuff } from './effects'
 import { enemyOf, enemyHitbox, kick, rest, squash, tuck } from './enemies'
 import { hitboxOf, killNinja, ninjaOf, playerIn } from './ninja'
 import { sound } from './sound'
@@ -52,6 +53,7 @@ export const clashSystem: System = {
         // bounces the player with it.
         kick(enemy, player.x, SHELL_KICK_SPEED, SHELL_KICK_GRACE)
         sound(entities, 'stomp')
+        spawnPuff(entities, enemy.x, enemy.y, enemy.puffTexture)
         if (stomped) player.vy = STOMP_BOUNCE
         continue
       }
@@ -61,9 +63,14 @@ export const clashSystem: System = {
         return
       }
 
+      // A shell stomped back to rest is the one stomp the reference throws no
+      // puff for — nothing is squashed and nothing tucks, it simply stops.
       if (enemy.mode === 'sliding') rest(enemy, SHELL_STOP_GRACE)
-      else if (enemy.kind === 'walker') squash(entity, enemy)
-      else tuck(entity, enemy, SHELL_REST_GRACE)
+      else {
+        if (enemy.kind === 'walker') squash(entity, enemy)
+        else tuck(entity, enemy, SHELL_REST_GRACE)
+        spawnPuff(entities, enemy.x, enemy.y, enemy.puffTexture)
+      }
       player.vy = STOMP_BOUNCE
       sound(entities, 'stomp')
     }

@@ -13,7 +13,22 @@
     "grid": {
       "tileSize": 16
     },
-    "coin": {}
+    "coin": {
+      "sparkle": {
+        "cream": {
+          "texture": {
+            "id": "5bd1f819cd7ca45c",
+            "path": "assets/textures/fx/sparkle-cream.png"
+          }
+        },
+        "gold": {
+          "texture": {
+            "id": "9b0571d6fea844e4",
+            "path": "assets/textures/fx/sparkle-gold.png"
+          }
+        }
+      }
+    }
   },
   "generatedBy": "claude-fable-5",
   "generatedAt": "2026-08-14"

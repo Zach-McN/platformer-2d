@@ -64,6 +64,14 @@ entities in `level-01.json`, so they draw over everything. Text is baked into th
 because the kernel has no text renderer and needs none: the only text that changes (the
 coin count) is composed from the digit textures at run time.
 
+### T7: A particle is a square of solid colour, and its colour rides the prefab that throws it
+
+`assets/textures/fx/` (2026-08-15): seven PNGs, each a filled square of one colour at the exact size the reference draws it — sparkle cream and gold at 2×2, four puffs at 3×3 (each enemy's stomp colour and its *darker* knock-out colour, which is a distinction easy to miss and named in §7), the brick's dust at 2×2. There is nothing to draw: the reference fills a rectangle in a colour, so the art *is* the colour and the size, and at scale 1 a 2×2 PNG is 2×2 scene units because the grid is 16 on both sides.
+
+Each hangs on the prefab that throws it, which is T4 applied again: `coin` carries `sparkle: { cream, gold }`, `breakable` carries `dust`, and both patrol components carry `puff` and `knockPuff`. So the level ships the art it can possibly need, loaded before any of it is spawned mid-run — and a prefab that carries none simply throws none, which is how a test asks for a coin with no sparkle.
+
+**Fade is not baked into these**, unlike the scenery's (T3): a particle's faintness changes every frame, so it is the kernel's `opacity` (`editor-kernel` D34) rather than a ladder of pre-faded pixels. Which means these five files stay five files however many fade steps a particle passes through.
+
 ### T5: Draw order is scene list order, in the reference's passes
 
 Far scenery (clouds, hills) → near scenery (trees, bushes, grass, fences) → gameplay

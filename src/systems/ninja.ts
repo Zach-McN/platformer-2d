@@ -2,16 +2,18 @@ import { heldIn, type Entity, type System } from 'kernel-2d/runtime'
 
 import {
   bonusOf,
+  dustOf,
   isBreakable,
   isCoin,
   isDeadly,
   isGoal,
   playerFramesOf,
+  sparkleOf,
   wear,
   worn,
   type TextureRef,
 } from '../components/roles'
-import { spawnPopCoin, spawnShards } from './effects'
+import { spawnDust, spawnPopCoin, spawnShards, spawnSparkle } from './effects'
 import { knockOutRiders } from './enemies'
 import { sound } from './sound'
 import { moveX, moveY, overlaps, solidGrid, type Hitbox } from './tiles'
@@ -266,9 +268,13 @@ function interact(entities: Entity[], state: NinjaState): void {
     if (coin === undefined || !isCoin(coin)) continue
     if (Math.abs(state.x - coin.transform.x) > COIN_RADIUS) continue
     if (Math.abs(centreY - coin.transform.y) > COIN_RADIUS) continue
+    // The sparkle is thrown from where the coin was, and wears the art that
+    // coin was carrying for it — read before the coin leaves the level.
+    const art = sparkleOf(coin)
     entities.splice(at, 1)
     state.coins += 1
     sound(entities, 'coin')
+    spawnSparkle(entities, coin.transform.x, coin.transform.y, art)
   }
 
   for (const entity of entities) {
@@ -321,10 +327,12 @@ function bump(entities: Entity[], block: Entity, state: NinjaState): void {
 
   if (isBreakable(block)) {
     const look = worn(block)
+    const dust = dustOf(block)
     const at = entities.indexOf(block)
     if (at !== -1) entities.splice(at, 1)
     sound(entities, 'break')
     spawnShards(entities, block, look)
+    spawnDust(entities, block, dust)
     knockOutRiders(entities, block)
     return
   }

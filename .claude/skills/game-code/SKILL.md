@@ -92,6 +92,18 @@ Three things worth keeping:
 - **`soundSystem` runs first and owns M and nothing else**, so an unmute's confirming
   coin is queued before whatever else that step makes a noise about.
 
+### C10: Every thrown thing is one `fx` entity with ballistics, and a fade is one number
+
+`effects.ts` flies five different-looking things — the pop-coin, the brick's four shards, the coin sparkle, the puff under a stomped enemy, the brick's dust — and they are one model: an entity carrying `fx` with `vx`, `vy`, gravity, per-frame drag, a life and a `fadeFrames`. What differs between them is which numbers `tuning.ts` hands over and which texture they wear.
+
+Three things worth keeping:
+
+- **Two fade rules turned out to be one.** The doc says particles fade over their last 40%; the reference fades the pop-coin over its last 10 frames. Both are "one linear fade over the last N frames", so `fx` carries N and nothing branches. The fade itself is the kernel's sprite opacity (`editor-kernel` D34) — this game's first use of it, and the reason it exists.
+- **The scatter is random, exactly as the reference's is**, so no two bursts look alike. That decides how they are tested: a test asserts *how many* particles, *what* they wear, how long they last and that they fade — never where one went. Where one lands is the one thing meant to be different every time.
+- **Particle colours ride the prefab that throws them** (game-content T7), so a sparkle is thrown by reading the coin's own art, and a coin with no sparkle art throws nothing rather than throwing something wrong. The spent pop-coin's sparkle is found the same way the pop-coin's own picture was: off any coin still standing in the level.
+
+Two traps this file already fell into. `wear` merges into the sprite component rather than replacing it, or re-dressing a fading entity would snap it back to solid. And a test that counts `fx#` entities after a brick breaks now counts nine, not four — the dust is thrown with the shards, so count by texture.
+
 ### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene
 
 The coin counter card and the controls hint are *placed content*, pinned to their corners

@@ -20,6 +20,18 @@
           "id": "c5e2a82bacc901f0",
           "path": "assets/textures/enemies/walker-squashed.png"
         }
+      },
+      "puff": {
+        "texture": {
+          "id": "d7c928a3c2c11001",
+          "path": "assets/textures/fx/puff-walker.png"
+        }
+      },
+      "knockPuff": {
+        "texture": {
+          "id": "3eaa6579cd2ccecd",
+          "path": "assets/textures/fx/puff-knock-walker.png"
+        }
       }
     }
   },

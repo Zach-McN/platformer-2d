@@ -62,9 +62,14 @@ describe('head bumps', () => {
     for (let at = 0; at < 30 && level.entities.some((one) => one.name === 'Brick'); at += 1) level.step(1, JUMP)
 
     expect(level.entities.some((one) => one.name === 'Brick')).toBe(false)
-    const shards = level.entities.filter((one) => one.id.startsWith('fx#'))
+    // The brick's own picture, four times — the dust thrown with them is a
+    // different texture and has its own test (`particles.test.ts`).
+    const shards = level.entities.filter(
+      (one) =>
+        one.id.startsWith('fx#') &&
+        (one.components['sprite'] as { texture: { path: string } }).texture.path === 'brick.png',
+    )
     expect(shards).toHaveLength(4)
-    expect((shards[0]?.components['sprite'] as { texture: { path: string } }).texture.path).toBe('brick.png')
 
     // The debris expires after its 34 frames.
     level.step(40)

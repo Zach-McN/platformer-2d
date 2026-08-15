@@ -20,6 +20,18 @@
           "id": "e35b6bbc31c86fab",
           "path": "assets/textures/enemies/shell.png"
         }
+      },
+      "puff": {
+        "texture": {
+          "id": "58fe726e236bb6a8",
+          "path": "assets/textures/fx/puff-turtle.png"
+        }
+      },
+      "knockPuff": {
+        "texture": {
+          "id": "ba4f61e6d7d5f718",
+          "path": "assets/textures/fx/puff-knock-turtle.png"
+        }
       }
     }
   },

@@ -58,7 +58,7 @@ export function brick(column: number, row: number): Entity {
     sprite: art('brick.png'),
     grid: { tileSize: TILE },
     solid: {},
-    breakable: {},
+    breakable: { dust: art('fx/dust-brick.png') },
   })
 }
 
@@ -74,7 +74,11 @@ export function questBlock(column: number, row: number): Entity {
 
 export function coin(column: number, row: number): Entity {
   const at = centre(column, row)
-  return entity('Coin', at.x, at.y, { sprite: art('coin.png'), grid: { tileSize: TILE }, coin: {} })
+  return entity('Coin', at.x, at.y, {
+    sprite: art('coin.png'),
+    grid: { tileSize: TILE },
+    coin: { sparkle: { cream: art('fx/sparkle-cream.png'), gold: art('fx/sparkle-gold.png') } },
+  })
 }
 
 export function spike(column: number, row: number): Entity {
@@ -113,7 +117,12 @@ export function walker(column: number, row: number, unitsPerSecond = 33): Entity
   return entity('Walker', at.x, at.y, {
     sprite: art('walker.png'),
     grid: { tileSize: TILE },
-    walker: { unitsPerSecond, squashed: art('walker-squashed.png') },
+    walker: {
+      unitsPerSecond,
+      squashed: art('walker-squashed.png'),
+      puff: art('fx/puff-walker.png'),
+      knockPuff: art('fx/puff-knock-walker.png'),
+    },
   })
 }
 
@@ -122,7 +131,12 @@ export function turtle(column: number, row: number, unitsPerSecond = 30): Entity
   return entity('Turtle', at.x, at.y, {
     sprite: art('turtle.png'),
     grid: { tileSize: TILE },
-    turtle: { unitsPerSecond, shell: art('shell.png') },
+    turtle: {
+      unitsPerSecond,
+      shell: art('shell.png'),
+      puff: art('fx/puff-turtle.png'),
+      knockPuff: art('fx/puff-knock-turtle.png'),
+    },
   })
 }
 

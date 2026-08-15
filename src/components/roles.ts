@@ -67,10 +67,38 @@ export function bonusOf(entity: Entity): Bonus | null {
   }
 }
 
+/** The two colours a collected coin sparkles in, alternating (§7). */
+export interface Sparkle {
+  cream: TextureRef
+  gold: TextureRef
+}
+
+/** The sparkle art a coin carries, or null when it carries neither colour. */
+export function sparkleOf(entity: Entity): Sparkle | null {
+  const component: unknown = entity.components['coin']
+  if (typeof component !== 'object' || component === null) return null
+  const sparkle: unknown = (component as { sparkle?: unknown }).sparkle
+  if (typeof sparkle !== 'object' || sparkle === null) return null
+  const cream = textureRefOf((sparkle as { cream?: unknown }).cream)
+  const gold = textureRefOf((sparkle as { gold?: unknown }).gold)
+  return cream === null || gold === null ? null : { cream, gold }
+}
+
+/** The dust a breakable throws with its shards, or null when it carries none. */
+export function dustOf(entity: Entity): TextureRef | null {
+  const component: unknown = entity.components['breakable']
+  if (typeof component !== 'object' || component === null) return null
+  return textureRefOf((component as { dust?: unknown }).dust)
+}
+
 export interface Patroller {
   unitsPerSecond: number
   /** The art for the state this kind dies into: squashed for a walker, shell for a turtle. */
   stateTexture: TextureRef | null
+  /** The colour this kind puffs when it is stomped or kicked. */
+  puffTexture: TextureRef | null
+  /** The darker colour it puffs when it is knocked out instead — a different burst (§4). */
+  knockPuffTexture: TextureRef | null
 }
 
 /** The walker component, whole or not at all. */
@@ -90,6 +118,8 @@ function patrollerOf(component: unknown, stateField: string): Patroller | null {
   return {
     unitsPerSecond: rate,
     stateTexture: textureRefOf((component as Record<string, unknown>)[stateField]),
+    puffTexture: textureRefOf((component as { puff?: unknown }).puff),
+    knockPuffTexture: textureRefOf((component as { knockPuff?: unknown }).knockPuff),
   }
 }
 
@@ -108,9 +138,28 @@ export function playerFramesOf(entity: Entity): Record<string, TextureRef> | nul
   return Object.keys(read).length > 0 ? read : null
 }
 
-/** Dresses an entity in a texture — the one way any system changes what something wears. */
+/**
+ * Dresses an entity in a texture — the one way any system changes what
+ * something wears.
+ *
+ * Merged rather than replaced, because the sprite component can carry more
+ * than a texture now: an entity that is halfway through fading (`fade` below)
+ * and gets re-dressed would otherwise snap back to solid.
+ */
 export function wear(entity: Entity, texture: TextureRef): void {
-  entity.components['sprite'] = { texture: { id: texture.id, path: texture.path } }
+  const standing = entity.components['sprite']
+  const kept = typeof standing === 'object' && standing !== null ? standing : {}
+  entity.components['sprite'] = { ...kept, texture: { id: texture.id, path: texture.path } }
+}
+
+/**
+ * How solidly to draw this entity, 0 to 1 — the kernel's `opacity`
+ * (`editor-kernel` D34), which is how anything in this game fades.
+ */
+export function fade(entity: Entity, opacity: number): void {
+  const standing = entity.components['sprite']
+  if (typeof standing !== 'object' || standing === null) return
+  entity.components['sprite'] = { ...standing, opacity }
 }
 
 /** The texture an entity is wearing, for effects that shatter it into pieces of itself. */

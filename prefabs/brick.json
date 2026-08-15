@@ -14,7 +14,14 @@
       "tileSize": 16
     },
     "solid": {},
-    "breakable": {}
+    "breakable": {
+      "dust": {
+        "texture": {
+          "id": "558da54bdbcf1c74",
+          "path": "assets/textures/fx/dust-brick.png"
+        }
+      }
+    }
   },
   "generatedBy": "claude-fable-5",
   "generatedAt": "2026-08-14"

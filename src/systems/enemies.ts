@@ -1,6 +1,7 @@
 import type { Entity, System } from 'kernel-2d/runtime'
 
 import { turtleOf, walkerOf, wear, type TextureRef } from '../components/roles'
+import { spawnPuff } from './effects'
 import { sound } from './sound'
 import { moveX, moveY, overlaps, solidAt, solidGrid, type Hitbox } from './tiles'
 import {
@@ -59,6 +60,10 @@ export interface EnemyState {
   graceFrames: number
   /** Squash and tumble share one countdown; walk and shell leave it at 0. */
   timerFrames: number
+  /** The colour this one puffs when it is stomped or kicked, or null if it carries none. */
+  puffTexture: TextureRef | null
+  /** The darker one it puffs when it is knocked out instead. */
+  knockPuffTexture: TextureRef | null
   /** Reference frames spent walking, for the bob. */
   walkFrames: number
   /** Reference frames spent sliding, for the wobble. */
@@ -105,6 +110,8 @@ function enemiesIn(entities: readonly Entity[]): { entity: Entity; state: EnemyS
         walkFrames: 0,
         slideFrames: 0,
         stateTexture: (walker ?? turtle)?.stateTexture ?? null,
+        puffTexture: (walker ?? turtle)?.puffTexture ?? null,
+        knockPuffTexture: (walker ?? turtle)?.knockPuffTexture ?? null,
       }
       states.set(entity, state)
     }
@@ -209,6 +216,9 @@ export function knockOut(entities: Entity[], entity: Entity, state: EnemyState, 
   state.vx = state.x < causeX ? -KNOCKOUT_DRIFT : KNOCKOUT_DRIFT
   writeTransform(entity, state)
   sound(entities, 'stomp')
+  // Its own darker colour, not the stomp's: the reference puffs a knocked-out
+  // enemy in a deeper green or brown than a squashed one (§4).
+  spawnPuff(entities, state.x, state.y, state.knockPuffTexture)
 }
 
 /**
