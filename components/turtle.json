@@ -4,6 +4,7 @@
   "type": "turtle",
   "title": "Turtle",
   "note": "Patrols like a walker, but stomping it tucks it into a shell that can be kicked. The kicked shell's speed is fixed by the parity doc and is not this number.",
+  "addable": false,
   "fields": [
     {
       "kind": "number",

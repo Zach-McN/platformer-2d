@@ -4,6 +4,7 @@
   "type": "walker",
   "title": "Walker",
   "note": "Patrols left and right, turning at walls and at ledges. Stomping it squashes it flat.",
+  "addable": false,
   "fields": [
     {
       "kind": "number",
