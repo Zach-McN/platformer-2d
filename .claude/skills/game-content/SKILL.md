@@ -97,6 +97,14 @@ mentions.
 an enemy typed down to zero would stop being an enemy and start being a sprite, silently.
 The panel is not allowed to write a value its own system discards.
 
+**Add on a placed enemy copies the prefab's whole component, and it has to** (kernel fix,
+2026-09-01, `editor-ui` U47). Before that it wrote `{ unitsPerSecond: 33 }` alone, and a
+placement's own component beats the prefab's *whole* — so the first walker given its own
+speed lost its `squashed` art and the first turtle its `shell`: the stomp still happened in
+the state machine and nothing changed on screen. A placement given its own speed **before
+that fix** is still missing those keys in the level file: press Remove on it (it goes back to
+inheriting) and Add again (it now copies), then retype the speed.
+
 ### T5: Draw order is scene list order, in the reference's passes
 
 Far scenery (clouds, hills) → near scenery (trees, bushes, grass, fences) → gameplay
