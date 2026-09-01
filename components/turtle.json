@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.component",
+  "version": 1,
+  "type": "turtle",
+  "title": "Turtle",
+  "note": "Patrols like a walker, but stomping it tucks it into a shell that can be kicked. The kicked shell's speed is fixed by the parity doc and is not this number.",
+  "fields": [
+    {
+      "kind": "number",
+      "key": "unitsPerSecond",
+      "label": "Speed",
+      "title": "How fast it patrols on foot, in scene units a second. One tile is 16, so 30 crosses about two tiles a second. Must be above zero.",
+      "default": 30,
+      "min": 1,
+      "step": 1
+    }
+  ],
+  "generatedBy": "claude-opus-5",
+  "generatedAt": "2026-09-01"
+}

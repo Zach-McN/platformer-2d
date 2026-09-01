@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.component",
+  "version": 1,
+  "type": "walker",
+  "title": "Walker",
+  "note": "Patrols left and right, turning at walls and at ledges. Stomping it squashes it flat.",
+  "fields": [
+    {
+      "kind": "number",
+      "key": "unitsPerSecond",
+      "label": "Speed",
+      "title": "How fast it patrols, in scene units a second. One tile is 16, so 33 crosses about two tiles a second. Must be above zero.",
+      "default": 33,
+      "min": 1,
+      "step": 1
+    }
+  ],
+  "generatedBy": "claude-opus-5",
+  "generatedAt": "2026-09-01"
+}

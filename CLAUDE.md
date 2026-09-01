@@ -44,6 +44,7 @@ because it is listed there is not a gap, and finding it absent is not a reason t
 | | Owner |
 |---|---|
 | `src/` — components and systems | AI |
+| `components/` — the Inspector's fields for this game's own components | AI; its keys must match what `src/` reads |
 | `assets/`, `scenes/`, `prefabs/`, `data/` | The human |
 | `project.json` | Either; it is written by the editor |
 | `Open editor.cmd` | Neither; the kernel generates it. Regenerate, never edit |
