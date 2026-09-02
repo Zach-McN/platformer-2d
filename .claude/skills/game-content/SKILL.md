@@ -150,7 +150,7 @@ kernel's fixtures was checked the same way and is intact; this was the only casu
 before it is committed**, because the failure is silent at every stage until it is on
 screen. _[earned 2026-08-15, the black shell]_
 
-### TG3: A described component's fields appear on a placement, never on the prefab
+### TG3: ~~A described component's fields appear on a placement, never on the prefab~~ — resolved 2026-09-01
 
 Describing `walker` put a **Speed** box on every walker *in the level*. Opening
 `prefabs/walker.json` itself still says "This prefab also carries grid, walker, which this
@@ -168,6 +168,13 @@ prefab variant (T2).
 `kernel-2d/docs/using-the-editor.md` reads as though it covers this and does not: its "A
 prefab's is inherited" line is written from the placement's side and never says the prefab's
 own panel is blank. Worth fixing there if a session is in the kernel anyway.
+
+**Resolved the same day** (`editor-ui` U47, third amendment): the prefab panel draws the
+same fields now, so `prefabs/walker.json` has a Speed box that reaches every walker not
+given its own, and a placed walker shows the prefab's speed as text before Add. Two dials:
+the prefab for all of them, a placement for one. What stands from the above is the reason
+it was a gap — the fields were wired to scene documents and entity ids — and that the
+fix was a `target` rather than a second renderer.
 _[earned 2026-09-01, describing walker and turtle]_
 
 ## Contracts
