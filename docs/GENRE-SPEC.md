@@ -29,8 +29,10 @@ and jump through a hand-built level: collect coins, stomp enemies, bump blocks f
 stay off the spikes and out of the pits, and touch the flag at the far end to clear it.
 
 Death is cheap — you respawn at the start and keep your coins. The level is the puzzle and
-the run is the fun. One level for now; more levels later is a deliberate spec change, not a
-gap.
+the run is the fun. ~~One level for now; more levels later is a deliberate spec change, not a
+gap.~~ **Amended 2026-09-01 (Zach's ask):** two levels. Level 1 is the remake, unchanged;
+clearing it asks whether to go on to **level 2, an underground cave** — same ninja, same
+enemies, same rules, new ground and new scenery. See *Level 2 — the cave* below.
 
 ## What the player does
 
@@ -103,6 +105,27 @@ Every entry here is a thing a future session is allowed to build. Nothing else i
 - **Sound effects** — synthesized chip sounds: jump, coin, bump, break, stomp, hurt, and a
   little win fanfare. Mute toggles them.
 - **Camera** — follows the ninja smoothly, side to side only.
+- **Next-level prompt** — on level 1's win screen, under LEVEL CLEAR!: "NEXT LEVEL? Y YES
+  N NO". Y (or Enter) starts level 2; N plays level 1 again. Level 2's win screen has no
+  question — it is the last level.
+
+### Level 2 — the cave *(added 2026-09-01)*
+
+A second hand-built level, the same size and rules as the first, set underground. It reuses
+every noun above — bricks, ?-blocks, coins, spikes, pits, the flag, walkers and turtles —
+and adds only what a cave needs:
+
+- **Cave floor** and **cave rock** — the cave's ground: solid slate, a lighter stone lip on
+  the exposed top face, plain rock below. The cave also has a solid rock **ceiling** across
+  the top of the level; bumping it thuds like any block.
+- **Cave scenery** — stalactite, stalagmite, crystal cluster, glowing mushroom, and, far
+  back and faded like the hills, cave pillar and boulder. Never solid, never interactive.
+- **Cave dark** — the dark backdrop, in place of the sky.
+- **Next-level marker** — a signpost placed in a level that has somewhere to go. Invisible
+  in play; it is what makes the win screen ask, and where the answer leads is a field on it.
+
+Level 2 is content in the spirit of the reference, not a remake of anything: it is outside
+the parity contract, and its layout is Zach's to change.
 
 ---
 
@@ -127,8 +150,9 @@ the remake 1:1 — the reference game has none of them either.
   the ninja cannot pick up or carry a shell.
 - **Run structure:** score, lives, game-over, timers, checkpoints beyond the single spawn
   point.
-- **World count:** more levels, a level select, functioning warp pipes, hidden blocks,
-  secret areas. One level. (More later is a spec change made here first.)
+- **World count:** ~~more levels,~~ a level select, functioning warp pipes, hidden blocks,
+  secret areas. ~~One level. (More later is a spec change made here first.)~~ Two levels
+  since 2026-09-01, chained by the win screen's question; still no level select.
 - **Movement:** wall-jump, crouch, swim, climb, ladders, double jump.
 - **World machinery:** moving platforms, one-way platforms, water, lava, conveyors.
 - **Enemies:** anything beyond the walker and the turtle. No projectiles, no bosses, no

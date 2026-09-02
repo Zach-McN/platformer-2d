@@ -12,6 +12,12 @@ at 60 fps, exactly as the reference runs them. Signs follow the reference (y inc
 downward, negative vy is up); the kernel's scenes are y-up, so the conversion belongs to
 whatever writes the scene, and "the level looks identical" is the check.
 
+**Scope (2026-09-01):** this contract is level 1's. Level 2 (`scenes/level-02.json`, the
+cave) shares every ninja, enemy, tile and screen number below — the systems are the same
+code — but its layout, art and the next-level question on level 1's win screen are the
+spec's (`GENRE-SPEC.md`, *Level 2 — the cave*), not the reference's, and §1 and §11 are
+not checked against it.
+
 ---
 
 ## 1. The level

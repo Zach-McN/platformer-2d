@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "0d0ffc11e4c7626a",
+  "name": "Cave pillar",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "e81de3a8ed7c1be1",
+        "path": "assets/textures/scenery/cave-pillar.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

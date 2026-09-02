@@ -4677,6 +4677,25 @@
       }
     },
     {
+      "id": "4326fbd217bf43ce",
+      "name": "Next level",
+      "transform": {
+        "x": 984,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "6955d6b0db2324af",
+            "path": "prefabs/next-level.json"
+          }
+        }
+      }
+    },
+    {
       "id": "d47f41c0fc7c69db",
       "name": "Coin counter",
       "transform": {

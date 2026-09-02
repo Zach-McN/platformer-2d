@@ -16,8 +16,9 @@ npm run editor -- ../games/platformer-2d
 ## What this game is
 
 A 1:1 remake of the reference game in `docs/reference/pixel-platformer-game.html` — a
-single-level pixel platformer. Two documents govern it, and they answer different
-questions:
+single-level pixel platformer — plus, since 2026-09-01, a second level of its own: an
+underground cave that level 1's win screen offers. Two documents govern it, and they
+answer different questions:
 
 - **`docs/GENRE-SPEC.md`** — the fence: what the game *is* and which nouns justify
   building anything. The human's document. **While it carries its DRAFT banner, nothing is
@@ -85,6 +86,15 @@ pop-coin swells a cross before it goes — every one of them fading out rather t
 blinking away, which is what the kernel's new sprite opacity is for (`editor-kernel` D34,
 `game-code` C10). The cross is the one deliberate approximation in the remake, and §7
 says exactly how it differs.
+
+And level 2 (2026-09-01): clear level 1 and the win screen asks NEXT LEVEL? — Y (or
+Enter) opens `scenes/level-02.json`, the cave, N plays level 1 again. The cave is the same
+rules under a rock ceiling: slate floor and rock, a dark backdrop, stalactites, stalagmites,
+crystals, glowing mushrooms, faded pillars and boulders behind, three pits, stepping
+platforms up to the roof coins, and the same walkers, turtles, bricks, ?-blocks and spikes.
+What makes level 1 ask is a placed **Next level** signpost (invisible in play) whose
+Inspector field names the level it leads to; level 2 has none, so it just wins
+(`game-content` T9, `game-code` C11).
 
 **Not built yet, on purpose:** touch controls and the export's fit rule (§5) — the
 parity pass closes those.

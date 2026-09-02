@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "b0a4353a9ff85c5e",
+  "name": "Boulder",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "ad6d1854c5fa3948",
+        "path": "assets/textures/scenery/boulder.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

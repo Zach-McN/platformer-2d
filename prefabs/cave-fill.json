@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "99dbd5937cc96f95",
+  "name": "Cave rock",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "70b16edcee8dbdf2",
+        "path": "assets/textures/tiles/cave-fill.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

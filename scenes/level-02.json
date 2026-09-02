@@ -1,0 +1,6335 @@
+{
+  "format": "kernel2d.scene",
+  "version": 1,
+  "entities": [
+    {
+      "id": "6b451c93dd2c3d13",
+      "name": "Cave dark",
+      "transform": {
+        "x": 512,
+        "y": 152,
+        "rotation": 0,
+        "scaleX": 64,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "1440bfb641a72807",
+            "path": "prefabs/cave-dark.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d3773afd6c5bfd34",
+      "name": "Cave pillar",
+      "transform": {
+        "x": 88,
+        "y": 80,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "0d0ffc11e4c7626a",
+            "path": "prefabs/scenery-cave-pillar.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "68aeaeb8da4d7677",
+      "name": "Cave pillar",
+      "transform": {
+        "x": 360,
+        "y": 80,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "0d0ffc11e4c7626a",
+            "path": "prefabs/scenery-cave-pillar.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4ab1c5934c25e97f",
+      "name": "Cave pillar",
+      "transform": {
+        "x": 664,
+        "y": 80,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "0d0ffc11e4c7626a",
+            "path": "prefabs/scenery-cave-pillar.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1d6300a17def17b9",
+      "name": "Cave pillar",
+      "transform": {
+        "x": 920,
+        "y": 80,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "0d0ffc11e4c7626a",
+            "path": "prefabs/scenery-cave-pillar.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "83fd63e75d5593a9",
+      "name": "Boulder",
+      "transform": {
+        "x": 200,
+        "y": 72,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "b0a4353a9ff85c5e",
+            "path": "prefabs/scenery-boulder.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "383e38287ebb4235",
+      "name": "Boulder",
+      "transform": {
+        "x": 568,
+        "y": 72,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "b0a4353a9ff85c5e",
+            "path": "prefabs/scenery-boulder.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "51c7c0ffcebf5b62",
+      "name": "Boulder",
+      "transform": {
+        "x": 840,
+        "y": 72,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "b0a4353a9ff85c5e",
+            "path": "prefabs/scenery-boulder.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9d23ebd74d28ec4e",
+      "name": "Stalactite",
+      "transform": {
+        "x": 40,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ed4a2abc158b3aeb",
+      "name": "Stalactite",
+      "transform": {
+        "x": 120,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cf7e102993432a44",
+      "name": "Stalactite",
+      "transform": {
+        "x": 216,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "41e69c83fb47c6fe",
+      "name": "Stalactite",
+      "transform": {
+        "x": 312,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5ab2088a9ebbe85f",
+      "name": "Stalactite",
+      "transform": {
+        "x": 424,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "67ed4737f53ac8b5",
+      "name": "Stalactite",
+      "transform": {
+        "x": 536,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2bc25f45ca731cef",
+      "name": "Stalactite",
+      "transform": {
+        "x": 632,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6c23c5dc78af47f3",
+      "name": "Stalactite",
+      "transform": {
+        "x": 728,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f3a8b4e61f35196d",
+      "name": "Stalactite",
+      "transform": {
+        "x": 824,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "48a64524db983062",
+      "name": "Stalactite",
+      "transform": {
+        "x": 920,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c95cc6eecadb68de",
+      "name": "Stalactite",
+      "transform": {
+        "x": 1000,
+        "y": 272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a6b271c975610e52",
+            "path": "prefabs/scenery-stalactite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8f5994046f257b7b",
+      "name": "Crystal",
+      "transform": {
+        "x": 56,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "7c85e1b5b0499d4c",
+            "path": "prefabs/scenery-crystal.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fe48bfd207f61729",
+      "name": "Stalagmite",
+      "transform": {
+        "x": 88,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "5c2764a275bbd3a7",
+            "path": "prefabs/scenery-stalagmite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f163334c6afb6e4d",
+      "name": "Mushroom",
+      "transform": {
+        "x": 232,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "e4c0caa6cfba0a7b",
+            "path": "prefabs/scenery-mushroom.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9a9c3fa65e30399f",
+      "name": "Mushroom",
+      "transform": {
+        "x": 312,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "e4c0caa6cfba0a7b",
+            "path": "prefabs/scenery-mushroom.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "69ca0637c9c0ef7f",
+      "name": "Stalagmite",
+      "transform": {
+        "x": 504,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "5c2764a275bbd3a7",
+            "path": "prefabs/scenery-stalagmite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "72c65f5819124927",
+      "name": "Crystal",
+      "transform": {
+        "x": 648,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "7c85e1b5b0499d4c",
+            "path": "prefabs/scenery-crystal.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6689e500e033bcbb",
+      "name": "Mushroom",
+      "transform": {
+        "x": 680,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "e4c0caa6cfba0a7b",
+            "path": "prefabs/scenery-mushroom.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "32e76933578e1151",
+      "name": "Stalagmite",
+      "transform": {
+        "x": 824,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "5c2764a275bbd3a7",
+            "path": "prefabs/scenery-stalagmite.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ad597beab3912659",
+      "name": "Mushroom",
+      "transform": {
+        "x": 968,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "e4c0caa6cfba0a7b",
+            "path": "prefabs/scenery-mushroom.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fc038811cb849494",
+      "name": "Cave rock",
+      "transform": {
+        "x": 8,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "069c392a3b595bf9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 24,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c221c8b4db749769",
+      "name": "Cave rock",
+      "transform": {
+        "x": 40,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "afb79ec33b1f7f06",
+      "name": "Cave rock",
+      "transform": {
+        "x": 56,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "835c1dbd48be6006",
+      "name": "Cave rock",
+      "transform": {
+        "x": 72,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "dd73f164068105fc",
+      "name": "Cave rock",
+      "transform": {
+        "x": 88,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b13aa37bd61907e0",
+      "name": "Cave rock",
+      "transform": {
+        "x": 104,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8a8758f91cb71eef",
+      "name": "Cave rock",
+      "transform": {
+        "x": 120,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c3b8f0924dbef222",
+      "name": "Cave rock",
+      "transform": {
+        "x": 136,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c4aa6d1c938a3c75",
+      "name": "Cave rock",
+      "transform": {
+        "x": 152,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0458638391aa2cd5",
+      "name": "Cave rock",
+      "transform": {
+        "x": 168,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6a753ee9f0e45242",
+      "name": "Cave rock",
+      "transform": {
+        "x": 184,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "267f875b1e84dd34",
+      "name": "Cave rock",
+      "transform": {
+        "x": 200,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3e291e84a9d55edc",
+      "name": "Cave rock",
+      "transform": {
+        "x": 216,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d0108e8c59755713",
+      "name": "Cave rock",
+      "transform": {
+        "x": 232,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9ea2f8f6a73b735a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 248,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "19aa7f4be7856973",
+      "name": "Cave rock",
+      "transform": {
+        "x": 264,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b297a039ab7ef282",
+      "name": "Cave rock",
+      "transform": {
+        "x": 280,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cc674117fca9943e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 296,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d076c2e92694f1f3",
+      "name": "Cave rock",
+      "transform": {
+        "x": 312,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "73e8177dac7806a9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 328,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "199e886ec8bf7924",
+      "name": "Cave rock",
+      "transform": {
+        "x": 344,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cf0136cda01b6796",
+      "name": "Cave rock",
+      "transform": {
+        "x": 360,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "81847f344990475e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 376,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9d1ac82465ee760c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 392,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "acc34f8d7fe091c9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 408,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cee9c52c5153e272",
+      "name": "Cave rock",
+      "transform": {
+        "x": 424,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "379a53d746dbb4c4",
+      "name": "Cave rock",
+      "transform": {
+        "x": 440,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5f70d76ad92c7913",
+      "name": "Cave rock",
+      "transform": {
+        "x": 456,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "43e4d41f58c2f42b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 472,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "01b77fab23b0f6b5",
+      "name": "Cave rock",
+      "transform": {
+        "x": 488,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "dca17ef8385dc99c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 504,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6a19cb1b65a824f9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 520,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d69cde6e5a51892c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 536,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4d4f09a863a0369c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 552,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f5f9aba6ae5c08fb",
+      "name": "Cave rock",
+      "transform": {
+        "x": 568,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "abf52cb581b3a96e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 584,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f1801aaa297a30ff",
+      "name": "Cave rock",
+      "transform": {
+        "x": 600,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c6923098d3f4b0dc",
+      "name": "Cave rock",
+      "transform": {
+        "x": 616,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "27d139adcc094f04",
+      "name": "Cave rock",
+      "transform": {
+        "x": 632,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b81d682c38049653",
+      "name": "Cave rock",
+      "transform": {
+        "x": 648,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bcaa4ad0a99f7e08",
+      "name": "Cave rock",
+      "transform": {
+        "x": 664,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c1a77a4090c80c54",
+      "name": "Cave rock",
+      "transform": {
+        "x": 680,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6ef0b5c96bb35b84",
+      "name": "Cave rock",
+      "transform": {
+        "x": 696,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4a26b91e8f1aa6fd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 712,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "22c35714f59fbbbd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 728,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2d76a997ea8da813",
+      "name": "Cave rock",
+      "transform": {
+        "x": 744,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1cf0499fcd2d4920",
+      "name": "Cave rock",
+      "transform": {
+        "x": 760,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "05da8246e953f7e1",
+      "name": "Cave rock",
+      "transform": {
+        "x": 776,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7750872db734f13a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 792,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9b7510452d84aae0",
+      "name": "Cave rock",
+      "transform": {
+        "x": 808,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "aa2d51c789c0c66a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 824,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "17212b4bda2c756b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 840,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6ddcb8959106b5c8",
+      "name": "Cave rock",
+      "transform": {
+        "x": 856,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f48b0cddcd9e073c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 872,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5360c66d63263063",
+      "name": "Cave rock",
+      "transform": {
+        "x": 888,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b398be275d7f6d34",
+      "name": "Cave rock",
+      "transform": {
+        "x": 904,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d676e5ff782af1ba",
+      "name": "Cave rock",
+      "transform": {
+        "x": 920,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "938c3cde59d23ad9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 936,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7be65dd7651a236c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 952,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7950f5575c1dc535",
+      "name": "Cave rock",
+      "transform": {
+        "x": 968,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "797a499f1b990aec",
+      "name": "Cave rock",
+      "transform": {
+        "x": 984,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "93be2177047316c4",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1000,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a71ac2700428a0bd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1016,
+        "y": 296,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4735a0716005e122",
+      "name": "Cave floor",
+      "transform": {
+        "x": 456,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d4c803fc86b3dc16",
+      "name": "Cave floor",
+      "transform": {
+        "x": 472,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "18af7b3b6fe2a441",
+      "name": "Cave floor",
+      "transform": {
+        "x": 488,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3e60836adae97520",
+      "name": "Cave floor",
+      "transform": {
+        "x": 504,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ba0dc2e6ce1f332d",
+      "name": "Cave floor",
+      "transform": {
+        "x": 520,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c26b60f98e87aa83",
+      "name": "Cave floor",
+      "transform": {
+        "x": 872,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "affc3fee9530d2cf",
+      "name": "Cave floor",
+      "transform": {
+        "x": 888,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "505e99bfbce22a5c",
+      "name": "Cave floor",
+      "transform": {
+        "x": 904,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d8f91967b30adfdc",
+      "name": "Cave floor",
+      "transform": {
+        "x": 392,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "dfccec9fbc6151cb",
+      "name": "Cave floor",
+      "transform": {
+        "x": 408,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "20344b813351b4ec",
+      "name": "Cave floor",
+      "transform": {
+        "x": 424,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a7c1a7af5a5461b6",
+      "name": "Cave floor",
+      "transform": {
+        "x": 808,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c53908025537da38",
+      "name": "Cave floor",
+      "transform": {
+        "x": 824,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7b5cfe45ea976b82",
+      "name": "Cave floor",
+      "transform": {
+        "x": 840,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8e46a5c8fabe9ea6",
+      "name": "Brick",
+      "transform": {
+        "x": 184,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "65060d51449f8313",
+      "name": "? Block",
+      "transform": {
+        "x": 200,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "604395a6bdf83c14",
+            "path": "prefabs/quest-block.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1fe80486267babbc",
+      "name": "Brick",
+      "transform": {
+        "x": 216,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ae79963508cf0186",
+      "name": "Brick",
+      "transform": {
+        "x": 584,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a1dd59f93b7dddbc",
+      "name": "Brick",
+      "transform": {
+        "x": 600,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0ce58894d9f5e5a2",
+      "name": "Brick",
+      "transform": {
+        "x": 616,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "595c1e8fd2ae7ba1",
+      "name": "Brick",
+      "transform": {
+        "x": 648,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "dc39f6168bd05ece",
+      "name": "? Block",
+      "transform": {
+        "x": 664,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "604395a6bdf83c14",
+            "path": "prefabs/quest-block.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "990d9762564e110e",
+      "name": "Brick",
+      "transform": {
+        "x": 680,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a06119d93818cb40",
+      "name": "Cave floor",
+      "transform": {
+        "x": 104,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "254ad69b3c96481f",
+      "name": "Cave floor",
+      "transform": {
+        "x": 120,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a76e3ad1ce1615bc",
+      "name": "Cave floor",
+      "transform": {
+        "x": 136,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "78420e1b9a5631fc",
+      "name": "Cave floor",
+      "transform": {
+        "x": 328,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4caca6ebd6ff1f97",
+      "name": "Cave floor",
+      "transform": {
+        "x": 344,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "503d00357b66e69d",
+      "name": "Cave floor",
+      "transform": {
+        "x": 360,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6960f383b9aaf9f2",
+      "name": "Cave floor",
+      "transform": {
+        "x": 712,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "593f4d075bc90973",
+      "name": "Cave floor",
+      "transform": {
+        "x": 728,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b00a662499735eb8",
+      "name": "Cave floor",
+      "transform": {
+        "x": 744,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0a27a19734112e93",
+      "name": "Cave floor",
+      "transform": {
+        "x": 760,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "63b30fb62450ca42",
+      "name": "Cave floor",
+      "transform": {
+        "x": 888,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "08883cafa81f35d2",
+      "name": "Cave floor",
+      "transform": {
+        "x": 904,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "34abc05ea8a6ce00",
+      "name": "Cave floor",
+      "transform": {
+        "x": 920,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0d35b7f52472f967",
+      "name": "Cave floor",
+      "transform": {
+        "x": 936,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "27237045defd62fa",
+      "name": "Cave floor",
+      "transform": {
+        "x": 8,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c0a7eec200997715",
+      "name": "Cave floor",
+      "transform": {
+        "x": 24,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "39ac5ae681ff1c22",
+      "name": "Cave floor",
+      "transform": {
+        "x": 40,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d862e1b1a17d5acf",
+      "name": "Cave floor",
+      "transform": {
+        "x": 56,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "07b342eafbc7f950",
+      "name": "Cave floor",
+      "transform": {
+        "x": 72,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8ed070f79dabb4c0",
+      "name": "Cave floor",
+      "transform": {
+        "x": 88,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "91352c867720fe0e",
+      "name": "Cave floor",
+      "transform": {
+        "x": 104,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "253522ad5eea50d8",
+      "name": "Cave floor",
+      "transform": {
+        "x": 120,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2fff5cfd31b1592e",
+      "name": "Cave floor",
+      "transform": {
+        "x": 136,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "37b90734d3098fcf",
+      "name": "Cave floor",
+      "transform": {
+        "x": 152,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b59e9492670a17ff",
+      "name": "Cave floor",
+      "transform": {
+        "x": 168,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3c93a0cd68803176",
+      "name": "Cave floor",
+      "transform": {
+        "x": 184,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0836a5d280e1bc8a",
+      "name": "Cave floor",
+      "transform": {
+        "x": 200,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "059d0b6d0deec13b",
+      "name": "Cave floor",
+      "transform": {
+        "x": 216,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ac69e574399f1828",
+      "name": "Cave floor",
+      "transform": {
+        "x": 232,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c416090a1a085c78",
+      "name": "Cave floor",
+      "transform": {
+        "x": 296,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fffa1fec64ce9899",
+      "name": "Cave floor",
+      "transform": {
+        "x": 312,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "314a57e9cc045fcf",
+      "name": "Cave floor",
+      "transform": {
+        "x": 328,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6f51770dbf8fe778",
+      "name": "Cave floor",
+      "transform": {
+        "x": 344,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a5cf65fd3d14d833",
+      "name": "Cave floor",
+      "transform": {
+        "x": 360,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "79121bc64b8ac58f",
+      "name": "Cave floor",
+      "transform": {
+        "x": 376,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f3a9cde3e792479e",
+      "name": "Cave floor",
+      "transform": {
+        "x": 392,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c01ecc296e1a02f2",
+      "name": "Cave floor",
+      "transform": {
+        "x": 408,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "501a6b9b85abc673",
+      "name": "Cave floor",
+      "transform": {
+        "x": 424,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "063417222a8de045",
+      "name": "Cave floor",
+      "transform": {
+        "x": 488,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2db0b4ca357741c3",
+      "name": "Cave floor",
+      "transform": {
+        "x": 504,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fea09c4428a88d34",
+      "name": "Cave floor",
+      "transform": {
+        "x": 520,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c9062ef34e7b4a5f",
+      "name": "Cave floor",
+      "transform": {
+        "x": 536,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bb805aff2b160905",
+      "name": "Cave floor",
+      "transform": {
+        "x": 552,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1d190698f3540bca",
+      "name": "Cave floor",
+      "transform": {
+        "x": 568,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d52e3e8a49454ce4",
+      "name": "Cave floor",
+      "transform": {
+        "x": 584,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5ba8cdcb8f3b84dd",
+      "name": "Cave floor",
+      "transform": {
+        "x": 600,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b2ddd86295516adb",
+      "name": "Cave floor",
+      "transform": {
+        "x": 616,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a770e1e27439c053",
+      "name": "Cave floor",
+      "transform": {
+        "x": 632,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1bd7d3e01f313021",
+      "name": "Cave floor",
+      "transform": {
+        "x": 648,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f98fd442a7fbcdb0",
+      "name": "Cave floor",
+      "transform": {
+        "x": 664,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c3b5047af35babf5",
+      "name": "Cave floor",
+      "transform": {
+        "x": 680,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "dade3a55dbffdf62",
+      "name": "Cave floor",
+      "transform": {
+        "x": 696,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "94cb4e8e34327c5c",
+      "name": "Cave floor",
+      "transform": {
+        "x": 712,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7cb5e3d0dea08216",
+      "name": "Cave floor",
+      "transform": {
+        "x": 728,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8133a7f550ecc0d3",
+      "name": "Cave floor",
+      "transform": {
+        "x": 744,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4253fe84d04ac9ac",
+      "name": "Cave floor",
+      "transform": {
+        "x": 760,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "73e7a0ba54667bb9",
+      "name": "Cave floor",
+      "transform": {
+        "x": 824,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a2ca84bacd290e94",
+      "name": "Cave floor",
+      "transform": {
+        "x": 840,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c8c2e3346ef1acb6",
+      "name": "Cave floor",
+      "transform": {
+        "x": 856,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "67cf3595b18bb397",
+      "name": "Cave floor",
+      "transform": {
+        "x": 872,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6d38e0ef071f2bf7",
+      "name": "Cave floor",
+      "transform": {
+        "x": 888,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ca6f8c13bf46c456",
+      "name": "Cave floor",
+      "transform": {
+        "x": 904,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9b450e270d151384",
+      "name": "Cave floor",
+      "transform": {
+        "x": 920,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f6edcb992980e7b3",
+      "name": "Cave floor",
+      "transform": {
+        "x": 936,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4b28c7fca0377212",
+      "name": "Cave floor",
+      "transform": {
+        "x": 952,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "75e9245e55c45c92",
+      "name": "Cave floor",
+      "transform": {
+        "x": 968,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5afef87ff1ea8766",
+      "name": "Cave floor",
+      "transform": {
+        "x": 984,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "32566a1b7409e39a",
+      "name": "Cave floor",
+      "transform": {
+        "x": 1000,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "58734fbb2bae1aea",
+      "name": "Cave floor",
+      "transform": {
+        "x": 1016,
+        "y": 40,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "8f1e614a6674c291",
+            "path": "prefabs/cave-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0fffd503a4b9e9c5",
+      "name": "Cave rock",
+      "transform": {
+        "x": 8,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "82cc6f97a2f76f8b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 24,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4235301685b60854",
+      "name": "Cave rock",
+      "transform": {
+        "x": 40,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a5100d6e8f414e3d",
+      "name": "Cave rock",
+      "transform": {
+        "x": 56,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1decbd8a2d37f31d",
+      "name": "Cave rock",
+      "transform": {
+        "x": 72,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fb95e09a34b5cc2d",
+      "name": "Cave rock",
+      "transform": {
+        "x": 88,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b40876f33b96fba0",
+      "name": "Cave rock",
+      "transform": {
+        "x": 104,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f2da8ad9e9f40a4a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 120,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bb43a71be6113e58",
+      "name": "Cave rock",
+      "transform": {
+        "x": 136,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "03e12a04cf6c03cd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 152,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ab916ae701654532",
+      "name": "Cave rock",
+      "transform": {
+        "x": 168,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "544cf2e892895196",
+      "name": "Cave rock",
+      "transform": {
+        "x": 184,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c9de65c1d2c2ab63",
+      "name": "Cave rock",
+      "transform": {
+        "x": 200,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ed16c4c6601fa417",
+      "name": "Cave rock",
+      "transform": {
+        "x": 216,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "17e7719f046a27d5",
+      "name": "Cave rock",
+      "transform": {
+        "x": 232,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6e8fc6d68cc3430c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 296,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f825ed0571d816f7",
+      "name": "Cave rock",
+      "transform": {
+        "x": 312,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9993e0dd4d708727",
+      "name": "Cave rock",
+      "transform": {
+        "x": 328,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "54ce2152fa74a2cf",
+      "name": "Cave rock",
+      "transform": {
+        "x": 344,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "44b64c6fdf1f5c53",
+      "name": "Cave rock",
+      "transform": {
+        "x": 360,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "87a86d222359fd2c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 376,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8003820ab2b0fca5",
+      "name": "Cave rock",
+      "transform": {
+        "x": 392,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e51916ba2681acb4",
+      "name": "Cave rock",
+      "transform": {
+        "x": 408,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2086481edf313da4",
+      "name": "Cave rock",
+      "transform": {
+        "x": 424,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "60519411d87fa4de",
+      "name": "Cave rock",
+      "transform": {
+        "x": 488,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e7980d1a37f8a059",
+      "name": "Cave rock",
+      "transform": {
+        "x": 504,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7c4cbc977b361424",
+      "name": "Cave rock",
+      "transform": {
+        "x": 520,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e331459a9f890537",
+      "name": "Cave rock",
+      "transform": {
+        "x": 536,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a7ea9ae23505a1ce",
+      "name": "Cave rock",
+      "transform": {
+        "x": 552,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0db5a09e3175e7e7",
+      "name": "Cave rock",
+      "transform": {
+        "x": 568,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f91b4f362fff2365",
+      "name": "Cave rock",
+      "transform": {
+        "x": 584,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2332c4292f14665e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 600,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "be544810e81eda4d",
+      "name": "Cave rock",
+      "transform": {
+        "x": 616,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8f24bbd19f14248c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 632,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bff4d0fd0be5a039",
+      "name": "Cave rock",
+      "transform": {
+        "x": 648,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e5894334433b98d9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 664,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "11b3f7dcac7ad917",
+      "name": "Cave rock",
+      "transform": {
+        "x": 680,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a15ac42c2d3bb59b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 696,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cc991eab45ed0831",
+      "name": "Cave rock",
+      "transform": {
+        "x": 712,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f97646ea821e8652",
+      "name": "Cave rock",
+      "transform": {
+        "x": 728,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ccdbbef0f77cd0bd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 744,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "57a5fee3db531917",
+      "name": "Cave rock",
+      "transform": {
+        "x": 760,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a691c1a3cf0f148b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 824,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c0c0fe31577f98bd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 840,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3ce119229fd5dae8",
+      "name": "Cave rock",
+      "transform": {
+        "x": 856,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "016cd53d553eecf1",
+      "name": "Cave rock",
+      "transform": {
+        "x": 872,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "3f76d62b4d3678ef",
+      "name": "Cave rock",
+      "transform": {
+        "x": 888,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "969893b37d7ec99e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 904,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7b3a81afa7529a91",
+      "name": "Cave rock",
+      "transform": {
+        "x": 920,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cab670b94d757400",
+      "name": "Cave rock",
+      "transform": {
+        "x": 936,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "6bd33edf341b23a6",
+      "name": "Cave rock",
+      "transform": {
+        "x": 952,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e6d86befae4c886a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 968,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8bebfcf32556bb9b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 984,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bfe4048b9ba3292a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1000,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4c161ad4a7d8c03c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1016,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5041cb33adf0349b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 8,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a01b457a81b077cf",
+      "name": "Cave rock",
+      "transform": {
+        "x": 24,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f34ead6148fb5308",
+      "name": "Cave rock",
+      "transform": {
+        "x": 40,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9153ab7ba4fe91d4",
+      "name": "Cave rock",
+      "transform": {
+        "x": 56,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e9833f07584ca732",
+      "name": "Cave rock",
+      "transform": {
+        "x": 72,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9e5a67cd76f93f33",
+      "name": "Cave rock",
+      "transform": {
+        "x": 88,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b20554b8e782e8b1",
+      "name": "Cave rock",
+      "transform": {
+        "x": 104,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5fe4b2c5670da221",
+      "name": "Cave rock",
+      "transform": {
+        "x": 120,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9a2e5fc0a824089c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 136,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "cb8c79c8303840c9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 152,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f6b9be97076ed3fc",
+      "name": "Cave rock",
+      "transform": {
+        "x": 168,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2e013a0c172f2385",
+      "name": "Cave rock",
+      "transform": {
+        "x": 184,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "62cfd3b06ccfda76",
+      "name": "Cave rock",
+      "transform": {
+        "x": 200,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e0590df7a1ca9f39",
+      "name": "Cave rock",
+      "transform": {
+        "x": 216,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0ca87371f2fb0980",
+      "name": "Cave rock",
+      "transform": {
+        "x": 232,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2018e1139829172a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 296,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f066b4ddb8c0acb9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 312,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a707ff349278aab1",
+      "name": "Cave rock",
+      "transform": {
+        "x": 328,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "faeda5b16e21f118",
+      "name": "Cave rock",
+      "transform": {
+        "x": 344,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "d5d3cc81c3236a4e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 360,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "03bf589e392a5adc",
+      "name": "Cave rock",
+      "transform": {
+        "x": 376,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "454f779953193bc9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 392,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a751c1a49230df38",
+      "name": "Cave rock",
+      "transform": {
+        "x": 408,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e9f4e39726308e4a",
+      "name": "Cave rock",
+      "transform": {
+        "x": 424,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7dd9da6228168748",
+      "name": "Cave rock",
+      "transform": {
+        "x": 488,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fad7f10a64e8f345",
+      "name": "Cave rock",
+      "transform": {
+        "x": 504,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c4b07a5e7fa839dd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 520,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ef6ac8aefca7b849",
+      "name": "Cave rock",
+      "transform": {
+        "x": 536,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8c2762d10fcbc4fe",
+      "name": "Cave rock",
+      "transform": {
+        "x": 552,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0cc347b4a290bfc9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 568,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9ef81785409a0880",
+      "name": "Cave rock",
+      "transform": {
+        "x": 584,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "acb532e3143d466b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 600,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5fce164f871a12ed",
+      "name": "Cave rock",
+      "transform": {
+        "x": 616,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5e6276cedb8a089b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 632,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e23903a02289209e",
+      "name": "Cave rock",
+      "transform": {
+        "x": 648,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ce06d060f571613b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 664,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "53e0af099d90a283",
+      "name": "Cave rock",
+      "transform": {
+        "x": 680,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "691b55be4ea3df46",
+      "name": "Cave rock",
+      "transform": {
+        "x": 696,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1049c2d076552da6",
+      "name": "Cave rock",
+      "transform": {
+        "x": 712,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "989aa868c7f4e2f8",
+      "name": "Cave rock",
+      "transform": {
+        "x": 728,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ca3b013706c3525b",
+      "name": "Cave rock",
+      "transform": {
+        "x": 744,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "babef82a66bec066",
+      "name": "Cave rock",
+      "transform": {
+        "x": 760,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5313efc874dcf3d3",
+      "name": "Cave rock",
+      "transform": {
+        "x": 824,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e5b876751de7ee56",
+      "name": "Cave rock",
+      "transform": {
+        "x": 840,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "df7875e74a60bfee",
+      "name": "Cave rock",
+      "transform": {
+        "x": 856,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "64eec4d39731af33",
+      "name": "Cave rock",
+      "transform": {
+        "x": 872,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9ab432f5d04287f7",
+      "name": "Cave rock",
+      "transform": {
+        "x": 888,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ba711aff57ae23f3",
+      "name": "Cave rock",
+      "transform": {
+        "x": 904,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "345b135f38e71ebf",
+      "name": "Cave rock",
+      "transform": {
+        "x": 920,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c1256d8394f979fd",
+      "name": "Cave rock",
+      "transform": {
+        "x": 936,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b7fe85f72d94bf01",
+      "name": "Cave rock",
+      "transform": {
+        "x": 952,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "00ff9eb88ee00501",
+      "name": "Cave rock",
+      "transform": {
+        "x": 968,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "013c1078210990b9",
+      "name": "Cave rock",
+      "transform": {
+        "x": 984,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7d1e375772e78d9c",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1000,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "9b2e2b5db0dafa88",
+      "name": "Cave rock",
+      "transform": {
+        "x": 1016,
+        "y": 8,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "99dbd5937cc96f95",
+            "path": "prefabs/cave-fill.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b6786198359e2d9d",
+      "name": "Coin",
+      "transform": {
+        "x": 888,
+        "y": 248,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "46345a47d947fe8d",
+      "name": "Coin",
+      "transform": {
+        "x": 488,
+        "y": 232,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c84737af9c3b2206",
+      "name": "Coin",
+      "transform": {
+        "x": 456,
+        "y": 216,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "fcd7eded7eba21f5",
+      "name": "Coin",
+      "transform": {
+        "x": 520,
+        "y": 216,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "09a67eb9df91fa6c",
+      "name": "Coin",
+      "transform": {
+        "x": 872,
+        "y": 216,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "5ec8b93baa4df25f",
+      "name": "Coin",
+      "transform": {
+        "x": 904,
+        "y": 216,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2bc4184831a83ede",
+      "name": "Coin",
+      "transform": {
+        "x": 408,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "18a8a2e0aea4d374",
+      "name": "Coin",
+      "transform": {
+        "x": 824,
+        "y": 184,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2434bcb312a15c21",
+      "name": "Coin",
+      "transform": {
+        "x": 392,
+        "y": 168,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "aaa500ded20146e8",
+      "name": "Coin",
+      "transform": {
+        "x": 424,
+        "y": 168,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "70976fb43c411424",
+      "name": "Coin",
+      "transform": {
+        "x": 808,
+        "y": 168,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "183b9946ea2faccc",
+      "name": "Coin",
+      "transform": {
+        "x": 840,
+        "y": 168,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "464e21473ba8e82e",
+      "name": "Coin",
+      "transform": {
+        "x": 120,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "99e8f4800f50f22a",
+      "name": "Coin",
+      "transform": {
+        "x": 600,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "71f4acb07897ab20",
+      "name": "Coin",
+      "transform": {
+        "x": 104,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f3e0bb07340b6b99",
+      "name": "Coin",
+      "transform": {
+        "x": 136,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "88394526ba1eb59a",
+      "name": "Coin",
+      "transform": {
+        "x": 344,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "213ab227af5f7d51",
+      "name": "Coin",
+      "transform": {
+        "x": 728,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e0dbbbd154d59de1",
+      "name": "Coin",
+      "transform": {
+        "x": 744,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c9e31c06ac00239e",
+      "name": "Spike",
+      "transform": {
+        "x": 536,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "275e4bd6c9759e3d",
+            "path": "prefabs/spike.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "8e253a80ae0d782c",
+      "name": "Spike",
+      "transform": {
+        "x": 552,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "275e4bd6c9759e3d",
+            "path": "prefabs/spike.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "704a9a26bf5afe3e",
+      "name": "Spike",
+      "transform": {
+        "x": 904,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "275e4bd6c9759e3d",
+            "path": "prefabs/spike.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a0a4747192eb9b1d",
+      "name": "Spike",
+      "transform": {
+        "x": 920,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "275e4bd6c9759e3d",
+            "path": "prefabs/spike.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "ba639ae534984b58",
+      "name": "Spike",
+      "transform": {
+        "x": 936,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "275e4bd6c9759e3d",
+            "path": "prefabs/spike.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "931140a0646c007f",
+      "name": "Flag",
+      "transform": {
+        "x": 984,
+        "y": 152,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "9128df95293e0404",
+            "path": "prefabs/flag-top.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "b083a0f648773268",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 136,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f37f4b745b8a9368",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 120,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "931a64a9a6ce5e28",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 104,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "55f6ca426d167389",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f7490b4d989623c5",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 72,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "4209f42c30cfb4e2",
+      "name": "Flag pole",
+      "transform": {
+        "x": 984,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "4f6df06bc547b443",
+            "path": "prefabs/flag-pole.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bbc1c7b0847dfca1",
+      "name": "Spawn",
+      "transform": {
+        "x": 24,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "3fb9c8703d56295a",
+            "path": "prefabs/spawn.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a97bccb0f7380234",
+      "name": "Walker",
+      "transform": {
+        "x": 184,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "33edc578b1b6e10c",
+            "path": "prefabs/walker.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "79d5ceea58f2e113",
+      "name": "Turtle (slow)",
+      "transform": {
+        "x": 376,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "32a4758e90387ce7",
+            "path": "prefabs/turtle-slow.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "05389214f3c99a45",
+      "name": "Walker",
+      "transform": {
+        "x": 600,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "33edc578b1b6e10c",
+            "path": "prefabs/walker.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "986ae53f03fdc3af",
+      "name": "Walker (fast)",
+      "transform": {
+        "x": 712,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "854450ce0607cd51",
+            "path": "prefabs/walker-fast.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "25913c6254e7eb8c",
+      "name": "Turtle",
+      "transform": {
+        "x": 856,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "e997648806bb23d9",
+            "path": "prefabs/turtle.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "a6f020eb4525803e",
+      "name": "Coin counter",
+      "transform": {
+        "x": -19,
+        "y": -10,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "de02d5e782d35279",
+            "path": "prefabs/hud-coins.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e8cb74b82fd80800",
+      "name": "Controls hint",
+      "transform": {
+        "x": 46,
+        "y": 24,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "a58b1bd109aa2151",
+            "path": "prefabs/hud-hint.json"
+          }
+        }
+      }
+    }
+  ],
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

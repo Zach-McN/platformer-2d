@@ -1,6 +1,6 @@
 import { heldIn, openDoor, pressedIn, sceneIn, type Entity, type System } from 'kernel-2d/runtime'
 
-import { wear, type TextureRef } from '../components/roles'
+import { nextOf, wear, type NextLevel, type TextureRef } from '../components/roles'
 import { ninjaOf, playerIn } from './ninja'
 import { HINT_FRAMES, OUCH_BANNER_FRAMES } from './tuning'
 
@@ -20,6 +20,15 @@ import { HINT_FRAMES, OUCH_BANNER_FRAMES } from './tuning'
  * state", and the copy the runner made is exactly that; asking the host to
  * open this scene again throws the copy away and starts fresh. No reset code,
  * nothing to forget to reset — the same reason Stop is free.
+ *
+ * **The next level is a door to another scene, asked for on the win screen.**
+ * A level that has somewhere to go says so with a placed *next-level marker*
+ * (`prefabs/next-level.json`, `game-content` T9): content, like the spawn
+ * marker, carrying the scene path and the prompt card. The marker is hidden
+ * the moment play starts — its sprite goes, the way the death blink hides the
+ * ninja — and once the ninja has won, the card is pinned under the LEVEL
+ * CLEAR! banner and Y (or Enter) opens the named scene while N opens this one
+ * again, which is R by another key. A level with no marker never asks.
  */
 
 interface HudArt {
@@ -77,6 +86,24 @@ const COUNTER_DIGIT_Y = -11
  */
 const TOTAL_FIRST_DIGIT_X = 1
 const TOTAL_DIGIT_Y = -1
+/**
+ * The next-level card (112x24) hangs 4 under the win banner's bottom edge
+ * (-20), so its centre is 12 further down: -36.
+ */
+const PROMPT_Y = -36
+
+/** The keys that answer the card: Y or Enter for the next level, N to play this one again. */
+const NEXT_CODES = ['KeyY', 'Enter', 'NumpadEnter']
+const AGAIN_CODES = ['KeyN']
+
+/** The next-level marker of this level, or null when the level has nowhere to go. */
+export function nextIn(entities: readonly Entity[]): NextLevel | null {
+  for (const one of entities) {
+    const next = nextOf(one)
+    if (next !== null) return next
+  }
+  return null
+}
 
 interface HudState {
   hintFrames: number
@@ -121,12 +148,29 @@ export const hudSystem: System = {
 
     const marker = playerIn(entities)
     const ninja = marker === null ? null : ninjaOf(marker)
+    const next = nextIn(entities)
+
+    // The next-level marker is editor furniture: it stops being drawn the
+    // moment play starts, the way the spawn marker becomes the ninja.
+    for (const one of entities) {
+      if (nextOf(one) !== null && one.components['sprite'] !== undefined) delete one.components['sprite']
+    }
 
     // R restarts: a door back to this very scene, which the host answers by
     // reloading it — every block, coin and enemy back as authored.
-    if (pressedIn(entities).includes('KeyR')) {
+    const pressed = pressedIn(entities)
+    if (pressed.includes('KeyR')) {
       const here = sceneIn(entities)
       if (here !== null) openDoor(entities, here)
+    }
+
+    // The win screen's question, answered by key: Y goes on, N plays again.
+    if (ninja?.won === true && next !== null) {
+      if (NEXT_CODES.some((code) => pressed.includes(code))) openDoor(entities, next.scene)
+      else if (AGAIN_CODES.some((code) => pressed.includes(code))) {
+        const here = sceneIn(entities)
+        if (here !== null) openDoor(entities, here)
+      }
     }
 
     // The hint fades on the first input or after nine seconds, whichever first.
@@ -180,6 +224,10 @@ export const hudSystem: System = {
         entities.push(
           pinned(`total${i}`, 'Total', { x: 0.5, y: 0.5 }, TOTAL_FIRST_DIGIT_X + i * DIGIT_ADVANCE, TOTAL_DIGIT_Y, look),
         )
+      }
+      // And the question, when this level has somewhere to go.
+      if (next !== null && next.prompt !== null) {
+        entities.push(pinned('prompt', 'Next level?', { x: 0.5, y: 0.5 }, 0, PROMPT_Y, next.prompt))
       }
     }
   },

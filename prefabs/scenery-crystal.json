@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "7c85e1b5b0499d4c",
+  "name": "Crystal",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "64c46241f773438d",
+        "path": "assets/textures/scenery/crystal.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

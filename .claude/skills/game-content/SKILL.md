@@ -32,6 +32,7 @@ px-per-frame × 60.
 | `grid: { tileSize: 16 }` | everything placeable | snap unit for placement |
 | `screen: { anchor }` + `hud: { digits, banners }` | the coin counter (`prefabs/hud-coins.json`) | pinned top-right (kernel `screen`, `editor-kernel` D32); carries the ten digit textures and both banner textures the hud spawns |
 | `screen: { anchor }` + `hint: {}` | the controls hint (`prefabs/hud-hint.json`) | pinned bottom-left; the hud removes it on the first input |
+| `next: { scene, prompt: { texture } }` | the next-level marker (`prefabs/next-level.json`, 2026-09-01) | the level Y opens from the win screen, and the "NEXT LEVEL? Y YES N NO" card; hidden in play (T9) |
 
 ### T2: Per-placement speed is a prefab variant, not an override
 
@@ -104,6 +105,45 @@ speed lost its `squashed` art and the first turtle its `shell`: the stomp still 
 the state machine and nothing changed on screen. A placement given its own speed **before
 that fix** is still missing those keys in the level file: press Remove on it (it goes back to
 inheriting) and Add again (it now copies), then retype the speed.
+
+### T9: Level 2 is the same vocabulary under a cave palette, and "where next" is a placed marker
+
+`scenes/level-02.json` (2026-09-01) was generated from a 64×19 placement script the same
+way level 1 was from `LEVEL_DATA` — every entity a prefab reference on the 16-grid, in T5's
+draw order: backdrop first, far scenery, near scenery, tiles, coins, spikes, flag, spawn,
+enemies, counter and hint last. Nothing in `src/` knows there is a second level; the cave is
+ten new prefabs and eleven PNGs in the existing style, and every gameplay noun is level 1's
+prefab reused.
+
+- **Cave floor / cave rock** (`prefabs/cave-top.json`, `cave-fill.json`) are `solid` twins of
+  ground top/fill in a slate palette, and the level has a solid **ceiling row** of cave rock
+  at row 18 — the first level with a roof, which the tile system needed nothing for: a
+  ceiling is a solid the head bumps, and the bump thuds like any block (`ninja.ts`).
+- **Cave dark** (`scenery/cave-bg.png`, 16×304) is the sky's shape exactly (TG1): sized to the
+  level's height, scaled 64 wide, first in the list. The fit and the framing read the drawn
+  extent, so a backdrop must stay level-sized.
+- **Scenery fades are baked** as T3 says: stalactite at 0.8 like the tree, cave pillar and
+  boulder at 0.45 like the hill; stalagmite, crystal and mushroom at 1 like the bush. The
+  stalactite is 16×32 and placed with its centre 16 below the ceiling's underside (y 272),
+  so it hangs from the rock rather than floating in it.
+- **The next-level marker** (`prefabs/next-level.json`, `components/next.json`) is the spawn
+  marker's pattern for the *end* of a level: editor furniture carrying run-time data. It
+  wears a signpost in the editor, carries `next: { scene, prompt: { texture } }`, and the hud
+  hides it the moment play starts (`game-code` C11). The scene is a **`scene` field**, keyed
+  `scene` because `text-formats` T20 walks for that key — so an export ships level 2
+  because level 1 points at it, with no export change. The prompt card rides the marker
+  (T4) so it is loaded with the level. `addable` is false for T8's reason: the component
+  carries a nested texture the panel cannot author, so a placement gets it whole from the
+  prefab or not at all.
+- **Level 1 gained one entity** — a Next level marker on the ground past the flag, at
+  (61, 3) — and nothing else; its layout and Zach's own placements are untouched.
+- **The prompt card** (`ui/prompt-next.png`, 112×24) is drawn in the banner's own 3×5 font,
+  read back out of `banner-clear.png` pixel by pixel rather than from a font file that no
+  longer exists (T6's generator was a throwaway). The two glyphs the banners never used — X
+  and ? — were drawn to match. **The card is the banner's width so it reads as one screen.**
+
+Level 2 is content, not contract: `docs/REMAKE-PARITY.md` scopes itself to level 1, and
+the cave's layout is the spec's (*Level 2 — the cave*) and Zach's to change in the editor.
 
 ### T5: Draw order is scene list order, in the reference's passes
 

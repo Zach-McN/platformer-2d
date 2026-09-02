@@ -1,0 +1,28 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "6955d6b0db2324af",
+  "name": "Next level",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "8dd53db2cfbe417f",
+        "path": "assets/textures/markers/next-level.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "next": {
+      "scene": "scenes/level-02.json",
+      "prompt": {
+        "texture": {
+          "id": "b4a09df7812b23d4",
+          "path": "assets/textures/ui/prompt-next.png"
+        }
+      }
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

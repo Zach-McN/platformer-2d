@@ -2,7 +2,7 @@ import { doorIn } from 'kernel-2d/runtime'
 import { describe, expect, it } from 'vitest'
 
 import { ninjaOf, playerIn } from '../src/systems/ninja'
-import { FIXTURE_SCENE, coin, counter, flag, floor, hint, playing, spawn, spike, type Playing } from './level'
+import { FIXTURE_SCENE, coin, counter, flag, floor, hint, nextLevel, playing, spawn, spike, type Playing } from './level'
 
 /**
  * The screen: the live count, the banners, the hint's fade, and R. Everything
@@ -97,5 +97,70 @@ describe('R', () => {
     expect(doorIn(level.entities)).toBeNull()
     level.step(1, [], ['KeyR'])
     expect(doorIn(level.entities)).toBe(FIXTURE_SCENE)
+  })
+})
+
+describe('the next-level prompt', () => {
+  const NEXT = 'scenes/level-02.json'
+  const promptShown = (level: Playing): boolean => level.entities.some((one) => one.id === 'hud#prompt')
+  const win = (level: Playing): void => {
+    level.step(2)
+    const state = ninjaOf(playerIn(level.entities)!)!
+    for (let at = 0; at < 300 && !state.won; at += 1) level.step(1, RIGHT)
+    expect(state.won).toBe(true)
+  }
+
+  it('hides the marker the moment play starts', () => {
+    const level = playing([...floor(0, 9), flag(6, 1), nextLevel(8, 1), counter(), spawn(2, 1)])
+    level.step(1)
+    const marker = level.entities.find((one) => one.name === 'Next level')
+    expect(marker).toBeDefined()
+    expect(marker?.components['sprite']).toBeUndefined()
+  })
+
+  it('asks under the win banner, and not before', () => {
+    const level = playing([...floor(0, 9), flag(6, 1), nextLevel(8, 1), counter(), spawn(2, 1)])
+    level.step(2)
+    expect(promptShown(level)).toBe(false)
+    win(level)
+    expect(bannerShown(level)).toBe('ui/banner-clear.png')
+    const prompt = level.entities.find((one) => one.id === 'hud#prompt')
+    expect(prompt?.components['screen']).toEqual({ anchor: { x: 0.5, y: 0.5 } })
+    expect(prompt?.transform.y).toBeLessThan(-20)
+    expect((prompt?.components['sprite'] as { texture: { path: string } }).texture.path).toBe('ui/prompt-next.png')
+  })
+
+  it('never asks in a level with no marker', () => {
+    const level = playing([...floor(0, 9), flag(6, 1), counter(), spawn(2, 1)])
+    win(level)
+    expect(promptShown(level)).toBe(false)
+    level.step(1, [], ['KeyY'])
+    expect(doorIn(level.entities)).toBeNull()
+  })
+
+  it('opens the named level on Y, and on Enter', () => {
+    for (const code of ['KeyY', 'Enter']) {
+      const level = playing([...floor(0, 9), flag(6, 1), nextLevel(8, 1, NEXT), counter(), spawn(2, 1)])
+      win(level)
+      expect(doorIn(level.entities)).toBeNull()
+      level.step(1, [], [code])
+      expect(doorIn(level.entities)).toBe(NEXT)
+    }
+  })
+
+  it('plays this level again on N', () => {
+    const level = playing([...floor(0, 9), flag(6, 1), nextLevel(8, 1, NEXT), counter(), spawn(2, 1)])
+    win(level)
+    level.step(1, [], ['KeyN'])
+    expect(doorIn(level.entities)).toBe(FIXTURE_SCENE)
+  })
+
+  it('ignores Y and N while the ninja is still playing', () => {
+    const level = playing([...floor(0, 9), flag(6, 1), nextLevel(8, 1, NEXT), counter(), spawn(2, 1)])
+    level.step(2)
+    level.step(1, [], ['KeyY'])
+    expect(doorIn(level.entities)).toBeNull()
+    level.step(1, [], ['KeyN'])
+    expect(doorIn(level.entities)).toBeNull()
   })
 })

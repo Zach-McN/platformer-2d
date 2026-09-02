@@ -129,6 +129,27 @@ The digit and banner *offsets* in `hud.ts` are derived from the generated art's 
 layout (card 30×12, banner 112×40, "COINS:" ending 53 in) and say so in comments;
 regenerating that art with different dimensions means re-deriving those constants.
 
+### C11: The win screen's question is the hud reading a placed marker, and both answers are doors
+
+`hud.ts` (2026-09-01) finds the level's next-level marker (`nextIn`, by the `next`
+component — never by name), deletes its sprite on every step so it is never drawn in play
+(C7's "nothing to draw is hidden"), and once `ninja.won` pins the marker's prompt card
+under the LEVEL CLEAR! banner as `hud#prompt` — redrawn every step like every other hud
+entity. Y or Enter is `openDoor(next.scene)`; N is `openDoor(sceneIn(...))`, which is R by
+another key (C8). Both are read from `pressedIn` **only while won**, so a Y mid-run does
+nothing. A level with no marker never asks and never listens.
+
+Two things worth keeping:
+
+- **No new state, no new fact.** Which level is next is content on the marker; whether
+  the ninja has won is the ninja's own state; the door is the kernel's. Coins do not carry
+  across — the run state dies with the run, as C3 says it should, and level 2 starts at 0.
+  Carrying them would be a story fact (C9's shape) and a deliberate decision; it was not
+  asked for.
+- **The card's offset is the art's**, like the digits': the banner is 40 tall and centred,
+  the card 24, so `PROMPT_Y = -36` hangs it 4 under the banner's bottom edge. Regenerating
+  either card means re-deriving that one number.
+
 ### C7: Facing and death-blink are sprite tricks, not features
 
 Facing flips `scaleX`'s sign about the centre pivot (all sprites are symmetric enough);

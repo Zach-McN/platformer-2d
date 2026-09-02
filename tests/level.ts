@@ -115,6 +115,16 @@ export function spawn(column: number, row: number): Entity {
   })
 }
 
+/** The next-level marker, carrying the scene Y opens and the prompt card, as the prefab does. */
+export function nextLevel(column: number, row: number, scene = 'scenes/level-02.json'): Entity {
+  const at = centre(column, row)
+  return entity('Next level', at.x, at.y, {
+    sprite: art('markers/next-level.png'),
+    grid: { tileSize: TILE },
+    next: { scene, prompt: art('ui/prompt-next.png') },
+  })
+}
+
 export function walker(column: number, row: number, unitsPerSecond = 33): Entity {
   const at = centre(column, row)
   return entity('Walker', at.x, at.y, {

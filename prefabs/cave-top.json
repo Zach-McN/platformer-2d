@@ -1,0 +1,20 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "8f1e614a6674c291",
+  "name": "Cave floor",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "b726523452f75380",
+        "path": "assets/textures/tiles/cave-top.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

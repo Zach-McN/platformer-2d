@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.asset-meta",
+  "version": 1,
+  "id": "22e6d07bec1b5f0f",
+  "type": "texture",
+  "importSettings": {
+    "type": "texture",
+    "filter": "nearest",
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "slice": {
+      "mode": "single"
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

@@ -1,0 +1,19 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "1440bfb641a72807",
+  "name": "Cave dark",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "a96e93a2325979e4",
+        "path": "assets/textures/scenery/cave-bg.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    }
+  },
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}

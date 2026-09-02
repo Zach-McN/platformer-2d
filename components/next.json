@@ -1,0 +1,18 @@
+{
+  "format": "kernel2d.component",
+  "version": 1,
+  "type": "next",
+  "title": "Next level",
+  "note": "Placed anywhere in a level, this marker is invisible in play and makes the win screen ask \"Next level?\" \u2014 Y goes to the level named here, N restarts this one. A level without one just wins.",
+  "addable": false,
+  "fields": [
+    {
+      "kind": "scene",
+      "key": "scene",
+      "label": "Level",
+      "title": "The level Y opens from this one's win screen."
+    }
+  ],
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-01"
+}
