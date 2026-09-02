@@ -72,6 +72,10 @@ Every entry here is a thing a future session is allowed to build. Nothing else i
 - **Scenery** — cloud, hill, tree, bush, grass tuft, fence. Looks nice, never solid, never
   interactive. Clouds, hills and trees are bigger than one tile and sit faded behind the
   action — hills and clouds furthest back, the rest just behind the gameplay.
+- **Fire bar** *(added 2026-09-02, at Zach's request)* — a normal solid block with an arm
+  of fire attached that turns a full circle continuously, at a speed set per placement. The
+  fire kills the ninja on contact like a spike; the block is stood on and bumped like any
+  block. The arm passes through everything; nothing stops it.
 
 ### The ninja
 
@@ -154,7 +158,9 @@ the remake 1:1 — the reference game has none of them either.
   secret areas. ~~One level. (More later is a spec change made here first.)~~ Two levels
   since 2026-09-01, chained by the win screen's question; still no level select.
 - **Movement:** wall-jump, crouch, swim, climb, ladders, double jump.
-- **World machinery:** moving platforms, one-way platforms, water, lava, conveyors.
+- **World machinery:** moving platforms, one-way platforms, water, lava, conveyors. The
+  fire bar (added 2026-09-02) is the one moving hazard, and it is none of these: it carries
+  nothing and stops nothing.
 - **Enemies:** anything beyond the walker and the turtle. No projectiles, no bosses, no
   flying.
 - **Music.** Sound effects only, all synthesized. No audio files.
