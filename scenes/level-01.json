@@ -687,6 +687,25 @@
       }
     },
     {
+      "id": "f186ac6ffc76c4b3",
+      "name": "? Block 2",
+      "transform": {
+        "x": 210,
+        "y": 156,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "604395a6bdf83c14",
+            "path": "prefabs/quest-block.json"
+          }
+        }
+      }
+    },
+    {
       "id": "9fb6a8ee8d621caf",
       "name": "Brick",
       "transform": {
@@ -712,6 +731,63 @@
         "x": 216,
         "y": 104,
         "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "e96230b6eb91b858",
+      "name": "Brick 2",
+      "transform": {
+        "x": 250,
+        "y": 115,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "c63d09a255dc9d81",
+      "name": "Brick 3",
+      "transform": {
+        "x": 283,
+        "y": 117,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "aff0cf298b475495",
+      "name": "Brick 4",
+      "transform": {
+        "x": 304,
+        "y": 151,
+        "rotation": -135,
         "scaleX": 1,
         "scaleY": 1
       },
@@ -4525,30 +4601,11 @@
       }
     },
     {
-      "id": "e3b3d2c5009325ed",
-      "name": "Walker (fast)",
-      "transform": {
-        "x": 264,
-        "y": 56,
-        "rotation": 0,
-        "scaleX": 1,
-        "scaleY": 1
-      },
-      "components": {
-        "prefab": {
-          "source": {
-            "id": "854450ce0607cd51",
-            "path": "prefabs/walker-fast.json"
-          }
-        }
-      }
-    },
-    {
       "id": "18040bf58ce913a8",
       "name": "Turtle",
       "transform": {
-        "x": 408,
-        "y": 56,
+        "x": 190,
+        "y": 120,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -4604,8 +4661,8 @@
       "id": "f5cb5fbee86202ad",
       "name": "Spawn",
       "transform": {
-        "x": 40,
-        "y": 72,
+        "x": 27,
+        "y": 79,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -4653,6 +4710,46 @@
           "source": {
             "id": "a58b1bd109aa2151",
             "path": "prefabs/hud-hint.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "0641db6bd869dc66",
+      "name": "Walker 2",
+      "transform": {
+        "x": 40,
+        "y": 56,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "33edc578b1b6e10c",
+            "path": "prefabs/walker.json"
+          }
+        },
+        "walker": {
+          "unitsPerSecond": 100,
+          "squashed": {
+            "texture": {
+              "id": "c5e2a82bacc901f0",
+              "path": "assets/textures/enemies/walker-squashed.png"
+            }
+          },
+          "puff": {
+            "texture": {
+              "id": "d7c928a3c2c11001",
+              "path": "assets/textures/fx/puff-walker.png"
+            }
+          },
+          "knockPuff": {
+            "texture": {
+              "id": "3eaa6579cd2ccecd",
+              "path": "assets/textures/fx/puff-knock-walker.png"
+            }
           }
         }
       }
