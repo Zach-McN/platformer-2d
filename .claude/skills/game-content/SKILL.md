@@ -32,20 +32,16 @@ px-per-frame × 60.
 | `grid: { tileSize: 16 }` | everything placeable | snap unit for placement |
 | `screen: { anchor }` + `hud: { digits, banners }` | the coin counter (`prefabs/hud-coins.json`) | pinned top-right (kernel `screen`, `editor-kernel` D32); carries the ten digit textures and both banner textures the hud spawns |
 | `screen: { anchor }` + `hint: {}` | the controls hint (`prefabs/hud-hint.json`) | pinned bottom-left; the hud removes it on the first input |
-| `next: { scene, prompt: { texture } }` | the next-level marker (`prefabs/next-level.json`, 2026-09-01) | the level Y opens from the win screen, and the "NEXT LEVEL? Y YES N NO" card; hidden in play (T9) |
+| `next: { scene }` | the next-level marker (`prefabs/next-level.json`, 2026-09-01), or any entity given one in the Inspector | the level Y opens from the win screen; whatever carries it is hidden in play (T9). The counter's `banners.next` is the card that asks |
 
-### T2: Per-placement speed is a prefab variant, not an override
+### T2: A speed the level uses more than once is a prefab variant; a one-off is a placement's own component
 
 The reference's two per-placement speed props became `walker-fast.json` and
-`turtle-slow.json`. The kernel has no instance-level component override and none was
-needed — the tower defense's lesson (per-placement data keeps turning out to be
-per-placement placement) held on first contact with another genre.
-
-**Amended 2026-09-01 (see T8):** the kernel *does* have a per-placement override, and
-always did — a placement carrying its own `walker` stops following the prefab's. What it
-lacked was a way to author one, which is what describing the component gave us. Variants
-remain the right answer for a speed the level uses more than once; an override is for the
-one enemy that needs to be different.
+`turtle-slow.json` (2026-08-14), on the tower defense's lesson that per-placement data
+keeps turning out to be per-placement placement. The kernel always had the other half — a
+placement carrying its own `walker` stops following the prefab's — but nothing could
+author one until T8 described the component (2026-09-01). So: two dials. Variants for a
+speed several enemies share; the Inspector's Speed box for the one enemy that differs.
 
 ### T3: Scenery distance-fade is baked into the pixels
 
@@ -60,6 +56,13 @@ Walker carries its squashed frame, turtle its shell, ?-block the used-block face
 ninja's seven frames — because `textureRefsOf` walks every `texture`-named field at any
 depth, so art declared this way ships with the level and is loadable before systems spawn
 anything mid-run.
+
+### T5: Draw order is scene list order, in the reference's passes
+
+Far scenery (clouds, hills) → near scenery (trees, bushes, grass, fences) → gameplay
+tiles → spawn and enemies. Adjacency variants (ground top/fill, pipe top/body, flag
+top/pole) are separate prefabs picked at generation time; an author extending the level
+picks the variant by eye.
 
 ### T6: The screen UI is generated art in a 3×5 pixel font, on prefabs, placed last
 
@@ -128,29 +131,28 @@ prefab reused.
   so it hangs from the rock rather than floating in it.
 - **The next-level marker** (`prefabs/next-level.json`, `components/next.json`) is the spawn
   marker's pattern for the *end* of a level: editor furniture carrying run-time data. It
-  wears a signpost in the editor, carries `next: { scene, prompt: { texture } }`, and the hud
-  hides it the moment play starts (`game-code` C11). The scene is a **`scene` field**, keyed
-  `scene` because `text-formats` T20 walks for that key — so an export ships level 2
-  because level 1 points at it, with no export change. The prompt card rides the marker
-  (T4) so it is loaded with the level. `addable` is false for T8's reason: the component
-  carries a nested texture the panel cannot author, so a placement gets it whole from the
-  prefab or not at all.
+  wears a signpost in the editor, carries `next: { scene }`, and the hud hides whatever
+  carries `next` the moment play starts (`game-code` C11). The scene is a **`scene` field**,
+  keyed `scene` because `text-formats` T20 walks for that key — so an export ships level 2
+  because level 1 points at it, with no export change. The component is **addable**: it is
+  one flat field, so Add on any entity gives it a Level box and nothing is lost (T8's
+  objection was nested textures, and this has none). That is why the card that asks rides
+  the coin counter as `banners.next` beside OUCH! and LEVEL CLEAR! (T4, T6) rather than the
+  marker — an entity given `next` by hand must not have to carry art too.
 - **Level 1 gained one entity** — a Next level marker on the ground past the flag, at
   (61, 3) — and nothing else; its layout and Zach's own placements are untouched.
 - **The prompt card** (`ui/prompt-next.png`, 112×24) is drawn in the banner's own 3×5 font,
   read back out of `banner-clear.png` pixel by pixel rather than from a font file that no
   longer exists (T6's generator was a throwaway). The two glyphs the banners never used — X
   and ? — were drawn to match. **The card is the banner's width so it reads as one screen.**
+- **The generators live in the repo this time**: `scripts/cave/` (`png.py`, `art.py`,
+  `content.py`), marked generated, pure Python. `art.py` redraws the art and mints new
+  texture ids; `content.py --force` rewrites the prefabs and level 2 from its placement
+  table and refuses without the flag, because re-running it throws away anything Zach
+  changed in the editor. They are a record of how the cave was made, not a build step.
 
 Level 2 is content, not contract: `docs/REMAKE-PARITY.md` scopes itself to level 1, and
 the cave's layout is the spec's (*Level 2 — the cave*) and Zach's to change in the editor.
-
-### T5: Draw order is scene list order, in the reference's passes
-
-Far scenery (clouds, hills) → near scenery (trees, bushes, grass, fences) → gameplay
-tiles → spawn and enemies. Adjacency variants (ground top/fill, pipe top/body, flag
-top/pole) are separate prefabs picked at generation time; an author extending the level
-picks the variant by eye.
 
 ## Gotchas
 

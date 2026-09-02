@@ -690,8 +690,8 @@
       "id": "f186ac6ffc76c4b3",
       "name": "? Block 2",
       "transform": {
-        "x": 210,
-        "y": 156,
+        "x": 216,
+        "y": 152,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -747,8 +747,8 @@
       "id": "e96230b6eb91b858",
       "name": "Brick 2",
       "transform": {
-        "x": 250,
-        "y": 115,
+        "x": 248,
+        "y": 120,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -766,8 +766,8 @@
       "id": "c63d09a255dc9d81",
       "name": "Brick 3",
       "transform": {
-        "x": 283,
-        "y": 117,
+        "x": 280,
+        "y": 120,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
@@ -785,8 +785,8 @@
       "id": "aff0cf298b475495",
       "name": "Brick 4",
       "transform": {
-        "x": 304,
-        "y": 151,
+        "x": 296,
+        "y": 152,
         "rotation": -135,
         "scaleX": 1,
         "scaleY": 1

@@ -12,11 +12,8 @@ at 60 fps, exactly as the reference runs them. Signs follow the reference (y inc
 downward, negative vy is up); the kernel's scenes are y-up, so the conversion belongs to
 whatever writes the scene, and "the level looks identical" is the check.
 
-**Scope (2026-09-01):** this contract is level 1's. Level 2 (`scenes/level-02.json`, the
-cave) shares every ninja, enemy, tile and screen number below — the systems are the same
-code — but its layout, art and the next-level question on level 1's win screen are the
-spec's (`GENRE-SPEC.md`, *Level 2 — the cave*), not the reference's, and §1 and §11 are
-not checked against it.
+**Scope:** this contract is level 1's. What the second level shares with it, and what it
+does not, is §12.
 
 ---
 
@@ -236,3 +233,21 @@ Run the reference beside the remake and check:
       (sounds, M-mute, all three particle kinds and the pop-coin's cross flash built
       2026-08-15; the flash is an approximation and §7 says exactly how)
 - [ ] HUD, banner, hint fade, touch controls, M mute all present
+
+## 12. Outside the contract: level 2 and the question that leads to it *(2026-09-01)*
+
+Level 2 (`scenes/level-02.json`, the cave) is content in the spirit of the reference, not a
+remake of anything. It runs on the same systems, so every number in §2–§9 holds there
+unchanged — the ninja, the enemies, the tile rules, the sounds, the camera and the screen
+UI are shared code with nothing switched by level. What is *not* checked against this
+document:
+
+- **§1 and §11** — the cave's grid, spawn, placements and tile set are the spec's
+  (`GENRE-SPEC.md`, *Level 2 — the cave*), authored to be played, and Zach's to change.
+- **The ceiling.** The cave has a solid rock row across the top; §1's "top edge open"
+  is level 1's fact.
+- **The win screen's question.** Level 1's LEVEL CLEAR! banner gains a NEXT LEVEL? card
+  beneath it (Y or Enter goes on, N plays again). The reference has no second level and
+  no such card; the banner itself, its text and its timing are still §9's.
+- **Coins start at 0 in level 2.** Run state dies with the run (game-code C3), and the
+  reference has no notion of carrying anything between levels.

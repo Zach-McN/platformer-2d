@@ -14,13 +14,7 @@
       "tileSize": 16
     },
     "next": {
-      "scene": "scenes/level-02.json",
-      "prompt": {
-        "texture": {
-          "id": "b4a09df7812b23d4",
-          "path": "assets/textures/ui/prompt-next.png"
-        }
-      }
+      "scene": "scenes/level-02.json"
     }
   },
   "generatedBy": "claude-fable-5-1",

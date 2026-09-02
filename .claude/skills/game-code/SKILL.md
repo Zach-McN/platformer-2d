@@ -67,6 +67,30 @@ particles are **deliberately not built** — they need art the level does not ca
 they belong to the parity pass. _(The seven sounds were parked here too until the sound
 phase; see C9.)_
 
+### C7: Facing and death-blink are sprite tricks, not features
+
+Facing flips `scaleX`'s sign about the centre pivot (all sprites are symmetric enough);
+the death blink deletes and restores the `sprite` component on the doc's 3-of-6-frame
+rhythm, because an entity with nothing to draw is how the renderer spells "hidden".
+
+### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene
+
+The coin counter card and the controls hint are *placed content*, pinned to their corners
+by the kernel's `screen` component and carrying every run-time texture the HUD needs (the
+counter's `hud` component holds the ten digits and both banners — T4 again). `hud.ts`
+then, every step, removes everything it drew last step (`hud#…` ids) and draws it again
+from the facts: the count as digit entities right-aligned in the card, the OUCH! banner
+for 0.7 s of a death, the LEVEL CLEAR! banner with the total once won, and it deletes the
+hint entity on the first held or pressed key or after 9 s. Ids are stable per slot
+(`hud#digit0`, `hud#banner`) so the renderer updates sprites in place. **R restarts by
+`openDoor` to `sceneIn`'s own path** — the host reloads the scene from the file, which is
+exactly "everything back to authored state" with no reset code anywhere; it needs the
+story carrier (both hosts inject it, and the fixture `playing()` adds one).
+
+The digit and banner *offsets* in `hud.ts` are derived from the generated art's pixel
+layout (card 30×12, banner 112×40, "COINS:" ending 53 in) and say so in comments;
+regenerating that art with different dimensions means re-deriving those constants.
+
 ### C9: The seven sounds are recipes in one file, raised by the rule that causes them, and mute is a fact
 
 `src/systems/sound.ts` is §8 as a table of notes — the same relationship to the doc that
@@ -111,37 +135,20 @@ and a scaled texture does. §7 states the difference rather than hiding it.
 
 Two traps this file already fell into. `wear` merges into the sprite component rather than replacing it, or re-dressing a fading entity would snap it back to solid. And a test that counts `fx#` entities after a brick breaks now counts nine, not four — the dust is thrown with the shards, so count by texture.
 
-### C8: The screen is content plus a redraw-every-step system, and R is a door to this same scene
-
-The coin counter card and the controls hint are *placed content*, pinned to their corners
-by the kernel's `screen` component and carrying every run-time texture the HUD needs (the
-counter's `hud` component holds the ten digits and both banners — T4 again). `hud.ts`
-then, every step, removes everything it drew last step (`hud#…` ids) and draws it again
-from the facts: the count as digit entities right-aligned in the card, the OUCH! banner
-for 0.7 s of a death, the LEVEL CLEAR! banner with the total once won, and it deletes the
-hint entity on the first held or pressed key or after 9 s. Ids are stable per slot
-(`hud#digit0`, `hud#banner`) so the renderer updates sprites in place. **R restarts by
-`openDoor` to `sceneIn`'s own path** — the host reloads the scene from the file, which is
-exactly "everything back to authored state" with no reset code anywhere; it needs the
-story carrier (both hosts inject it, and the fixture `playing()` adds one).
-
-The digit and banner *offsets* in `hud.ts` are derived from the generated art's pixel
-layout (card 30×12, banner 112×40, "COINS:" ending 53 in) and say so in comments;
-regenerating that art with different dimensions means re-deriving those constants.
-
 ### C11: The win screen's question is the hud reading a placed marker, and both answers are doors
 
-`hud.ts` (2026-09-01) finds the level's next-level marker (`nextIn`, by the `next`
-component — never by name), deletes its sprite on every step so it is never drawn in play
-(C7's "nothing to draw is hidden"), and once `ninja.won` pins the marker's prompt card
-under the LEVEL CLEAR! banner as `hud#prompt` — redrawn every step like every other hud
-entity. Y or Enter is `openDoor(next.scene)`; N is `openDoor(sceneIn(...))`, which is R by
+`hud.ts` (2026-09-01) finds the level's next scene (`nextIn`, by the `next` component —
+never by name), deletes the sprite of whatever carries it on every step so it is never
+drawn in play (C7's "nothing to draw is hidden"), and once `ninja.won` pins the counter's
+`banners.next` card under the LEVEL CLEAR! banner as `hud#prompt` — redrawn every step like
+every other hud entity, and read from the counter like the other banners. Y or Enter is `openDoor(next.scene)`; N is `openDoor(sceneIn(...))`, which is R by
 another key (C8). Both are read from `pressedIn` **only while won**, so a Y mid-run does
 nothing. A level with no marker never asks and never listens.
 
 Two things worth keeping:
 
-- **No new state, no new fact.** Which level is next is content on the marker; whether
+- **No new state, no new fact.** Which level is next is content on the marker; the card is
+  content on the counter; whether
   the ninja has won is the ninja's own state; the door is the kernel's. Coins do not carry
   across — the run state dies with the run, as C3 says it should, and level 2 starts at 0.
   Carrying them would be a story fact (C9's shape) and a deliberate decision; it was not
@@ -149,12 +156,6 @@ Two things worth keeping:
 - **The card's offset is the art's**, like the digits': the banner is 40 tall and centred,
   the card 24, so `PROMPT_Y = -36` hangs it 4 under the banner's bottom edge. Regenerating
   either card means re-deriving that one number.
-
-### C7: Facing and death-blink are sprite tricks, not features
-
-Facing flips `scaleX`'s sign about the centre pivot (all sprites are symmetric enough);
-the death blink deletes and restores the `sprite` component on the doc's 3-of-6-frame
-rhythm, because an entity with nothing to draw is how the renderer spells "hidden".
 
 ## Gotchas
 

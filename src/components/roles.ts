@@ -130,27 +130,22 @@ function patrollerOf(component: unknown, stateField: string): Patroller | null {
   }
 }
 
-export interface NextLevel {
-  /** The project-relative scene path Y opens from the win screen. */
-  scene: string
-  /** The "NEXT LEVEL? Y YES N NO" card the hud pins under the win banner, or null to ask silently. */
-  prompt: TextureRef | null
-}
-
 /**
- * The next-level marker: `next: { scene, prompt }`, whole or not at all.
+ * The next level: `next: { scene }` — the project-relative scene path Y opens
+ * from the win screen, or null when this entity names none.
  *
  * A level with one asks after the win; a level without one just wins. The
  * scene is the same project-relative path every other reference to a level
- * carries (`components/next.json` describes it as a scene field), and a
- * missing or empty path means no marker rather than a door to nowhere.
+ * carries (`components/next.json` describes it as a scene field, so any
+ * entity can be given one in the Inspector), and a missing or empty path
+ * means no marker rather than a door to nowhere. The card that asks rides the
+ * coin counter with the other banners (game-content T9).
  */
-export function nextOf(entity: Entity): NextLevel | null {
+export function nextOf(entity: Entity): string | null {
   const component: unknown = entity.components['next']
   if (typeof component !== 'object' || component === null) return null
   const scene: unknown = (component as { scene?: unknown }).scene
-  if (typeof scene !== 'string' || scene.length === 0) return null
-  return { scene, prompt: textureRefOf((component as { prompt?: unknown }).prompt) }
+  return typeof scene === 'string' && scene.length > 0 ? scene : null
 }
 
 /** The seven ninja frames the spawn marker carries, by name. */

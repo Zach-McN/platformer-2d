@@ -94,6 +94,12 @@
             "id": "c18260814792fb97",
             "path": "assets/textures/ui/banner-clear.png"
           }
+        },
+        "next": {
+          "texture": {
+            "id": "b4a09df7812b23d4",
+            "path": "assets/textures/ui/prompt-next.png"
+          }
         }
       }
     }

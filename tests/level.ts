@@ -115,13 +115,13 @@ export function spawn(column: number, row: number): Entity {
   })
 }
 
-/** The next-level marker, carrying the scene Y opens and the prompt card, as the prefab does. */
+/** The next-level marker, naming the scene Y opens, as the prefab does. */
 export function nextLevel(column: number, row: number, scene = 'scenes/level-02.json'): Entity {
   const at = centre(column, row)
   return entity('Next level', at.x, at.y, {
     sprite: art('markers/next-level.png'),
     grid: { tileSize: TILE },
-    next: { scene, prompt: art('ui/prompt-next.png') },
+    next: { scene },
   })
 }
 
@@ -161,7 +161,10 @@ export function counter(): Entity {
     sprite: art('ui/coin-card.png'),
     grid: { tileSize: TILE },
     screen: { anchor: { x: 1, y: 1 } },
-    hud: { digits, banners: { ouch: art('ui/banner-ouch.png'), clear: art('ui/banner-clear.png') } },
+    hud: {
+      digits,
+      banners: { ouch: art('ui/banner-ouch.png'), clear: art('ui/banner-clear.png'), next: art('ui/prompt-next.png') },
+    },
   })
 }
 

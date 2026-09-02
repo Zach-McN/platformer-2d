@@ -1,6 +1,6 @@
 import { heldIn, openDoor, pressedIn, sceneIn, type Entity, type System } from 'kernel-2d/runtime'
 
-import { nextOf, wear, type NextLevel, type TextureRef } from '../components/roles'
+import { nextOf, wear, type TextureRef } from '../components/roles'
 import { ninjaOf, playerIn } from './ninja'
 import { HINT_FRAMES, OUCH_BANNER_FRAMES } from './tuning'
 
@@ -22,19 +22,22 @@ import { HINT_FRAMES, OUCH_BANNER_FRAMES } from './tuning'
  * nothing to forget to reset — the same reason Stop is free.
  *
  * **The next level is a door to another scene, asked for on the win screen.**
- * A level that has somewhere to go says so with a placed *next-level marker*
- * (`prefabs/next-level.json`, `game-content` T9): content, like the spawn
- * marker, carrying the scene path and the prompt card. The marker is hidden
- * the moment play starts — its sprite goes, the way the death blink hides the
- * ninja — and once the ninja has won, the card is pinned under the LEVEL
- * CLEAR! banner and Y (or Enter) opens the named scene while N opens this one
- * again, which is R by another key. A level with no marker never asks.
+ * A level that has somewhere to go says so with a `next` component naming the
+ * scene — on the placed *next-level marker* (`prefabs/next-level.json`,
+ * `game-content` T9) or on anything else the Inspector gave one. Whatever
+ * carries it is hidden the moment play starts — its sprite goes, the way the
+ * death blink hides the ninja — and once the ninja has won, the counter's
+ * NEXT LEVEL? card is pinned under the LEVEL CLEAR! banner and Y (or Enter)
+ * opens the named scene while N opens this one again, which is R by another
+ * key. A level with no `next` never asks.
  */
 
 interface HudArt {
   digits: Record<string, TextureRef>
   ouch: TextureRef | null
   clear: TextureRef | null
+  /** The "NEXT LEVEL? Y YES N NO" card, pinned under the win banner when the level has somewhere to go. */
+  next: TextureRef | null
 }
 
 /** The counter's prefab, read once per run: where the digits and banners come from. */
@@ -53,7 +56,7 @@ function hudArtOf(entity: Entity): HudArt | null {
   const banner = (name: string): TextureRef | null =>
     typeof banners === 'object' && banners !== null ? textureOf((banners as Record<string, unknown>)[name]) : null
 
-  return { digits: read, ouch: banner('ouch'), clear: banner('clear') }
+  return { digits: read, ouch: banner('ouch'), clear: banner('clear'), next: banner('next') }
 }
 
 function textureOf(value: unknown): TextureRef | null {
@@ -96,8 +99,8 @@ const PROMPT_Y = -36
 const NEXT_CODES = ['KeyY', 'Enter', 'NumpadEnter']
 const AGAIN_CODES = ['KeyN']
 
-/** The next-level marker of this level, or null when the level has nowhere to go. */
-export function nextIn(entities: readonly Entity[]): NextLevel | null {
+/** The scene this level goes on to, or null when it has nowhere to go. */
+export function nextIn(entities: readonly Entity[]): string | null {
   for (const one of entities) {
     const next = nextOf(one)
     if (next !== null) return next
@@ -166,7 +169,7 @@ export const hudSystem: System = {
 
     // The win screen's question, answered by key: Y goes on, N plays again.
     if (ninja?.won === true && next !== null) {
-      if (NEXT_CODES.some((code) => pressed.includes(code))) openDoor(entities, next.scene)
+      if (NEXT_CODES.some((code) => pressed.includes(code))) openDoor(entities, next)
       else if (AGAIN_CODES.some((code) => pressed.includes(code))) {
         const here = sceneIn(entities)
         if (here !== null) openDoor(entities, here)
@@ -226,8 +229,8 @@ export const hudSystem: System = {
         )
       }
       // And the question, when this level has somewhere to go.
-      if (next !== null && next.prompt !== null) {
-        entities.push(pinned('prompt', 'Next level?', { x: 0.5, y: 0.5 }, 0, PROMPT_Y, next.prompt))
+      if (next !== null && art.next !== null) {
+        entities.push(pinned('prompt', 'Next level?', { x: 0.5, y: 0.5 }, 0, PROMPT_Y, art.next))
       }
     }
   },

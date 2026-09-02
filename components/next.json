@@ -3,8 +3,8 @@
   "version": 1,
   "type": "next",
   "title": "Next level",
-  "note": "Placed anywhere in a level, this marker is invisible in play and makes the win screen ask \"Next level?\" \u2014 Y goes to the level named here, N restarts this one. A level without one just wins.",
-  "addable": false,
+  "note": "Makes the win screen ask NEXT LEVEL? \u2014 Y goes to the level named here, N restarts this one. Lives on the Next level signpost, which is invisible in play, but can be added to any entity. A level without one just wins.",
+  "addable": true,
   "fields": [
     {
       "kind": "scene",
