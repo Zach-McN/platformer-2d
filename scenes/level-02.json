@@ -6328,6 +6328,25 @@
           }
         }
       }
+    },
+    {
+      "id": "dc6e7c4d64e499f0",
+      "name": "Fire bar",
+      "transform": {
+        "x": 264,
+        "y": 88,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "fad54f3802331852",
+            "path": "prefabs/fire-bar.json"
+          }
+        }
+      }
     }
   ],
   "generatedBy": "claude-fable-5-1",

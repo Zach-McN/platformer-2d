@@ -89,6 +89,24 @@ export function spike(column: number, row: number): Entity {
   return entity('Spike', at.x, at.y, { sprite: art('spike.png'), grid: { tileSize: TILE }, deadly: {} })
 }
 
+/**
+ * A fire bar: a solid block, an arm attached to it that turns, and three flames
+ * riding the arm at 16, 32 and 48 — the five entities a placed `fire-bar`
+ * prefab resolves to, joined by `parent` exactly as the kernel joins them. The
+ * arm starts pointing right (rotation 0), so the flames begin to the block's
+ * right and sweep counter-clockwise.
+ */
+export function fireBar(column: number, row: number, degreesPerSecond = 90): Entity[] {
+  const at = centre(column, row)
+  const block = entity('Fire bar', at.x, at.y, { sprite: art('used-block.png'), grid: { tileSize: TILE }, solid: {} })
+  const arm: Entity = { ...entity('Arm', 0, 0, { spin: { degreesPerSecond } }), parent: block.id }
+  const flames = [16, 32, 48].map((reach) => ({
+    ...entity('Fire', reach, 0, { sprite: art('fire.png'), deadly: {} }),
+    parent: arm.id,
+  }))
+  return [block, arm, ...flames]
+}
+
 export function flag(column: number, row: number): Entity {
   const at = centre(column, row)
   return entity('Flag', at.x, at.y, { sprite: art('flag.png'), grid: { tileSize: TILE }, goal: {} })

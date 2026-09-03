@@ -42,7 +42,7 @@ reset code. Hitboxes are carried as centre x + bottom y (`tiles.ts`), because ev
 in the parity doc is phrased around feet: feet on floors, feet near enemy tops, feet
 below the pit line.
 
-### C4: Systems in list order are the rules — ninja, enemies, clash, effects, pose, chase
+### C4: Systems in list order are the rules — ~~ninja~~ spin, ninja, enemies, clash, effects, pose, chase
 
 Movement first (ninja, then enemies), `clash` judging contact where this step actually put
 both sides, `effects` flying the debris the bumps threw, `pose` dressing everything
@@ -156,6 +156,27 @@ Two things worth keeping:
 - **The card's offset is the art's**, like the digits': the banner is 40 tall and centred,
   the card 24, so `PROMPT_Y = -36` hangs it 4 under the banner's bottom edge. Regenerating
   either card means re-deriving that one number.
+
+### C12: The kernel's spin runs before the ninja, and a deadly thing's place is asked of the kernel
+
+Two changes for the fire bar (2026-09-02), and the second is a rule.
+
+**`spinSystem` is listed in `src/systems/index.ts`, second, between sound and the ninja.**
+The engine runs nothing a game did not list (`editor-kernel` D28), and C4's order is the
+rules: the arm has to have turned *this* step before `interact` judges contact with the fire
+on it, or the fire kills a frame behind where it is drawn. The kernel exports the system and
+not `spinOf` — game code can run a spin, not read one, which is the right side of the seam.
+
+**Where another entity is, ask `worldTransformOf` — never read its stored transform.** The
+deadly zone in `ninja.ts` is the first reader moved (`editor-kernel` D37 named the case a day
+before it happened). Every other cross-entity read in `src/systems/` still reads
+`entity.transform` — `tiles.ts`'s solid grid, coins and the flag in `ninja.ts`, bricks in
+`enemies.ts`, spawn points in `effects.ts` — and each is correct *only while nothing it reads
+is a part or a child*. The fire bar's block is a placement, so its stored transform is its
+place and the solid grid is right; the day a coin or a brick is a part of something, its
+reader moves to `worldTransformOf` the same way. The test that catches the mistake is the
+fire bar's first: a ninja standing where the flames' stored offsets would put them must not
+die.
 
 ## Gotchas
 

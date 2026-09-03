@@ -154,6 +154,36 @@ prefab reused.
 Level 2 is content, not contract: `docs/REMAKE-PARITY.md` scopes itself to level 1, and
 the cave's layout is the spec's (*Level 2 — the cave*) and Zach's to change in the editor.
 
+### T10: The fire bar is three ordinary pieces on one prefab, and the only new code is a read
+
+`prefabs/fire-bar.json` (2026-09-02, the spec's *Fire bar*): a `used-block` root — `sprite`,
+`grid`, `solid`, so it is stood on and bumped with a thud like the used block it wears — with
+a part **Arm** at (0, 0) carrying the kernel's `spin` and no sprite, and parts **Fire 1–3**
+riding the arm at x 16, 32, 48, each `sprite: fire.png` plus `deadly: {}`. That is the whole
+noun: the block is T1's `solid`, the killing is the spike's `deadly`, the turning is the
+kernel's `spin`, and the group is the kernel's new prefab parts (`editor-kernel` D25).
+
+- **No component was added.** Every reader already existed: `isSolid`, `isDeadly` and the
+  spin system. A `firebar` component with a speed field would have needed a system to copy
+  the speed onto the arm; putting `spin` on the arm *itself* and letting a placement override
+  it (`prefab.parts.<arm>.spin`, authored in the placement's Inspector under Parts) gives
+  "speed set per placement" with nothing to write — T8's arrangement, one level down.
+- **The one read that changed** is the deadly zone in `ninja.ts`, which now asks the kernel
+  where a deadly thing *is* (`worldTransformOf`) instead of reading its stored transform. A
+  flame stores an offset from the arm; read as a place, every flame would be lethal at
+  (16..48, 0) in level terms and nowhere near the bar. The zone's shape is the spike's, so
+  "kills like a spike" is literally the same rule.
+- **`spin` is listed before the ninja** in `src/systems/index.ts` (game-code C12): the arm
+  has turned this step before contact with its fire is judged.
+- **The fire is drawn in front of the block** because a part is drawn after its placement
+  (T5's list order, honoured by the kernel for parts too) — and it turns *with* the arm, so a
+  fireball was drawn round rather than flame-shaped.
+- **Art**: `scripts/firebar/art.py` draws `tiles/fire.png` with the cave generator's `png.py`,
+  marked generated; the prefab was authored in the editor's Parts section and placed in
+  level 2 through the editor, at the block position (264, 88) over the first pit.
+- **Not done, by the spec's own words:** fire that stops or reverses, a second hazard, a fire
+  bar in level 1.
+
 ## Gotchas
 
 ### TG1: ~~The sky is nobody's yet~~ — resolved: the sky is content, the level's first entity

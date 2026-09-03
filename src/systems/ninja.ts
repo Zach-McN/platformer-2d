@@ -1,4 +1,4 @@
-import { heldIn, type Entity, type System } from 'kernel-2d/runtime'
+import { heldIn, worldTransformOf, type Entity, type System } from 'kernel-2d/runtime'
 
 import {
   bonusOf,
@@ -279,10 +279,16 @@ function interact(entities: Entity[], state: NinjaState): void {
 
   for (const entity of entities) {
     if (isDeadly(entity)) {
+      // Where the deadly thing *is*, asked of the kernel rather than read off
+      // its stored numbers: a flame riding a fire bar's arm stores an offset
+      // from the arm, and its place in the level is the arm's turn applied to
+      // that (editor-kernel D37). For a spike standing in the level on its own
+      // the answer is its stored transform, as it always was.
+      const at = worldTransformOf(entity, entities)
       // The spike's lethal zone is inset: 6 px off the tile's top, 2 off each side.
       const zone: Hitbox = {
-        x: entity.transform.x,
-        y: entity.transform.y - TILE / 2,
+        x: at.x,
+        y: at.y - TILE / 2,
         width: TILE - 2 * SPIKE_INSET_SIDE,
         height: TILE - SPIKE_INSET_TOP,
       }

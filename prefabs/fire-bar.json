@@ -1,0 +1,101 @@
+{
+  "format": "kernel2d.prefab",
+  "version": 1,
+  "id": "fad54f3802331852",
+  "name": "Fire bar",
+  "components": {
+    "sprite": {
+      "texture": {
+        "id": "2364edfc62771778",
+        "path": "assets/textures/tiles/used-block.png"
+      }
+    },
+    "grid": {
+      "tileSize": 16
+    },
+    "solid": {}
+  },
+  "children": [
+    {
+      "id": "arm",
+      "name": "Arm",
+      "transform": {
+        "x": 0,
+        "y": 0,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "components": {
+        "spin": {
+          "degreesPerSecond": 90
+        }
+      }
+    },
+    {
+      "id": "fire1",
+      "name": "Fire 1",
+      "transform": {
+        "x": 16,
+        "y": 0,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "parent": "arm",
+      "components": {
+        "sprite": {
+          "texture": {
+            "id": "7a97e220a59e8c81",
+            "path": "assets/textures/tiles/fire.png"
+          }
+        },
+        "deadly": {}
+      }
+    },
+    {
+      "id": "fire2",
+      "name": "Fire 2",
+      "transform": {
+        "x": 32,
+        "y": 0,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "parent": "arm",
+      "components": {
+        "sprite": {
+          "texture": {
+            "id": "7a97e220a59e8c81",
+            "path": "assets/textures/tiles/fire.png"
+          }
+        },
+        "deadly": {}
+      }
+    },
+    {
+      "id": "fire3",
+      "name": "Fire 3",
+      "transform": {
+        "x": 48,
+        "y": 0,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "parent": "arm",
+      "components": {
+        "sprite": {
+          "texture": {
+            "id": "7a97e220a59e8c81",
+            "path": "assets/textures/tiles/fire.png"
+          }
+        },
+        "deadly": {}
+      }
+    }
+  ],
+  "generatedBy": "claude-fable-5-1",
+  "generatedAt": "2026-09-02"
+}

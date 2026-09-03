@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { ninjaOf, playerIn, type NinjaState } from '../src/systems/ninja'
-import { floor, coin, brick, questBlock, spike, flag, playing, spawn, walker, type Playing } from './level'
+import { fireBar, floor, coin, brick, questBlock, spike, flag, playing, spawn, walker, type Playing } from './level'
 
 /**
  * Touching the world: coins, head bumps, spikes, pits, death and respawn, and
@@ -140,5 +140,63 @@ describe('the flag', () => {
     const wonAt = state.x
     level.step(30, RIGHT)
     expect(state.x).toBe(wonAt)
+  })
+})
+
+/**
+ * The fire bar: three ordinary pieces — a solid block, the kernel's spin, the
+ * spike's deadly — and one read that had to change. The first test is the one
+ * that fails if the deadly zone is read off the flame's stored numbers: the
+ * flames store offsets of 16, 32 and 48 from an arm at the block, so a ninja
+ * standing at (16..48, 0) *in level terms* would be judged dead by an offset
+ * mistaken for a place. Asked of the kernel, the flames are where the arm has
+ * turned them, and the ninja dies only when the arm comes round.
+ */
+describe('the fire bar', () => {
+  it('does not kill a ninja standing where the flames’ stored offsets would put them', () => {
+    // Block at column 8, row 6 — high up, arm starting to the right. The ninja
+    // stands at column 2 on the floor, which is where an offset of 32 from the
+    // level's origin would land a flame if offsets were read as places.
+    const level = playing([...floor(0, 15), ...fireBar(8, 6, 0), spawn(2, 1)])
+    level.step(30)
+    expect(ninja(level).dyingFrames).toBeNull()
+  })
+
+  it('kills the ninja when the arm swings the fire onto it', () => {
+    // The arm starts pointing right and turns counter-clockwise; a ninja stood
+    // two columns right of the block on the same row is in the first flame's
+    // path as it comes round — after a quarter turn it points up, after a half
+    // turn left, and after a full turn it is back on the ninja.
+    const level = playing([...floor(0, 15), ...fireBar(6, 1, 360), spawn(9, 1)])
+    level.step(1)
+    const state = ninja(level)
+    let died = false
+    for (let at = 0; at < 120 && !died; at += 1) {
+      level.step(1)
+      died = state.dyingFrames !== null
+    }
+    expect(died).toBe(true)
+  })
+
+  it('is stood on like any block', () => {
+    // The bar is on the floor row with its arm held still, pointing right; the
+    // ninja drops onto the block and stands there. (A turning arm sweeps the
+    // top of the block too — that is the hazard, not a bug.)
+    const level = playing([...floor(0, 15), ...fireBar(5, 1, 0), spawn(5, 3)])
+    level.step(60)
+    const state = ninja(level)
+    expect(state.dyingFrames).toBeNull()
+    // Standing on the block: feet at the block's top edge.
+    expect(state.y).toBe(32)
+  })
+
+  it('turns faster when the placement says so', () => {
+    const slow = playing([...floor(0, 15), ...fireBar(8, 6, 90), spawn(2, 1)])
+    const fast = playing([...floor(0, 15), ...fireBar(8, 6, 180), spawn(2, 1)])
+    slow.step(30)
+    fast.step(30)
+    const armOf = (level: Playing) => level.entities.find((one) => one.name === 'Arm')
+    expect(armOf(slow)?.transform.rotation).toBeCloseTo(45, 5)
+    expect(armOf(fast)?.transform.rotation).toBeCloseTo(90, 5)
   })
 })
