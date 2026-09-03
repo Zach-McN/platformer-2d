@@ -2018,19 +2018,78 @@
     },
     {
       "id": "8e46a5c8fabe9ea6",
-      "name": "Brick",
+      "name": "MainBrick",
       "transform": {
-        "x": 184,
-        "y": 104,
-        "rotation": 0,
-        "scaleX": 1,
-        "scaleY": 1
+        "x": 166,
+        "y": 151,
+        "rotation": -45,
+        "scaleX": 1.2,
+        "scaleY": 1.2
       },
       "components": {
         "prefab": {
           "source": {
             "id": "316f48c4a9fea31d",
             "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "f3e0bb07340b6b99",
+      "name": "MainCoin",
+      "transform": {
+        "x": -32.728,
+        "y": 5.272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "parent": "8e46a5c8fabe9ea6",
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "7ec3b1707adea8da",
+      "name": "MainBrick 2",
+      "transform": {
+        "x": 204.5,
+        "y": 161.75,
+        "rotation": -45,
+        "scaleX": 1.2,
+        "scaleY": 1.2
+      },
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "316f48c4a9fea31d",
+            "path": "prefabs/brick.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "bf1c33463b190df5",
+      "name": "MainCoin 2",
+      "transform": {
+        "x": -32.728,
+        "y": 5.272,
+        "rotation": 0,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      "parent": "7ec3b1707adea8da",
+      "components": {
+        "prefab": {
+          "source": {
+            "id": "f0ba753da9c14f3f",
+            "path": "prefabs/coin.json"
           }
         }
       }
@@ -5874,25 +5933,6 @@
       }
     },
     {
-      "id": "f3e0bb07340b6b99",
-      "name": "Coin",
-      "transform": {
-        "x": 136,
-        "y": 120,
-        "rotation": 0,
-        "scaleX": 1,
-        "scaleY": 1
-      },
-      "components": {
-        "prefab": {
-          "source": {
-            "id": "f0ba753da9c14f3f",
-            "path": "prefabs/coin.json"
-          }
-        }
-      }
-    },
-    {
       "id": "88394526ba1eb59a",
       "name": "Coin",
       "transform": {
@@ -6333,8 +6373,8 @@
       "id": "dc6e7c4d64e499f0",
       "name": "Fire bar",
       "transform": {
-        "x": 264,
-        "y": 88,
+        "x": 255.5,
+        "y": 89.5,
         "rotation": 0,
         "scaleX": 1,
         "scaleY": 1
